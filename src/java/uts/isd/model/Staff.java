@@ -8,21 +8,25 @@ import java.io.Serializable;
 
 /**
  *
- * @author Gabrielle
+ * @author Gabrielle 
  */
-public class Customer implements Serializable {
+public class Staff implements Serializable{
     private String email;
     private String fname;
     private String lname;
     private String phone;
     private String password;
+    private String staffnum;
+    private boolean activated;
 
-    public Customer(String email, String fname, String lname, String phone, String password) {
+    public Staff(String email, String fname, String lname, String phone, String password, String staffnum, boolean activated) {
         this.email = email;
         this.fname = fname;
         this.lname = lname;
         this.phone = phone;
         this.password = password;
+        this.staffnum = staffnum;
+        this.activated = activated;
     }
 
     public String getEmail() {
@@ -64,7 +68,22 @@ public class Customer implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getStaffnum() {
+        return staffnum;
+    }
+
+    public void setStaffnum(String staffnum) {
+        this.staffnum = staffnum;
+    }
+
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
     
     
 }
-

@@ -1,0 +1,31 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 30 Mar. 2022, 2:48:20 pm
+    Author     : Gabrielle K
+*/
+
+table{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+form{
+    
+}
+
+input{
+    
+}
+
+.extendfield{
+    width: 100%;
+}
+body{
+    text-align: center;
+    margin: auto;
+    font-family: sans-serif;
+}

@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <!-- will need to add css here, similar to this: <link rel="stylesheet" href="css/demo.css"> -->
+        <link rel="stylesheet" href="webpage.css"> 
         <title>Register Page</title>
     </head>
     <body>
@@ -19,27 +19,33 @@
                 <table>
                     <tr>
                         <td><label for="fname">First Name:</label></td>  
-                        <td><input type="text" placeholder="Enter your first name" name="fname" required></input></td>
+                        <td><label for="lname">Last Name:</label></td> 
+                        
                     </tr>
                     <tr>
-                        <td><label for="lname">Last Name:</label></td>  
+                         <td><input type="text" placeholder="Enter your first name" name="fname" required></input></td>
                         <td><input type="text" placeholder="Enter your last name" name="lname" required></input></td>
                     </tr>
                     <tr>
                         <td><label for="email">Email:</label></td>  
-                        <td><input type="email" placeholder="Enter your email" name="email" required></input></td>
                     </tr>
                     <tr>
-                        <td><label for="phone">Phone Number:</label></td>  
-                        <td><input type="tel" placeholder="Enter your phone number" name="phone" required></input></td>
+                        <td colspan = "2"><input class="extendfield" type="email" placeholder="Enter your email" name="email" required></input></td>
+                    </tr>
+                    <tr>
+                        <td><label for="phone">Phone Number:</label></td>
+                    </tr>
+                    <tr>
+                        <td colspan = "2"><input class="extendfield" type="tel" placeholder="Enter your phone number" name="phone" required></input></td>
                     </tr>
                     <tr>
                         <td><label for="password">Password:</label></td>
-                        <td><input type="password" placeholder="Enter your password" name="password" required></input></td>
                     </tr>
                     <tr>
-                        <td><label for="tos">Terms of Service:</label></td>
-                        <td> <input type="checkbox" name="tos">I agree</td>
+                        <td colspan = "2"><input class="extendfield" type="password" placeholder="Enter your password" name="password" required></input></td>
+                    </tr>
+                    <tr>
+                        <td><label for="tos">Terms of Service:</label><input type="checkbox" name="tos">I agree</input></td>
                     </tr>
             </table>
             <div>

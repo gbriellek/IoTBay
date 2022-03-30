@@ -14,7 +14,7 @@
     <body>
         <h1>IoT Bay</h1>
         
-        <a herf="register.jsp" >Register<a/> 
-        <a herf="login.jsp" >Login<a/> 
+         <a href="register.jsp" >Register</a> 
+        <a href="login.jsp" >Login</a> 
     </body>
 </html>

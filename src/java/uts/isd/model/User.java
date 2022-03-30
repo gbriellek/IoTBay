@@ -8,35 +8,19 @@ import java.io.Serializable;
 
 /**
  *
- * @author Gabrielle 
+ * @author Gabrielle
  */
-public class Staff implements Serializable{
-    private Staff staff;
+public class User implements Serializable{
     private String emailAddress;
     private String firstName;
     private String lastName;
     private String phoneNumber;
-    private String password;
-    private String staffNumber;
-    private boolean isActivated;
 
-    public Staff(Staff staff, String emailAddress, String firstName, String lastName, String phoneNumber, String password, String staffNumber, boolean isActivated) {
-        this.staff = staff;
+    public User(String emailAddress, String firstName, String lastName, String phoneNumber) {
         this.emailAddress = emailAddress;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
-        this.password = password;
-        this.staffNumber = staffNumber;
-        this.isActivated = isActivated;
-    }
-
-    public Staff getStaff() {
-        return staff;
-    }
-
-    public void setStaff(Staff staff) {
-        this.staff = staff;
     }
 
     public String getEmailAddress() {
@@ -71,32 +55,7 @@ public class Staff implements Serializable{
         this.phoneNumber = phoneNumber;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getStaffNumber() {
-        return staffNumber;
-    }
-
-    public void setStaffNumber(String staffNumber) {
-        this.staffNumber = staffNumber;
-    }
-
-    public boolean isIsActivated() {
-        return isActivated;
-    }
-
-    public void setIsActivated(boolean isActivated) {
-        this.isActivated = isActivated;
-    }
-
     
-
     
     
 }

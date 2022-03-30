@@ -21,26 +21,25 @@
         <table>
             <tr>
                 <td><p>First Name:</p></td>
-                <td><p><%=customer.getFname()%></p></td>
+                <td><p><%=customer.getFirstName()%></p></td>
             </tr>
             <tr>
                 <td><p>Last Name:</p></td>
-                <td><p><%=customer.getLname()%></p></td>
+                <td><p><%=customer.getLastName()%></p></td>
             </tr>
             <tr>
                 <td><p>Email:</p></td>  
-                <td><p><%=customer.getEmail()%></p></td>
+                <td><p><%=customer.getEmailAddress()%></p></td>
             </tr>
             <tr>
                 <td><p>Phone Number:</p></td>  
-                <td><p><%=customer.getPhone()%></p></td>
+                <td><p><%=customer.getPhoneNumber()%></p></td>
             </tr>
             <tr>
                 <td><p>Password:</p></td>
                 <td><p><%=customer.getPassword()%></p></td>
             </tr>
         </table>
-        <p>You are logged in as  <%=customer.getFname()%> <%=customer.getEmail()%></p>
         <a href="logout.jsp">Logout</a>
         <% }else {%>
         <p>You are not logged in</p>

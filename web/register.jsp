@@ -1,7 +1,7 @@
 <%-- 
     Document   : register.jsp
     Created on : 23 Mar. 2022, 3:21:39 pm
-    Author     : jemsw
+    Author     : Jemma Swaak
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -15,18 +15,19 @@
     <body>
         <h1>Register for IoTBay</h1>
             <form action="welcome.jsp" method="POST">
+                <input type="hidden" name="requestType", value="register">
                 <table>
                     <tr>
                         <td><label for="fname">First Name:</label></td>  
-                        <td><input type="text" placeholder="Enter your first name" name="fname" required="true"></input></td>
+                        <td><input type="text" placeholder="Enter your first name" name="fname" required></input></td>
                     </tr>
                     <tr>
                         <td><label for="lname">Last Name:</label></td>  
-                        <td><input type="text" placeholder="Enter your last name" name="lname" required="true"></input></td>
+                        <td><input type="text" placeholder="Enter your last name" name="lname" required></input></td>
                     </tr>
                     <tr>
                         <td><label for="email">Email:</label></td>  
-                        <td><input type="email" placeholder="Enter your email" name="email" ></input></td>
+                        <td><input type="email" placeholder="Enter your email" name="email" required></input></td>
                     </tr>
                     <tr>
                         <td><label for="phone">Phone Number:</label></td>  
@@ -40,7 +41,6 @@
                         <td><label for="tos">Terms of Service:</label></td>
                         <td> <input type="checkbox" name="tos">I agree</td>
                     </tr>
-                    <input type="hidden" name="requestType", value="register">
             </table>
             <div>
                 <input type="submit" value="Sign Up">

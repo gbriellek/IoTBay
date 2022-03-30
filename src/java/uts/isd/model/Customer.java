@@ -11,50 +11,50 @@ import java.io.Serializable;
  * @author Gabrielle
  */
 public class Customer implements Serializable {
-    private String email;
-    private String fname;
-    private String lname;
-    private String phone;
+    private String emailAddress;
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
     private String password;
 
-    public Customer(String email, String fname, String lname, String phone, String password) {
-        this.email = email;
-        this.fname = fname;
-        this.lname = lname;
-        this.phone = phone;
+    public Customer(String emailAddress, String firstName, String lastName, String phoneNumber, String password) {
+        this.emailAddress = emailAddress;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 
-    public String getFname() {
-        return fname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFname(String fname) {
-        this.fname = fname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLname() {
-        return lname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLname(String lname) {
-        this.lname = lname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getPassword() {
@@ -64,6 +64,7 @@ public class Customer implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
     
     
 }

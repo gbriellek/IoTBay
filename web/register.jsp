@@ -31,7 +31,7 @@
                     </tr>
                     <tr>
                         <td><label for="phone">Phone Number:</label></td>  
-                        <td><input type="tel" placeholder="Enter your phone number" name="phone" required></input></td>
+                        <td><input type="tel" placeholder="Enter your phone number" name="phone" pattern="([0-9]{10}|[0-9]{8})" title="Enter a mobile or home phone number e.g. 0478418342 or 67784228" required></input></td>
                     </tr>
                     <tr>
                         <td><label for="password">Password:</label></td>

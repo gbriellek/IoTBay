@@ -12,27 +12,29 @@
         <link rel="stylesheet" href="webpage.css"> 
         <title>Login</title>
     </head>
+    <header>
+        <h1>IoTBay</h1>
+    </header>
     <body>
-        <h1></h1>
         <h1>Login</h1>
-        <table border = 1px>
+        <table>
             <form action="welcome.jsp" method="POST">
                 <input type="hidden" name="requestType", value="login">
                 <tr>
-                    <td><label for="email">Email: </label></td>
+                    <td colspan = "2"><label for="email">Email: </label></td>
                 </tr>
                 <tr>
-                    <td colspan = "2"><input type="email" id="email" name="email"><br></td>
+                    <td colspan = "2"><input class="extendfield"placeholder="Enter your email" type="email" id="email" name="email"><br></td>
                 </tr>
                 <tr>
-                    <td><label for="password">Password: </label></td>
+                    <td colspan = "2"><label for="password">Password: </label></td>
                 </tr>
                 <tr>
-                    <td colspan = "2"><input type="password" id="password" name="password"><br></td>
+                    <td colspan = "2"><input class="extendfield" placeholder="Enter your password" type="password" id="password" name="password"><br></td>
                 </tr>
                 <tr>
+                    <td><a class="extendfield" id="cancel" href='index.jsp'>Back</a></td>
                     <td><input class="extendfield" id= "submit" type="submit" value="Login"></td>
-                    <td><a class="extendfield" href='index.jsp'>Back</a></td>
                 </tr>
             </form>
         </table>

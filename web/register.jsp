@@ -55,8 +55,8 @@
                         <td>         </td>
                     </tr>
                     <tr>
-                        <td><input class="extendfield" id = "submit" type="submit" value="Sign Up"></td>
                         <td><a id="cancel" class="extendfield" id="cancel" href="index.jsp">Cancel</a></td>
+                        <td><input class="extendfield" id = "submit" type="submit" value="Sign Up"></td>
                     </tr>
             </table>
         </form>

@@ -15,10 +15,9 @@
     </head>
     <body>
        <%
-           String tos = request.getParameter("tos");
-           if (tos != null) {
             String requestType = request.getParameter("requestType");
-            if (requestType.equals("register")) {
+            String tos = request.getParameter("tos");
+            if (requestType.equals("register") && tos != null) {
                 String fname = request.getParameter("fname");
                 String lname = request.getParameter("lname");
                 String email = request.getParameter("email");
@@ -28,22 +27,23 @@
                 session.setAttribute("customer", customer);
         %>
         <h1>Hello <%=fname%> <%=lname%>!</h1>
+        <a href="main.jsp">main</a>
+        <a href="logout.jsp">logout</a>
+        <% } else if (requestType.equals("register") && tos == null) { %> <!--if they registered and tos is null-->
+        <p>Sorry, you must agree to the Terms of Service.</p>
+        <a href="register.jsp">Register</a>
         <%
             }
-            else { // if requestType != register
+            else { // if requestType != register (ignore tos)
                 //need to distinguish staff and customer login
                 String email = request.getParameter("email");
                 String password = request.getParameter("password");
-                Customer customer = new Customer(email, "0", "0", "0", password);
+                Customer customer = new Customer(email, null, null, null, password);
                 session.setAttribute("customer", customer);
         %>
         <h1>Welcome back <%=email%>!</h1>
-        <%}%>
         <a href="main.jsp">main</a>
         <a href="logout.jsp">logout</a>
-        <% } else { %> <!--if tos is null-->
-        <p>Sorry, you must agree to the Terms of Service.</p>
-        <a href="register.jsp">Register</a>
         <% }%>
     </body>
 </html>

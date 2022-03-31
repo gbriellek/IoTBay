@@ -16,6 +16,7 @@
         <h1>Login</h1>
         <table>
             <form action="welcome.jsp" method="POST">
+                <input type="hidden" name="requestType", value="login">
                 <tr>
                     <td><label for="email">Email: </label></td>
                     <td><input type="email" id="email" name="email"><br></td>

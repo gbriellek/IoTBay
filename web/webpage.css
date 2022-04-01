@@ -10,6 +10,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 table{
     margin: auto;
     text-align: left;
+    width:400px;
 }
 
 form{
@@ -23,8 +24,10 @@ header{
     top: 0;
     left:0px;
     overflow: hidden;
-    box-shadow: -2px 2px 8px rgba(56, 56, 56, 0.5);
     background-color: white;
+    color: #16558f;
+    float: left;
+    box-shadow: -2px 2px 8px rgba(56, 56, 56, 0.5);
 }
 
 input{
@@ -33,7 +36,7 @@ input{
 
 
 body{
-    text-align: center;
+    text-align:center;
     height:100%;
     margin: auto;
     font-family: sans-serif;
@@ -54,8 +57,34 @@ a:link, visited{
     text-decoration: none;
 }
 
-label{
-    
+a{
+    align-content: center;
+    padding: 10px 20px;
+    margin: 30px 5px;
+    border-radius: 0px;
+    color: black;
+    font-size: 1.2em;
+    border-bottom: white;
+    transition: border-bottom 0.15s ease-in-out 0.15s;
+    text-align: center;
+}
+
+.mainbtn{
+    border-radius: 20px;
+    background-color:#0583d2;
+    color: white;
+    font-weight:bold;
+    padding: 25px 0 20px 0;
+    box-shadow: -2px 2px 8px rgba(56, 56, 56, 0.5);
+}
+
+.container{
+    display:flex;
+    flex-direction: column;
+    width: 300px;
+    margin:auto;
+    border-radius: 5px;
+/*    background-color: #EDF8FF;*/
 }
 
 .extendfield{
@@ -69,6 +98,10 @@ label{
     padding-top: 10px;
     padding-bottom: 10px;
     color: gray;
+}
+
+.profile{
+    border-bottom: 1px solid gray;
 }
 
 #submit{
@@ -91,4 +124,14 @@ label{
     padding: 15px 0 10px 0;
     border-radius: 20px;
     font-weight: bold;
+}
+
+#nothing{
+    padding: 0;
+    margin: 0;
+    color: blue;
+    border-bottom: none;
+    transition: none;
+    text-align: center;
+    font-size: 18px;
 }

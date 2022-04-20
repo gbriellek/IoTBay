@@ -3,9 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/src/java/uts/isd/model/Customer.java</file>
-            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/web/index.jsp</file>
-            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/src/java/uts/isd/model/User.java</file>
+            <file>file:/C:/Users/Gabrielle%20K/Desktop/university/BIT%202nd%20YEAR/41025%20-%20Introduction%20to%20Software%20Development/repos/IoTBay/web/db/tblUser.sql</file>
+            <file>file:/C:/Users/Gabrielle%20K/Desktop/university/BIT%202nd%20YEAR/41025%20-%20Introduction%20to%20Software%20Development/repos/IoTBay/web/db/tblBilling_Address.sql</file>
+            <file>file:/C:/Users/Gabrielle%20K/Desktop/university/BIT%202nd%20YEAR/41025%20-%20Introduction%20to%20Software%20Development/repos/IoTBay/web/db/tblAddress.sql</file>
+            <file>file:/C:/Users/Gabrielle%20K/Desktop/university/BIT%202nd%20YEAR/41025%20-%20Introduction%20to%20Software%20Development/repos/IoTBay/web/db/tblAccess_Log.sql</file>
+            <file>file:/C:/Users/Gabrielle%20K/Desktop/university/BIT%202nd%20YEAR/41025%20-%20Introduction%20to%20Software%20Development/repos/IoTBay/web/db/tblStaff.sql</file>
+            <file>file:/C:/Users/Gabrielle%20K/Desktop/university/BIT%202nd%20YEAR/41025%20-%20Introduction%20to%20Software%20Development/repos/IoTBay/web/db/tblPayment_Information.sql</file>
+            <file>file:/C:/Users/Gabrielle%20K/Desktop/university/BIT%202nd%20YEAR/41025%20-%20Introduction%20to%20Software%20Development/repos/IoTBay/web/db/tblOrder.sql</file>
+            <file>file:/C:/Users/Gabrielle%20K/Desktop/university/BIT%202nd%20YEAR/41025%20-%20Introduction%20to%20Software%20Development/repos/IoTBay/web/db/tblDelivery_Address.sql</file>
+            <file>file:/C:/Users/Gabrielle%20K/Desktop/university/BIT%202nd%20YEAR/41025%20-%20Introduction%20to%20Software%20Development/repos/IoTBay/web/db/tblProduct.sql</file>
+            <file>file:/C:/Users/Gabrielle%20K/Desktop/university/BIT%202nd%20YEAR/41025%20-%20Introduction%20to%20Software%20Development/repos/IoTBay/web/db/tblOrder_Line.sql</file>
+            <file>file:/C:/Users/Gabrielle%20K/Desktop/university/BIT%202nd%20YEAR/41025%20-%20Introduction%20to%20Software%20Development/repos/IoTBay/web/db/tblCustomer.sql</file>
         </group>
     </open-files>
 </project-private>

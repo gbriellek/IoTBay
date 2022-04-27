@@ -8,12 +8,11 @@
  */
 
 CREATE TABLE tblUser (
-    User_ID int NOT NULL,
+    User_ID int GENERATED ALWAYS AS IDENTITY NOT NULL,
     Email_Address VARCHAR(60) NOT NULL,
     First_Name VARCHAR(25) NOT NULL,
     Last_Name VARCHAR(25) NOT NULL,
-    Phone_Number VARCHAR(10) NOT NULL
+    Phone_Number VARCHAR(10) NOT NULL,
     PRIMARY KEY (User_ID)
 );
-
 

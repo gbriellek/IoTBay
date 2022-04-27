@@ -8,7 +8,7 @@
  */
 
 CREATE TABLE tblStaff (
-    Staff_ID int NOT NULL,
+    Staff_ID int GENERATED ALWAYS AS IDENTITY NOT NULL,
     Password VARCHAR(30) NOT NULL,
     Staff_Number VARCHAR(10) NOT NULL,
     Is_Activated BOOLEAN NOT NULL,

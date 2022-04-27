@@ -7,8 +7,6 @@
  * Created: 20 Apr. 2022
  */
 
--- DROP TABLE IF EXISTS tblOrder_Line CASCADE;
-
 CREATE TABLE tblOrder_Line (
     Order_ID int NOT NULL,
     Product_ID int NOT NULL,

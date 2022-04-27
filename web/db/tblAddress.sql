@@ -8,7 +8,7 @@
  */
 
 CREATE TABLE tblAddress (
-    Address_ID int NOT NULL,
+    Address_ID int GENERATED ALWAYS AS IDENTITY NOT NULL,
     Unit_Number VARCHAR(4),
     Street_Number VARCHAR(4) NOT NULL,
     Street VARCHAR(30) NOT NULL,

@@ -8,7 +8,7 @@
  */
 
 CREATE TABLE tblAccess_Log (
-    Access_Log_ID int NOT NULL,
+    Access_Log_ID int GENERATED ALWAYS AS IDENTITY NOT NULL,
     User_ID int NOT NULL,
     Access_Date_Time TIMESTAMP NOT NULL,
     Event VARCHAR(30) NOT NULL,

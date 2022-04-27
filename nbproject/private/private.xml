@@ -2,6 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< Updated upstream
         <group>
             <file>file:/C:/Users/Gabrielle%20K/Desktop/university/BIT%202nd%20YEAR/41025%20-%20Introduction%20to%20Software%20Development/repos/IoTBay/web/db/tblAccess_Log.sql</file>
             <file>file:/C:/Users/Gabrielle%20K/Desktop/university/BIT%202nd%20YEAR/41025%20-%20Introduction%20to%20Software%20Development/repos/IoTBay/src/java/uts/isd/model/dao/DB.java</file>
@@ -18,5 +19,8 @@
             <file>file:/C:/Users/Gabrielle%20K/Desktop/university/BIT%202nd%20YEAR/41025%20-%20Introduction%20to%20Software%20Development/repos/IoTBay/web/db/tblStaff.sql</file>
             <file>file:/C:/Users/Gabrielle%20K/Desktop/university/BIT%202nd%20YEAR/41025%20-%20Introduction%20to%20Software%20Development/repos/IoTBay/web/db/tblCustomer.sql</file>
         </group>
+=======
+        <group/>
+>>>>>>> Stashed changes
     </open-files>
 </project-private>

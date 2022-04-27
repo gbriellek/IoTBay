@@ -13,8 +13,9 @@ import java.sql.*;
 import java.util.*;
 
 import java.util.logging.*;
+import uts.isd.model.User;
 import uts.isd.model.dao.DBConnector;
-import uts.isd.model.dao.DBManager;
+import uts.isd.model.dao.DBUserManager;
 
  
 
@@ -27,38 +28,40 @@ public class TestDB {
         try {
 
             DBConnector connector = new DBConnector();
-
             Connection conn = connector.openConnection();
+            DBUserManager db = new DBUserManager(conn);
+//            db.addUser("bob@gmail.com", "bob", "smith", "0412345781");
+//            db.updateUser("bib@gmail.com", "bob", "smith", "0412345781");
+//            db.deleteUser("bob@gmail.com");
+            User x = db.findUser("bob@gmail.com");
+            System.out.println(x.getPhoneNumber());
 
-            DBManager db = new DBManager(conn);
 
-
-
-            System.out.print("User email: ");
-
-            String email = in.nextLine();
-
-            System.out.print("User name: ");
-
-            String name = in.nextLine();
-
-            System.out.print("User password: ");
-
-            String password = in.nextLine();
-
-            System.out.print("User gender: ");
-
-            String gender = in.nextLine();
-
-            System.out.print("User favorite color: ");
-
-            String favcol = in.nextLine();
-
-            db.addUser( email, name, password, gender, favcol);
-
-            System.out.println("User is added to the database.");
-
-            connector.closeConnection();
+//            System.out.print("User email: ");
+//
+//            String email = in.nextLine();
+//
+//            System.out.print("User name: ");
+//
+//            String name = in.nextLine();
+//
+//            System.out.print("User password: ");
+//
+//            String password = in.nextLine();
+//
+//            System.out.print("User gender: ");
+//
+//            String gender = in.nextLine();
+//
+//            System.out.print("User favorite color: ");
+//
+//            String favcol = in.nextLine();
+//
+//            db.addUser( email, name, password, gender, favcol);
+//
+//            System.out.println("User is added to the database.");
+//
+//            connector.closeConnection();
 
         } catch (ClassNotFoundException | SQLException ex) {
 

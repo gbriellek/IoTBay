@@ -5,6 +5,7 @@
 package uts.isd.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -12,42 +13,40 @@ import java.util.Date;
  * @author Gabrielle
  */
 public class Order implements Serializable{
-    private User user;
-    private Customer customer;
+    private int orderID;
+    private int userID;
     private PaymentInformation paymentInformation;
+    private ShipmentDetail shipmentDetail;
     private Date orderDate;
     private double totalCost;
-    private double deliveryFee;
-    private String deliveryInstructions;
-    private String deliveryStatus;
-    private Date deliveryDate;
+    private String orderStatus;
+    private ArrayList<OrderLine> orderLine;
 
-    public Order(User user, Customer customer, PaymentInformation paymentInformation, Date orderDate, double totalCost, double deliveryFee, String deliveryInstructions, String deliveryStatus, Date deliveryDate) {
-        this.user = user;
-        this.customer = customer;
+    public Order(int orderID, int userID, PaymentInformation paymentInformation, ShipmentDetail shipmentDetail, Date orderDate, double totalCost, String orderStatus, ArrayList<OrderLine> orderLine) {
+        this.orderID = orderID;
+        this.userID = userID;
         this.paymentInformation = paymentInformation;
+        this.shipmentDetail = shipmentDetail;
         this.orderDate = orderDate;
         this.totalCost = totalCost;
-        this.deliveryFee = deliveryFee;
-        this.deliveryInstructions = deliveryInstructions;
-        this.deliveryStatus = deliveryStatus;
-        this.deliveryDate = deliveryDate;
+        this.orderStatus = orderStatus;
+        this.orderLine = orderLine;
     }
 
-    public User getUser() {
-        return user;
+    public int getOrderID() {
+        return orderID;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public PaymentInformation getPaymentInformation() {
@@ -56,6 +55,14 @@ public class Order implements Serializable{
 
     public void setPaymentInformation(PaymentInformation paymentInformation) {
         this.paymentInformation = paymentInformation;
+    }
+
+    public ShipmentDetail getShipmentDetail() {
+        return shipmentDetail;
+    }
+
+    public void setShipmentDetail(ShipmentDetail shipmentDetail) {
+        this.shipmentDetail = shipmentDetail;
     }
 
     public Date getOrderDate() {
@@ -74,37 +81,20 @@ public class Order implements Serializable{
         this.totalCost = totalCost;
     }
 
-    public double getDeliveryFee() {
-        return deliveryFee;
+    public String getOrderStatus() {
+        return orderStatus;
     }
 
-    public void setDeliveryFee(double deliveryFee) {
-        this.deliveryFee = deliveryFee;
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
-    public String getDeliveryInstructions() {
-        return deliveryInstructions;
+    public ArrayList<OrderLine> getOrderLine() {
+        return orderLine;
     }
 
-    public void setDeliveryInstructions(String deliveryInstructions) {
-        this.deliveryInstructions = deliveryInstructions;
+    public void setOrderLine(ArrayList<OrderLine> orderLine) {
+        this.orderLine = orderLine;
     }
-
-    public String getDeliveryStatus() {
-        return deliveryStatus;
-    }
-
-    public void setDeliveryStatus(String deliveryStatus) {
-        this.deliveryStatus = deliveryStatus;
-    }
-
-    public Date getDeliveryDate() {
-        return deliveryDate;
-    }
-
-    public void setDeliveryDate(Date deliveryDate) {
-        this.deliveryDate = deliveryDate;
-    }
-    
     
 }

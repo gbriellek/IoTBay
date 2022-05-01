@@ -11,24 +11,14 @@ import java.io.Serializable;
  * @author Gabrielle
  */
 public class OrderLine implements Serializable{
-    private Order order;
     private Product product;
     private int quantity;
     private double price;
 
-    public OrderLine(Order order, Product product, int quantity, double price) {
-        this.order = order;
+    public OrderLine(Product product, int quantity, double price) {
         this.product = product;
         this.quantity = quantity;
         this.price = price;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
     }
 
     public Product getProduct() {

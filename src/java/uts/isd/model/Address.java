@@ -11,6 +11,7 @@ import java.io.Serializable;
  * @author Gabrielle
  */
 public class Address implements Serializable{
+    private int addressID;
     private String unitNo;
     private String streetNo;
     private String streetName;
@@ -19,7 +20,8 @@ public class Address implements Serializable{
     private String state;
     private String country;
 
-    public Address(String unitNo, String streetNo, String streetName, String city, int postcode, String state, String country) {
+    public Address(int addressID, String unitNo, String streetNo, String streetName, String city, int postcode, String state, String country) {
+        this.addressID = addressID;
         this.unitNo = unitNo;
         this.streetNo = streetNo;
         this.streetName = streetName;
@@ -29,6 +31,14 @@ public class Address implements Serializable{
         this.country = country;
     }
 
+     public int getAddressID() {
+        return addressID;
+    }
+
+    public void setAddressID(int addressID) {
+        this.addressID = addressID;
+    }
+    
     public String getUnitNo() {
         return unitNo;
     }

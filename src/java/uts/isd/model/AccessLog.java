@@ -11,22 +11,22 @@ import java.util.Date;
  * @author Gabrielle
  */
 public class AccessLog {
-    private Staff staff;
+    private int userID;
     private Date accessDateTime;
     private String event;
 
-    public AccessLog(Staff staff, Date accessDateTime, String event) {
-        this.staff = staff;
+    public AccessLog(int userID, Date accessDateTime, String event) {
+        this.userID = userID;
         this.accessDateTime = accessDateTime;
         this.event = event;
     }
 
-    public Staff getStaff() {
-        return staff;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setStaff(Staff staff) {
-        this.staff = staff;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public Date getAccessDateTime() {

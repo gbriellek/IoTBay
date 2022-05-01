@@ -12,36 +12,26 @@ import java.util.Date;
  * @author Gabrielle
  */
 public class PaymentInformation implements Serializable{
-    private User user;
-    private Customer customer;
+    private int paymentInformationID;
     private String cardNumber;
     private String cardType;
     private Date expiryDate;
     private int CVV;
 
-    public PaymentInformation(User user, Customer customer, String cardNumber, String cardType, Date expiryDate, int CVV) {
-        this.user = user;
-        this.customer = customer;
+    public PaymentInformation(int paymentInformationID, String cardNumber, String cardType, Date expiryDate, int CVV) {
+        this.paymentInformationID = paymentInformationID;
         this.cardNumber = cardNumber;
         this.cardType = cardType;
         this.expiryDate = expiryDate;
         this.CVV = CVV;
     }
 
-    public User getUser() {
-        return user;
+    public int getPaymentInformationID() {
+        return paymentInformationID;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setPaymentInformationID(int paymentInformationID) {
+        this.paymentInformationID = paymentInformationID;
     }
 
     public String getCardNumber() {
@@ -75,6 +65,5 @@ public class PaymentInformation implements Serializable{
     public void setCVV(int CVV) {
         this.CVV = CVV;
     }
-    
     
 }

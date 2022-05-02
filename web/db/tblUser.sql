@@ -19,7 +19,7 @@ CREATE TABLE tblUser (
 INSERT INTO tblUser (Email_Address, First_Name, Last_Name, Phone_Number) VALUES 
     ('hudson.kramer@iotbay.com.au', 'Hudson', 'Kramer', '0434379125'), 
     ('naomi.church@iotbay.com.au', 'Naomi', 'Church', '0407367846'), 
-    ('paul.lim@iotbay.com.au', 'Paul', 'Lim', '0424815363')
+    ('paul.lim@iotbay.com.au', 'Paul', 'Lim', '0424815363'),
     ('mila.r.woodley@iotbay.com.au', 'Mila-Rose', 'Woodley', '0434964689'),
     ('wesley.mccarty@iotbay.com.au', 'Wesley', 'Mccarty', '0407063954'),
     ('aisha.sheridan@iotbay.com.au', 'Aisha', 'Sheridan', '0488826170'),

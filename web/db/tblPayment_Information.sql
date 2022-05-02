@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/SQLTemplate.sql to edit this template
  */
 /**
- * Author:  Gabrielle K
+ * Author:  Gabrielle K & Jemma S
  * Created: 20 Apr. 2022
  */
 
@@ -25,6 +25,7 @@ CREATE TABLE tblPayment_Information (
     Expiry_Date VARCHAR(7) NOT NULL,
     PRIMARY KEY (Payment_Info_ID)
 );
+
 INSERT INTO tblPayment_Information (Card_Number, Card_Type, Expiry_Date) VALUES
 ('4603651184490994', 'Visa', '2023-03'),
 ('3403691184490995', 'AMEX', '2022-09'),

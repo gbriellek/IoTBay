@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/SQLTemplate.sql to edit this template
  */
 /**
- * Author:  Gabrielle K
+ * Author:  Gabrielle K & Jemma S
  * Created: 20 Apr. 2022
  */
 
@@ -16,6 +16,7 @@ CREATE TABLE tblOrder_Line (
     FOREIGN KEY (Order_ID) REFERENCES tblOrder(Order_ID),
     FOREIGN KEY (Product_ID) REFERENCES tblProduct(Product_ID)
 );
+
 INSERT INTO tblOrder_Line (Order_ID, Product_ID, Quantity, Price) VALUES
 (1, 1, 5, 25),
 (2, 1, 2, 10),

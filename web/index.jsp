@@ -9,12 +9,21 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="webpage.css"> 
         <title>IoT Bay</title>
     </head>
-    <body>
-        <h1>IoT Bay</h1>
+    <header>
+        <h1>IoTBay</h1>
+    </header>
+    <body >
+        <h1>Welcome to IoTBay!</h1>
+        <div class="container">
+            <a class="mainbtn" href="register.jsp" >Register</a> 
+            <a class="mainbtn" href="login.jsp" >Login</a>
+            <a class="mainbtn">View Products</a>
+        </div>
         
-        <a href="register.jsp" >Register</a> 
-        <a href="login.jsp" >Login</a> 
+        
+        
     </body>
 </html>

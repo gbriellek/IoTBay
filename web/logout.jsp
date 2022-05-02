@@ -9,11 +9,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="webpage.css"> 
         <title>Logout</title>
     </head>
+    <header>
+        <h1>IoTBay</h1>
+    </header>
     <body>
         <h1>Logout</h1>
-        <p>You have been logged out. <br> Click <a href = index.jsp>here</a> to return to the homepage.</p>
+        <p>You have been logged out. <br> Click <a id="nothing" href = index.jsp>here</a> to return to the homepage.</p>
         <%session.invalidate();%>
     </body>
 </html>

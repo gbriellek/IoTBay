@@ -11,6 +11,7 @@ import java.io.Serializable;
  * @author Gabrielle
  */
 public class Product implements Serializable{
+    private int productID;
     private String name;
     private String description;
     private double price;
@@ -18,13 +19,22 @@ public class Product implements Serializable{
     private String category;
     private boolean isActive;
 
-    public Product(String name, String description, double price, int stock, String category, boolean isActive) {
+    public Product(int productID, String name, String description, double price, int stock, String category, boolean isActive) {
+        this.productID = productID;
         this.name = name;
         this.description = description;
         this.price = price;
         this.stock = stock;
         this.category = category;
         this.isActive = isActive;
+    }
+
+    public int getProductID() {
+        return productID;
+    }
+
+    public void setProductID(int productID) {
+        this.productID = productID;
     }
 
     public String getName() {

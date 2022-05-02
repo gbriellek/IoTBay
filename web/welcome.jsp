@@ -10,9 +10,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <!--insert css ref-->
+        <link rel="stylesheet" href="webpage.css"> 
         <title>Welcome Page</title>
     </head>
+    <header>
+        <h1>IoTBay</h1>
+    </header>
     <body>
        <%
             String requestType = request.getParameter("requestType");
@@ -26,12 +29,19 @@
                 Customer customer = new Customer(email, fname, lname, phone, password);
                 session.setAttribute("customer", customer);
         %>
-        <h1>Hello <%=fname%> <%=lname%>!</h1>
-        <a href="main.jsp">main</a>
-        <a href="logout.jsp">logout</a>
+        <h1>Welcome <%=fname%> <%=lname%>!</h1>
+        <div class="container">
+            <a class="mainbtn" href="main.jsp">Profile</a>
+            <a class="mainbtn" >View Products</a>
+            <a class="mainbtn" href="logout.jsp">Logout</a>
+        </div>
         <% } else if (requestType.equals("register") && tos == null) { %> <!--if they registered and tos is null-->
+        <h1>Failed to Register Account</h1>
         <p>Sorry, you must agree to the Terms of Service.</p>
-        <a href="register.jsp">Register</a>
+        <div class="container">
+            <a class="mainbtn" href="register.jsp">Register</a>
+        </div>
+        
         <%
             }
             else { // if requestType != register (ignore tos)
@@ -42,8 +52,11 @@
                 session.setAttribute("customer", customer);
         %>
         <h1>Welcome back <%=email%>!</h1>
-        <a href="main.jsp">main</a>
-        <a href="logout.jsp">logout</a>
+        <div class="container">
+            <a class="mainbtn" href="main.jsp">Profile</a>
+            <a class="mainbtn" >View Products</a>
+            <a class="mainbtn" href="logout.jsp">Logout</a>
+        </div>
         <% }%>
     </body>
 </html>

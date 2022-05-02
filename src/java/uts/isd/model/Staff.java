@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @author Gabrielle 
  */
 public class Staff implements Serializable{
-    private Staff staff;
+    private int staffID;
     private String emailAddress;
     private String firstName;
     private String lastName;
@@ -20,8 +20,8 @@ public class Staff implements Serializable{
     private String staffNumber;
     private boolean isActivated;
 
-    public Staff(Staff staff, String emailAddress, String firstName, String lastName, String phoneNumber, String password, String staffNumber, boolean isActivated) {
-        this.staff = staff;
+    public Staff(int staffID, String emailAddress, String firstName, String lastName, String phoneNumber, String password, String staffNumber, boolean isActivated) {
+        this.staffID = staffID;
         this.emailAddress = emailAddress;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -31,12 +31,12 @@ public class Staff implements Serializable{
         this.isActivated = isActivated;
     }
 
-    public Staff getStaff() {
-        return staff;
+    public int getStaffID() {
+        return staffID;
     }
 
-    public void setStaff(Staff staff) {
-        this.staff = staff;
+    public void setstaffID(int staffID) {
+        this.staffID = staffID;
     }
 
     public String getEmailAddress() {

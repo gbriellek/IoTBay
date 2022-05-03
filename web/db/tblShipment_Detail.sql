@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/SQLTemplate.sql to edit this template
  */
 /**
- * Author:  Gabrielle K
+ * Author:  Gabrielle K & Sarah F
  * Created: 27 Apr. 2022
  */
 

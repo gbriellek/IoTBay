@@ -28,7 +28,7 @@ CREATE TABLE tblUser (
 );
 
 CREATE TABLE tblStaff (
-    Staff_ID int GENERATED ALWAYS AS IDENTITY NOT NULL,
+    Staff_ID int NOT NULL,
     Password VARCHAR(30) NOT NULL,
     Staff_Number VARCHAR(10) NOT NULL,
     Is_Activated BOOLEAN NOT NULL,
@@ -57,7 +57,7 @@ CREATE TABLE tblPayment_Information (
     Payment_Info_ID int GENERATED ALWAYS AS IDENTITY NOT NULL,
     Card_Number VARCHAR(16) NOT NULL,
     Card_Type VARCHAR(10) NOT NULL,
-    Expiry_Date DATE NOT NULL,
+    Expiry_Date VARCHAR(7) NOT NULL,
     PRIMARY KEY (Payment_Info_ID)
 );
 
@@ -80,7 +80,7 @@ CREATE TABLE tblShipment_Detail (
     Delivery_Date DATE NOT NULL,
     Delivery_Method VARCHAR(8) NOT NULL,
     PRIMARY KEY (Shipment_Detail_ID),
-    FOREIGN KEY (Address_ID) REFERENCES tblAddress(Address_ID)
+    FOREIGN KEY (Address_ID) REFERENCES tblAddress(Address_ID)  
 );
 
 CREATE TABLE tblOrder (
@@ -88,9 +88,9 @@ CREATE TABLE tblOrder (
     User_ID int NOT NULL,
     Payment_Info_ID int,
     Shipment_Detail_ID int,
-    Order_Date TIMESTAMP NOT NULL,
+    Order_Date DATE NOT NULL,
     Total_Cost DOUBLE NOT NULL,
-    Order_Status VARCHAR(15) NOT NULL,
+    Order_Status VARCHAR(15) NOT NULL, 
     PRIMARY KEY (Order_ID),
     FOREIGN KEY (User_ID) REFERENCES tblUser(User_ID),
     FOREIGN KEY (Payment_Info_ID) REFERENCES tblPayment_Information(Payment_Info_ID),  
@@ -100,7 +100,7 @@ CREATE TABLE tblOrder (
 CREATE TABLE tblProduct (
     Product_ID int GENERATED ALWAYS AS IDENTITY NOT NULL,
     Product_Name VARCHAR(50) NOT NULL,
-    Description VARCHAR(100) NOT NULL,
+    Description VARCHAR(500) NOT NULL,
     Price DOUBLE NOT NULL,
     Stock int NOT NULL,
     Category VARCHAR(30) NOT NULL,

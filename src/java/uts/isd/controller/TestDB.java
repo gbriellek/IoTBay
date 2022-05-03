@@ -13,9 +13,7 @@ import java.sql.*;
 import java.util.*;
 
 import java.util.logging.*;
-import uts.isd.model.User;
-import uts.isd.model.dao.DBConnector;
-import uts.isd.model.dao.DBUserManager;
+import uts.isd.model.dao.*;
 
  
 
@@ -29,12 +27,15 @@ public class TestDB {
 
             DBConnector connector = new DBConnector();
             Connection conn = connector.openConnection();
-            DBUserManager db = new DBUserManager(conn);
+//            DBUserManager db = new DBUserManager(conn);
+            DBAddressManager db = new DBAddressManager(conn);
 //            db.addUser("bob@gmail.com", "bob", "smith", "0412345781");
 //            db.updateUser("bib@gmail.com", "bob", "smith", "0412345781");
 //            db.deleteUser("bob@gmail.com");
-            User x = db.findUser("bob@gmail.com");
-            System.out.println(x.getPhoneNumber());
+//            User x = db.findUser("bob@gmail.com");
+//            System.out.println(x.getPhoneNumber());
+            db.findAddressID(null,"23", "bob st", "sydney", 2000, "nsw");
+            
 
 
 //            System.out.print("User email: ");
@@ -66,7 +67,7 @@ public class TestDB {
         } catch (ClassNotFoundException | SQLException ex) {
 
             Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
-
+            System.out.println("sfjhdg");
         }
 
     }

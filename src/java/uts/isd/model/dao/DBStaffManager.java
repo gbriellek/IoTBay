@@ -9,22 +9,22 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import uts.isd.model.Customer;
+import uts.isd.model.Staff;
 
 /**
  *
  * @author Gabrielle K
  */
-public class DBCustomerManager {
+public class DBStaffManager {
     
     private Connection conn;
     
-    public DBCustomerManager(Connection conn) throws SQLException {
+    public DBStaffManager(Connection conn) throws SQLException {
         this.conn = conn;
     }
     
-    public Customer findCustomer(String email) throws SQLException {
-        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblUser INNER JOIN tblCustomer ON tblUser.User_ID = tblCustomer.Customer_ID WHERE Email_Address = ?");
+    public Staff findStaff(String email) throws SQLException {
+        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblUser INNER JOIN tblStaff ON tblUser.User_ID = tblStaff.Staff_ID WHERE Email_Address = ? AND Is_Activated = True");
         selectStatement.setString(1, email);
         ResultSet rs = selectStatement.executeQuery();
         
@@ -35,16 +35,16 @@ public class DBCustomerManager {
             String lname = rs.getString(4);
             String phone_number = rs.getString(5);
             String password = rs.getString(6);
-            boolean Is_Activated = rs.getBoolean(7);
+            String staff_number = rs.getString(7);
+            boolean is_Activated = rs.getBoolean(8);
            
-           return new Customer(userid, user_email, fname, lname, phone_number, password, Is_Activated);
+           return new Staff(userid, user_email, fname, lname, phone_number, password, staff_number, is_Activated);
        }
        selectStatement.close();
-       throw new SQLException("No such customer exists."); 
-        
+       throw new SQLException("No such staff exists.");
     }
     
-    public void addCustomer (String email, String fname, String lname, String phoneno, String password, boolean Is_Activated) throws SQLException {
+    public void addStaff (String email, String fname, String lname, String phoneno, String password, String staff_number, boolean is_Activated) throws SQLException {
         PreparedStatement insertStatement = conn.prepareStatement("INSERT INTO tblUser(Email_Address, First_Name, Last_Name, Phone_Number) VALUES (?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
         insertStatement.setString(1, email);
         insertStatement.setString(2, fname);
@@ -71,13 +71,13 @@ public class DBCustomerManager {
         PreparedStatement insertStatement1 = conn.prepareStatement("INSERT INTO tblCustomer(Customer_ID, Password, Is_Activated) VALUES (?,?,?)");
         insertStatement1.setInt(1,id);
         insertStatement1.setString(2, password);
-        insertStatement1.setBoolean(3, Is_Activated);
+        insertStatement1.setBoolean(3, is_Activated);
         
         insertStatement1.executeUpdate();
         insertStatement1.close();
     }
     
-    public void updateCustomer(int id, String email, String fname, String lname, String phoneno, String password, boolean Is_Activated) throws SQLException {
+    public void updateStaff(int id, String email, String fname, String lname, String phoneno, String password, String staff_number, boolean is_Activated) throws SQLException {
         PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblUser SET First_Name = ?, Last_Name = ?, Phone_Number = ? WHERE User_ID = ?");
         updateStatement.setString(1, fname);
         updateStatement.setString(2, lname);
@@ -87,22 +87,21 @@ public class DBCustomerManager {
         updateStatement.executeUpdate();
         updateStatement.close();
         
-        PreparedStatement updateStatement1 = conn.prepareStatement("UPDATE tblCustomer SET Password = ?, Is_Activated = ? WHERE User_ID = ?");
+        PreparedStatement updateStatement1 = conn.prepareStatement("UPDATE tblStaff SET Password = ?, Staff_Number = ?, Is_Activated = ? WHERE User_ID = ?");
         updateStatement.setString(1, password);
-        updateStatement.setBoolean(2, Is_Activated);
-        updateStatement.setInt(3, id);
+        updateStatement.setString(2, staff_number);
+        updateStatement.setBoolean(3, is_Activated);
+        updateStatement.setInt(4, id);
         
         updateStatement.executeUpdate();
         updateStatement.close();
-        
     }
     
-    public void deleteCustomer(int id) throws SQLException {
-        PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblCustomer SET Is_Activated = False WHERE User_ID = ?");
+    public void deleteStaff(int id) throws SQLException {
+        PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblStaff SET Is_Activated = False WHERE User_ID = ?");
         updateStatement.setInt(1, id);
         
         updateStatement.executeUpdate();
         updateStatement.close();
-        
     }
 }

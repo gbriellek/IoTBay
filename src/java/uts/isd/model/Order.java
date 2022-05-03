@@ -5,7 +5,6 @@
 package uts.isd.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -15,22 +14,20 @@ import java.util.Date;
 public class Order implements Serializable{
     private int orderID;
     private int userID;
-    private PaymentInformation paymentInformation;
-    private ShipmentDetail shipmentDetail;
+    private int paymentInformationID;
+    private int shipmentDetailID;
     private Date orderDate;
     private double totalCost;
     private String orderStatus;
-    private ArrayList<OrderLine> orderLine;
 
-    public Order(int orderID, int userID, PaymentInformation paymentInformation, ShipmentDetail shipmentDetail, Date orderDate, double totalCost, String orderStatus, ArrayList<OrderLine> orderLine) {
+    public Order(int orderID, int userID, int paymentInformationID, int shipmentDetailID, Date orderDate, double totalCost, String orderStatus) {
         this.orderID = orderID;
         this.userID = userID;
-        this.paymentInformation = paymentInformation;
-        this.shipmentDetail = shipmentDetail;
+        this.paymentInformationID = paymentInformationID;
+        this.shipmentDetailID = shipmentDetailID;
         this.orderDate = orderDate;
         this.totalCost = totalCost;
         this.orderStatus = orderStatus;
-        this.orderLine = orderLine;
     }
 
     public int getOrderID() {
@@ -49,20 +46,20 @@ public class Order implements Serializable{
         this.userID = userID;
     }
 
-    public PaymentInformation getPaymentInformation() {
-        return paymentInformation;
+    public int getPaymentInformationID() {
+        return paymentInformationID;
     }
 
-    public void setPaymentInformation(PaymentInformation paymentInformation) {
-        this.paymentInformation = paymentInformation;
+    public void setPaymentInformationID(int paymentInformationID) {
+        this.paymentInformationID = paymentInformationID;
     }
 
-    public ShipmentDetail getShipmentDetail() {
-        return shipmentDetail;
+    public int getShipmentDetailID() {
+        return shipmentDetailID;
     }
 
-    public void setShipmentDetail(ShipmentDetail shipmentDetail) {
-        this.shipmentDetail = shipmentDetail;
+    public void setShipmentDetailID(int shipmentDetailID) {
+        this.shipmentDetailID = shipmentDetailID;
     }
 
     public Date getOrderDate() {
@@ -89,12 +86,6 @@ public class Order implements Serializable{
         this.orderStatus = orderStatus;
     }
 
-    public ArrayList<OrderLine> getOrderLine() {
-        return orderLine;
-    }
-
-    public void setOrderLine(ArrayList<OrderLine> orderLine) {
-        this.orderLine = orderLine;
-    }
+    
     
 }

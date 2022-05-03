@@ -85,6 +85,10 @@ public class Address implements Serializable{
         this.state = state;
     }
 
+    @Override
+    public String toString() {
+        return "addressID: " + addressID + ", unitNo: " + unitNo + ", streetNo: " + streetNo +", streetName: " +streetName +", city: " + city +", postcode: "+ postcode +", state: "+ state;
+    }
 
     
     

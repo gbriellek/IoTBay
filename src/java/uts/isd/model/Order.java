@@ -86,6 +86,9 @@ public class Order implements Serializable{
         this.orderStatus = orderStatus;
     }
 
-    
+    @Override
+    public String toString() {
+        return "orderID:" + userID + ", paymentInformationID: " + paymentInformationID + ", shipmentDetailID: "  + shipmentDetailID + ", orderDate: "  + orderDate + ", totalCost: "  + totalCost + ", orderStatus: "  + orderStatus;
+    }
     
 }

@@ -46,5 +46,10 @@ public class AccessLog implements Serializable{
         this.event = event;
     }
     
+    @Override
+    public String toString() {
+        return "userId: " + userID + ", AccessDateTime: " + accessDateTime + ", event: " + event;
+    }
+    
     
 }

@@ -65,6 +65,9 @@ public class PaymentInformation implements Serializable{
         this.cvv = cvv;
     }
 
-    
+    @Override
+    public String toString() {
+        return "paymentInformationID: "+paymentInformationID + ", cardNumber: " + cardNumber+ ", cardType: " + cardType+ ", expiryDate: " + expiryDate+ ", cvv: " +cvv;
+    }
     
 }

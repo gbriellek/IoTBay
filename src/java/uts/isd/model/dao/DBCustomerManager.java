@@ -23,7 +23,7 @@ public class DBCustomerManager {
         this.conn = conn;
     }
     
-    public Customer findCustomer(String email) throws SQLException {
+    public Customer findCustomerByEmail(String email) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblUser INNER JOIN tblCustomer ON tblUser.User_ID = tblCustomer.Customer_ID WHERE Email_Address = ?");
         selectStatement.setString(1, email);
         ResultSet rs = selectStatement.executeQuery();
@@ -34,8 +34,8 @@ public class DBCustomerManager {
             String fname = rs.getString(3);
             String lname = rs.getString(4);
             String phone_number = rs.getString(5);
-            String password = rs.getString(6);
-            boolean Is_Activated = rs.getBoolean(7);
+            String password = rs.getString(7);
+            boolean Is_Activated = rs.getBoolean(8);
            
            return new Customer(userid, user_email, fname, lname, phone_number, password, Is_Activated);
        }
@@ -77,7 +77,7 @@ public class DBCustomerManager {
         insertStatement1.close();
     }
     
-    public void updateCustomer(int id, String email, String fname, String lname, String phoneno, String password, boolean Is_Activated) throws SQLException {
+    public void updateCustomerByID(int id, String email, String fname, String lname, String phoneno, String password, boolean Is_Activated) throws SQLException {
         PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblUser SET First_Name = ?, Last_Name = ?, Phone_Number = ? WHERE User_ID = ?");
         updateStatement.setString(1, fname);
         updateStatement.setString(2, lname);
@@ -87,18 +87,18 @@ public class DBCustomerManager {
         updateStatement.executeUpdate();
         updateStatement.close();
         
-        PreparedStatement updateStatement1 = conn.prepareStatement("UPDATE tblCustomer SET Password = ?, Is_Activated = ? WHERE User_ID = ?");
-        updateStatement.setString(1, password);
-        updateStatement.setBoolean(2, Is_Activated);
-        updateStatement.setInt(3, id);
+        PreparedStatement updateStatement1 = conn.prepareStatement("UPDATE tblCustomer SET Password = ?, Is_Activated = ? WHERE Customer_ID = ?");
+        updateStatement1.setString(1, password);
+        updateStatement1.setBoolean(2, Is_Activated);
+        updateStatement1.setInt(3, id);
         
-        updateStatement.executeUpdate();
-        updateStatement.close();
+        updateStatement1.executeUpdate();
+        updateStatement1.close();
         
     }
     
-    public void deleteCustomer(int id) throws SQLException {
-        PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblCustomer SET Is_Activated = False WHERE User_ID = ?");
+    public void deleteCustomerByID(int id) throws SQLException {
+        PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblCustomer SET Is_Activated = False WHERE Customer_ID = ?");
         updateStatement.setInt(1, id);
         
         updateStatement.executeUpdate();

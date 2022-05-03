@@ -55,8 +55,8 @@ public class OrderLine implements Serializable{
         this.price = price;
     }
     
-    
-    
-    
-    
+    @Override
+    public String toString() {
+        return "OrderID: " + orderID + ", productID: " +productID + ", quantity: "+quantity+ ", price: " + price;
+    }
 }

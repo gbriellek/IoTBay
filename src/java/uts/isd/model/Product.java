@@ -85,5 +85,9 @@ public class Product implements Serializable{
         this.isActive = isActive;
     }
     
+    @Override
+    public String toString() {
+        return "productID: " + productID +", name: " + name +", description: " +description +", price: " +price + ", stock: " +stock + ", category: " +category+ ", isActive: " +isActive;
+    }
     
 }

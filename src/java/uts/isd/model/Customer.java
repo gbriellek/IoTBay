@@ -85,6 +85,11 @@ public class Customer implements Serializable {
         this.isActivated = isActivated;
     }
 
+    @Override
+    public String toString() {
+        return "customerID: " + customerID + ", emailAddress: " + emailAddress + ", firstName: "+ firstName + ", lastName: " + lastName + ", phoneNumber: " + phoneNumber + ", password: " + password + ", isActivated: " + isActivated;
+    }
+
     
 }
 

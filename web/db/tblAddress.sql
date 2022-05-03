@@ -39,5 +39,3 @@ INSERT INTO tblAddress (Unit_Number, Street_Number, Street, City, Postcode, Addr
 (null, '3','Marx Hill Road', 'Darkwood', 2454, 'NSW'),
 (null, '51','Plug Street', 'Brockley', 2365, 'NSW'),
 (null, '68','Bungana Drive', 'Euromina', 5454, 'SA');
-
-SELECT Address_ID FROM tblAddress WHERE Unit_Number is null AND Street_Number = '68' AND Street = 'Bungana Drive'AND City = 'Euromina' AND Postcode = 5454 AND Address_State = 'SA';

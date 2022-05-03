@@ -34,9 +34,9 @@ public class DBStaffManager {
             String fname = rs.getString(3);
             String lname = rs.getString(4);
             String phone_number = rs.getString(5);
-            String password = rs.getString(6);
-            String staff_number = rs.getString(7);
-            boolean is_Activated = rs.getBoolean(8);
+            String password = rs.getString(7);
+            String staff_number = rs.getString(8);
+            boolean is_Activated = rs.getBoolean(9);
            
            return new Staff(userid, user_email, fname, lname, phone_number, password, staff_number, is_Activated);
        }

@@ -67,14 +67,12 @@ public class DBOrderLineManager {
         deleteStatement.close();
     }
     
-    public void updateOrderLine(int OrderID, int ProductID, int quantity, double price, int updatedOrderID, int updatedProductID) throws SQLException {
-        PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblOrder_Line SET Order_ID = ?, Product_ID = ?, Quantity = ?, Price = ? WHERE Order_ID = ?, Product_ID = ?");
-        updateStatement.setInt(1, updatedOrderID);
-        updateStatement.setInt(2, updatedProductID);
-        updateStatement.setInt(3, quantity);
-        updateStatement.setDouble(4, price);
-        updateStatement.setInt(5, OrderID);
-        updateStatement.setInt(6, ProductID);
+    public void updateOrderLine(int OrderID, int ProductID, int quantity, double price) throws SQLException {
+        PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblOrder_Line SET Quantity = ?, Price = ? WHERE Order_ID = ?, Product_ID = ?");
+        updateStatement.setInt(1, quantity);
+        updateStatement.setDouble(2, price);
+        updateStatement.setInt(3, OrderID);
+        updateStatement.setInt(4, ProductID);
         
         updateStatement.executeUpdate();
         updateStatement.close();

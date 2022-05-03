@@ -75,5 +75,9 @@ public class ShipmentDetail implements Serializable{
         this.deliveryMethod = deliveryMethod;
     }
     
-    
+    @Override
+    public String toString() {
+        return "shipmentDetailID: "  + shipmentDetailID +  ", addressID: " + addressID + ", deliveryFee: " +deliveryFee + ", deliveryInstructions: " +deliveryInstructions + ", deliveryDate: " +deliveryDate + ", deliveryMethod: " +deliveryMethod;
+    }
+
 }

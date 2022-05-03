@@ -25,7 +25,7 @@ public class DBPaymentInformationManager {
     }
     
     public PaymentInformation findPaymentInformationByID (int paymentInfoID) throws SQLException {
-        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblPayment_Information WHERE Payment_Information_ID = ?");
+        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblPayment_Information WHERE Payment_Info_ID = ?");
         selectStatement.setInt(1,paymentInfoID);
         ResultSet rs = selectStatement.executeQuery();
         
@@ -59,7 +59,7 @@ public class DBPaymentInformationManager {
     }
     
     public ArrayList <PaymentInformation> findPaymentInformationByIDDate(int paymentInfoID, Date date) throws SQLException {
-        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblPayment_Information INNER JOIN tblOrder ON tblPayment_Information.Payment_Information_ID = tblOrder.Payment_Information_ID WHERE Order_Date = ? AND tblOrder.Payment_Information_ID = ?");
+        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblPayment_Information INNER JOIN tblOrder ON tblPayment_Information.Payment_Info_ID = tblOrder.Payment_Info_ID WHERE Order_Date = ? AND tblOrder.Payment_Information_ID = ?");
         selectStatement.setDate(1, (java.sql.Date) date);
         selectStatement.setInt(2, paymentInfoID);
         ResultSet rs = selectStatement.executeQuery();
@@ -92,7 +92,7 @@ public class DBPaymentInformationManager {
     }
     
     public void updatePaymentInformation (int paymentInfoID, String card_type, String expiry_date) throws SQLException {
-        PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblPayment_Information SET Card_Type = ?, Expiry_Date = ? WHERE Payment_Information_ID = ?");
+        PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblPayment_Information SET Card_Type = ?, Expiry_Date = ? WHERE Payment_Info_ID = ?");
         updateStatement.setString(1, card_type);
         updateStatement.setString(2, expiry_date);
         updateStatement.setInt(3, paymentInfoID);

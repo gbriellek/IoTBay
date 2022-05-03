@@ -95,8 +95,9 @@ public class Staff implements Serializable{
         this.isActivated = isActivated;
     }
 
-    
-
-    
+    @Override
+    public String toString() {
+        return "staffID: " + staffID + ", emailAddress: " + emailAddress + ", firstName: "+ firstName + ", lastName: " + lastName + ", phoneNumber: " + phoneNumber + ", password: " + password + ", staffNumber: " + staffNumber + ", isActivated: " + isActivated;
+    }
     
 }

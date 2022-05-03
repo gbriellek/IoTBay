@@ -18,9 +18,8 @@ public class Address implements Serializable{
     private String city;
     private int postcode;
     private String state;
-    private String country;
 
-    public Address(int addressID, String unitNo, String streetNo, String streetName, String city, int postcode, String state, String country) {
+    public Address(int addressID, String unitNo, String streetNo, String streetName, String city, int postcode, String state) {
         this.addressID = addressID;
         this.unitNo = unitNo;
         this.streetNo = streetNo;
@@ -28,7 +27,6 @@ public class Address implements Serializable{
         this.city = city;
         this.postcode = postcode;
         this.state = state;
-        this.country = country;
     }
 
      public int getAddressID() {
@@ -87,13 +85,11 @@ public class Address implements Serializable{
         this.state = state;
     }
 
-    public String getCountry() {
-        return country;
+    @Override
+    public String toString() {
+        return "addressID: " + addressID + ", unitNo: " + unitNo + ", streetNo: " + streetNo +", streetName: " +streetName +", city: " + city +", postcode: "+ postcode +", state: "+ state;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
     
     
 }

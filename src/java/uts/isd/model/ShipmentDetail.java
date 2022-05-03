@@ -12,15 +12,15 @@ import java.util.Date;
  */
 public class ShipmentDetail implements Serializable{
     private int shipmentDetailID;
-    private Address address;
+    private int addressID;
     private double deliveryFee;
     private String deliveryInstructions;
     private Date deliveryDate;
     private String deliveryMethod;
 
-    public ShipmentDetail(int shipmentDetailID, Address address, double deliveryFee, String deliveryInstructions, Date deliveryDate, String deliveryMethod) {
+    public ShipmentDetail(int shipmentDetailID, int addressID, double deliveryFee, String deliveryInstructions, Date deliveryDate, String deliveryMethod) {
         this.shipmentDetailID = shipmentDetailID;
-        this.address = address;
+        this.addressID = addressID;
         this.deliveryFee = deliveryFee;
         this.deliveryInstructions = deliveryInstructions;
         this.deliveryDate = deliveryDate;
@@ -35,12 +35,12 @@ public class ShipmentDetail implements Serializable{
         this.shipmentDetailID = shipmentDetailID;
     }
 
-    public Address getAddress() {
-        return address;
+    public int getAddressID() {
+        return addressID;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAddressID(int addressID) {
+        this.addressID = addressID;
     }
 
     public double getDeliveryFee() {
@@ -75,5 +75,9 @@ public class ShipmentDetail implements Serializable{
         this.deliveryMethod = deliveryMethod;
     }
     
-    
+    @Override
+    public String toString() {
+        return "shipmentDetailID: "  + shipmentDetailID +  ", addressID: " + addressID + ", deliveryFee: " +deliveryFee + ", deliveryInstructions: " +deliveryInstructions + ", deliveryDate: " +deliveryDate + ", deliveryMethod: " +deliveryMethod;
+    }
+
 }

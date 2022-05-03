@@ -65,7 +65,10 @@ public class User implements Serializable{
         this.phoneNumber = phoneNumber;
     }
 
-    
+    @Override
+    public String toString() {
+        return "userID: " + userID + ", emailAddress: " + emailAddress + ", firstName: "+ firstName + ", lastName: " + lastName + ", phoneNumber: " + phoneNumber;
+    }
     
     
 }

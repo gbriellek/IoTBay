@@ -5,7 +5,6 @@
 package uts.isd.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  *
@@ -15,15 +14,15 @@ public class PaymentInformation implements Serializable{
     private int paymentInformationID;
     private String cardNumber;
     private String cardType;
-    private Date expiryDate;
-    private int CVV;
+    private String expiryDate;
+    private int cvv;
 
-    public PaymentInformation(int paymentInformationID, String cardNumber, String cardType, Date expiryDate, int CVV) {
+    public PaymentInformation(int paymentInformationID, String cardNumber, String cardType, String expiryDate, int cvv) {
         this.paymentInformationID = paymentInformationID;
         this.cardNumber = cardNumber;
         this.cardType = cardType;
         this.expiryDate = expiryDate;
-        this.CVV = CVV;
+        this.cvv = cvv;
     }
 
     public int getPaymentInformationID() {
@@ -50,20 +49,25 @@ public class PaymentInformation implements Serializable{
         this.cardType = cardType;
     }
 
-    public Date getExpiryDate() {
+    public String getExpiryDate() {
         return expiryDate;
     }
 
-    public void setExpiryDate(Date expiryDate) {
+    public void setExpiryDate(String expiryDate) {
         this.expiryDate = expiryDate;
     }
 
     public int getCVV() {
-        return CVV;
+        return cvv;
     }
 
     public void setCVV(int CVV) {
-        this.CVV = CVV;
+        this.cvv = cvv;
+    }
+
+    @Override
+    public String toString() {
+        return "paymentInformationID: "+paymentInformationID + ", cardNumber: " + cardNumber+ ", cardType: " + cardType+ ", expiryDate: " + expiryDate+ ", cvv: " +cvv;
     }
     
 }

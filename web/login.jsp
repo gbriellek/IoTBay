@@ -15,16 +15,20 @@
     <header>
         <h1>IoTBay</h1>
     </header>
+    <%
+       String loginError = (String) session.getAttribute("loginError");
+       String errorMessage = loginError == null ? "": loginError;
+    %>
+    
     <body>
         <h1>Login</h1>
         <table>
-            <form action="welcome.jsp" method="POST">
-                <input type="hidden" name="requestType", value="login">
+            <form action="LoginServlet" method="POST">
                 <tr>
                     <td colspan = "2"><label for="email">Email</label></td>
                 </tr>
                 <tr>
-                    <td colspan = "2"><input class="extendfield"placeholder="Enter your email" type="email" id="email" name="email"><br></td>
+                    <td colspan = "2"><input class="extendfield"placeholder="Enter your email" type="text" id="email" name="email"><br></td>
                 </tr>
                 <tr>
                     <td colspan = "2"><label for="password">Password</label></td>
@@ -35,6 +39,9 @@
                 <tr>
                     <td><a class="extendfield" id="cancel" href='index.jsp'>Back</a></td>
                     <td><input class="extendfield" id= "submit" type="submit" value="Login"></td>
+                </tr>
+                <tr>
+                    <td><p><%=errorMessage%></td>
                 </tr>
             </form>
         </table>

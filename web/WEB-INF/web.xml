@@ -11,8 +11,37 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
-        <url-pattern>urlConnServlet</url-pattern>
-     </servlet-mapping>
+        <url-pattern>/ConnServlet</url-pattern>
+    </servlet-mapping>
+     
+     
+    <servlet>
+           <servlet-name>LoginServlet</servlet-name>
+           <servlet-class>uts.isd.controller.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+           <servlet-name>RegisterServlet</servlet-name>
+           <servlet-class>uts.isd.controller.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/RegisterServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+           <servlet-name>RegisterStaffServlet</servlet-name>
+           <servlet-class>uts.isd.controller.RegisterStaffServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterStaffServlet</servlet-name>
+        <url-pattern>/RegisterStaffServlet</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30

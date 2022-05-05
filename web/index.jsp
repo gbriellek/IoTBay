@@ -3,7 +3,6 @@
     Created on : 23 Mar. 2022, 2:33:00 pm
     Author     : Mia
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,12 +17,12 @@
     <body >
         <h1>Welcome to IoTBay!</h1>
         <div class="container">
-            <a class="mainbtn" href="register.jsp" >Register</a> 
+            <a class="mainbtn" href="registerSelect.jsp" >Register</a> 
             <a class="mainbtn" href="login.jsp" >Login</a>
             <a class="mainbtn">View Products</a>
         </div>
         
         
-        
+        <jsp:include page="/ConnServlet" flush="true" />
     </body>
 </html>

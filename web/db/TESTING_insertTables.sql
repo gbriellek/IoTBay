@@ -7,6 +7,8 @@
  * Created: 30 Apr. 2022
  */
 
+INSERT INTO tblOrder_Line (Quantity, Price) VALUES (2,10);
+
 DROP TABLE tblOrder_Line;
 DROP TABLE tblProduct;
 DROP TABLE tblOrder;

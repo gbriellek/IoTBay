@@ -68,7 +68,7 @@ public class DBOrderLineManager {
     }
     
     public void updateOrderLine(int OrderID, int ProductID, int quantity, double price) throws SQLException {
-        PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblOrder_Line SET Quantity = ?, Price = ? WHERE Order_ID = ?, Product_ID = ?");
+        PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblOrder_Line SET Quantity = ?, Price = ? WHERE Order_ID = ? AND Product_ID = ?");
         updateStatement.setInt(1, quantity);
         updateStatement.setDouble(2, price);
         updateStatement.setInt(3, OrderID);

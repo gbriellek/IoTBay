@@ -59,7 +59,7 @@ public class DBPaymentInformationManager {
     }
     
     public ArrayList <PaymentInformation> findPaymentInformationByIDDate(int paymentInfoID, Date date) throws SQLException {
-        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblPayment_Information INNER JOIN tblOrder ON tblPayment_Information.Payment_Info_ID = tblOrder.Payment_Info_ID WHERE Order_Date = ? AND tblOrder.Payment_Information_ID = ?");
+        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblPayment_Information INNER JOIN tblOrder ON tblPayment_Information.Payment_Info_ID = tblOrder.Payment_Info_ID WHERE Order_Date = ? AND tblOrder.Payment_Info_ID = ?");
         selectStatement.setDate(1, (java.sql.Date) date);
         selectStatement.setInt(2, paymentInfoID);
         ResultSet rs = selectStatement.executeQuery();
@@ -102,7 +102,7 @@ public class DBPaymentInformationManager {
     }
     
     public void deletePaymentInformation (int orderID) throws SQLException {
-        PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblOrder SET Payment_Information_ID = null WHERE Order_ID = ?");
+        PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblOrder SET Payment_Info_ID = null WHERE Order_ID = ?");
         updateStatement.setInt(1, orderID);
         
         updateStatement.executeUpdate();

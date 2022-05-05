@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import uts.isd.model.Order;
 import uts.isd.model.OrderLine;
 
@@ -77,7 +77,7 @@ public class DBOrderManager {
     public ArrayList<Order> findPastOrdersByUserIDDate (int userID, Date date) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE User_ID = ? AND Order_Status NOT IN ('Not submitted','Cancelled') AND Order_Date = ?");
         selectStatement.setInt(1, userID);
-        selectStatement.setDate(2, (java.sql.Date) date);
+        selectStatement.setDate(2, (java.sql.Date) (java.util.Date) date);
         ResultSet rs = selectStatement.executeQuery();
         
         ArrayList <Order> OrderList = new ArrayList<>();

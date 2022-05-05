@@ -45,7 +45,7 @@ public class DBStaffManager {
        throw new SQLException("No such staff exists.");
     }
     
-    public void addStaff (String email, String fname, String lname, String phoneno, String password, String staff_number, boolean is_Activated) throws SQLException {
+    public void addStaff (String email, String fname, String lname, String phoneno, String password, String staff_number, boolean is_Activated, int staff_id) throws SQLException {
         PreparedStatement insertStatement = conn.prepareStatement("INSERT INTO tblUser(Email_Address, First_Name, Last_Name, Phone_Number) VALUES (?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
         insertStatement.setString(1, email);
         insertStatement.setString(2, fname);
@@ -88,18 +88,18 @@ public class DBStaffManager {
         updateStatement.executeUpdate();
         updateStatement.close();
         
-        PreparedStatement updateStatement1 = conn.prepareStatement("UPDATE tblStaff SET Password = ?, Staff_Number = ?, Is_Activated = ? WHERE User_ID = ?");
-        updateStatement.setString(1, password);
-        updateStatement.setString(2, staff_number);
-        updateStatement.setBoolean(3, is_Activated);
-        updateStatement.setInt(4, id);
+        PreparedStatement updateStatement1 = conn.prepareStatement("UPDATE tblStaff SET Password = ?, Staff_Number = ?, Is_Activated = ? WHERE Staff_ID = ?");
+        updateStatement1.setString(1, password);
+        updateStatement1.setString(2, staff_number);
+        updateStatement1.setBoolean(3, is_Activated);
+        updateStatement1.setInt(4, id);
         
-        updateStatement.executeUpdate();
-        updateStatement.close();
+        updateStatement1.executeUpdate();
+        updateStatement1.close();
     }
     
     public void deleteStaff(int id) throws SQLException {
-        PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblStaff SET Is_Activated = False WHERE User_ID = ?");
+        PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblStaff SET Is_Activated = False WHERE Staff_ID = ?");
         updateStatement.setInt(1, id);
         
         updateStatement.executeUpdate();

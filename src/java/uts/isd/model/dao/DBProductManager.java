@@ -25,7 +25,7 @@ public class DBProductManager {
        //execute this query using the statement field       
        //add the results to a ResultSet       
        //search the ResultSet for a user using the parameters    
-       PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblProduct WHERE Name = ? AND Is_Active = True");
+       PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblProduct WHERE Product_name = ? AND Is_Active = True");
        selectStatement.setString(1, name);
        ResultSet rs = selectStatement.executeQuery();
        
@@ -102,7 +102,7 @@ public class DBProductManager {
        //execute this query using the statement field       
        //add the results to a ResultSet       
        //search the ResultSet for a user using the parameters    
-       PreparedStatement selectStatement = conn.prepareStatement("SELECT Product_ID FROM tblProduct WHERE Name = ? AND Is_Active = True");
+       PreparedStatement selectStatement = conn.prepareStatement("SELECT Product_ID FROM tblProduct WHERE Product_name = ? AND Is_Active = True");
        selectStatement.setString(1, name);
        ResultSet rs = selectStatement.executeQuery();
        
@@ -133,7 +133,7 @@ public class DBProductManager {
     //update a user details in the database   
     public void updateProduct(int productID, String name, String description, double price, int stock, String category, boolean is_active) throws SQLException {       
        //code for update-operation   
-        PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblProduct SET Product_Name = ?, Description = ?, Price = ?, Stock = ?, Category = ?, Is_Active = ? WHERE Product_ID = ?");
+        PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblProduct SET Product_name = ?, Description = ?, Price = ?, Stock = ?, Category = ?, Is_Active = ? WHERE Product_ID = ?");
         updateStatement.setString(1, name);
         updateStatement.setString(2, description);
         updateStatement.setDouble(3, price);

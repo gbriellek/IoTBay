@@ -59,7 +59,7 @@ public class DBAddressManager {
     }
 
     public Address findAddressByID(int addressID) throws SQLException {
-        PreparedStatement selectStatement = conn.prepareStatement("SELECT Unit_Number, Street_Number, Street, City, Postcode, State FROM tblAddress WHERE Address_ID = ?");
+        PreparedStatement selectStatement = conn.prepareStatement("SELECT Address_ID, Unit_Number, Street_Number, Street, City, Postcode, Address_State FROM tblAddress WHERE Address_ID = ?");
         selectStatement.setInt(1, addressID);
 
         ResultSet rs = selectStatement.executeQuery();
@@ -82,7 +82,7 @@ public class DBAddressManager {
     //Add a user-data into the database   
     public int addAddress(String unit_number, String street_number, String street, String city, int postcode, String state) throws SQLException {
         //code for add-operation       
-        PreparedStatement insertStatement = conn.prepareStatement("INSERT INTO tblAddress(Unit_Number, Street_Number, Street, City, Postcode, State) VALUES (?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement insertStatement = conn.prepareStatement("INSERT INTO tblAddress(Unit_Number, Street_Number, Street, City, Postcode, Address_State) VALUES (?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
         insertStatement.setString(1, unit_number);
         insertStatement.setString(2, street_number);
         insertStatement.setString(3, street);

@@ -60,14 +60,15 @@ public class DBShipmentDetailManager {
         updateStatement.setString(2, instructions);
         updateStatement.setDate(3, (java.sql.Date) date);
         updateStatement.setString(4, method);
+        updateStatement.setInt(5, shipmentID);
         
         updateStatement.executeUpdate();
         updateStatement.close();
     }
     
-    public void deleteShipmentDetail(int shipmentID) throws SQLException {
-        PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblOrder SET tblOrder.Shipment_Detail_ID = ? WHERE tblShipment_Detail.Shipment_Detail_ID = ?");
-        updateStatement.setInt(1, shipmentID);
+    public void deleteShipmentDetail(int orderID) throws SQLException {
+        PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblOrder SET tblOrder.Shipment_Detail_ID = null WHERE Order_Id = ?");
+        updateStatement.setInt(1, orderID);
         
         updateStatement.executeUpdate();
         updateStatement.close();

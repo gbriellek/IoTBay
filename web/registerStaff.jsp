@@ -1,7 +1,7 @@
 <%-- 
-    Document   : register.jsp
-    Created on : 23 Mar. 2022, 3:21:39 pm
-    Author     : Jemma Swaak
+    Document   : registerStaff
+    Created on : 5 May 2022, 2:16:02 pm
+    Author     : raunak
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -10,18 +10,18 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="webpage.css"> 
-        <title>Register Customer Page</title>
+        <title>Register Staff Page</title>
     </head>
     <header>
         <h1>IoTBay</h1>
     </header>
-     <%
+    <%
        String registerError = (String) session.getAttribute("registerError");
        String errorMessage = registerError == null ? "": registerError;
     %>
     <body>
-        <h1>Register Customer for IoTBay</h1>
-            <form action="RegisterServlet" method="POST">
+        <h1>Register Staff for IoTBay</h1>
+            <form action="RegisterStaffServlet" method="POST">
                 <table border="0px">
                     <tr>
                         <td><label for="fname">First Name</label></td>  
@@ -29,27 +29,32 @@
                         
                     </tr>
                     <tr>
-                        <td><input class="extendfield" type="text" placeholder="Enter your first name" name="fname"></input></td>
-                        <td><input class="extendfield" type="text" placeholder="Enter your last name" name="lname"></input></td>
+                        <td><input class="extendfield" type="text" placeholder="Enter your first name" name="fname" required></input></td>
+                        <td><input class="extendfield" type="text" placeholder="Enter your last name" name="lname" required></input></td>
                     </tr>
                     <tr>
                         <td><label for="email">Email</label></td>  
                     </tr>
                     <tr>
-                        <td colspan = "2"><input class="extendfield" type="text" placeholder="Enter your email" name="email"></input></td>
+                        <td colspan = "2"><input class="extendfield" type="email" placeholder="Enter your email" name="email" required></input></td>
                     </tr>
                     <tr>
                         <td><label for="phone">Phone Number</label></td>  
-                        
                     </tr>
                     <tr>
-                        <td colspan = "2"><input class="extendfield" type="text" placeholder="Enter your phone number" name="phone"></input></td>
+                        <td colspan = "2"><input class="extendfield" type="tel" placeholder="Enter your phone number" name="phone" pattern="([0-9]{10}|[0-9]{8})" title="Enter a mobile or home phone number e.g. 0478418342 or 67784228" required></input></td>
+                    </tr>
+                     <tr>
+                        <td><label for="phone">Staff Number</label></td>  
+                    </tr>
+                    <tr>
+                        <td colspan = "2"><input class="extendfield" type="text" placeholder="Enter your staff number" name="staffNo"></input></td>
                     </tr>
                     <tr>
                         <td><label for="password">Password</label></td>
                     </tr>
                     <tr>
-                        <td colspan = "2"><input class="extendfield" type="password" placeholder="Enter your password" name="password"></input></td>
+                        <td colspan = "2"><input class="extendfield" type="password" placeholder="Enter your password" name="password" required></input></td>
                     </tr>
                     <tr>
                         <td colspan = "2"><input type="checkbox" name="tos">   I agree to the terms of service.</input></td>

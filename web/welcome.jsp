@@ -17,46 +17,46 @@
         <h1>IoTBay</h1>
     </header>
     <body>
-       <%
-            String requestType = request.getParameter("requestType");
-            String tos = request.getParameter("tos");
-            if (requestType.equals("register") && tos != null) {
-                String fname = request.getParameter("fname");
-                String lname = request.getParameter("lname");
-                String email = request.getParameter("email");
-                String password = request.getParameter("password");  
-                String phone = request.getParameter("phone");  
-                Customer customer = new Customer(email, fname, lname, phone, password);
-                session.setAttribute("customer", customer);
-        %>
-        <h1>Welcome <%=fname%> <%=lname%>!</h1>
-        <div class="container">
-            <a class="mainbtn" href="main.jsp">Profile</a>
-            <a class="mainbtn" >View Products</a>
-            <a class="mainbtn" href="logout.jsp">Logout</a>
-        </div>
-        <% } else if (requestType.equals("register") && tos == null) { %> <!--if they registered and tos is null-->
-        <h1>Failed to Register Account</h1>
-        <p>Sorry, you must agree to the Terms of Service.</p>
-        <div class="container">
-            <a class="mainbtn" href="register.jsp">Register</a>
-        </div>
-        
         <%
-            }
-            else { // if requestType != register (ignore tos)
-                //need to distinguish staff and customer login
-                String email = request.getParameter("email");
-                String password = request.getParameter("password");
-                Customer customer = new Customer(email, null, null, null, password);
-                session.setAttribute("customer", customer);
+        String userType = (String) session.getAttribute("userType");
+        if (userType.equals("admin")) {
         %>
-        <h1>Welcome back <%=email%>!</h1>
-        <div class="container">
-            <a class="mainbtn" href="main.jsp">Profile</a>
-            <a class="mainbtn" >View Products</a>
-            <a class="mainbtn" href="logout.jsp">Logout</a>
-        </div>
-        <% }%>
+            <h1>Welcome back Sys Admin!</h1>
+            <div class="container">
+                <a class="mainbtn" href="accessLogs.jsp">Access Logs</a>
+                <a class="mainbtn" href="products.jsp">View Products</a>
+                <a class="mainbtn" href="logout.jsp">Logout</a>
+            </div>
+        <%
+            } else if (userType.equals("customer")) {
+            Customer customer = (Customer) session.getAttribute("user");
+            String fname = customer.getFirstName();
+            String lname = customer.getLastName();
+        %>
+            <h1>Hi <%=fname%> <%=lname%>!</h1>
+            <div class="container">
+                <a class="mainbtn" href="main.jsp">Profile</a>
+                <a class="mainbtn" href="products.jsp">View Products</a>
+                <a class="mainbtn" href="savedOrder.jsp">Saved Order</a>
+                <a class="mainbtn" href="orderHistory.jsp">Order History</a>
+                <a class="mainbtn" href="shipmentHistory.jsp">Shipment History</a>
+                <a class="mainbtn" href="paymentHistory.jsp">Payment History</a>
+                <a class="mainbtn" href="accessLogs.jsp">Access Logs</a>
+                <a class="mainbtn" href="logout.jsp">Logout</a>
+            </div>
+        <%
+            } else if (userType.equals("staff")) {
+            Staff staff = (Staff) session.getAttribute("user");
+            String fname = staff.getFirstName();
+            String lname = staff.getLastName();
+        %>
+            <h1>Hi <%=fname%> <%=lname%>!</h1>
+            <div class="container">
+                <a class="mainbtn" href="main.jsp">Profile</a>
+                <a class="mainbtn" href="accessLogs.jsp">Access Logs</a>
+                <a class="mainbtn" href="products.jsp">View Products</a>
+                <a class="mainbtn" href="logout.jsp">Logout</a>
+            </div>
+                <% }%>
     </body>
 </html>

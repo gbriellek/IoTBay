@@ -38,6 +38,7 @@ public class DBStaffManager {
             String staff_number = rs.getString(8);
             boolean is_Activated = rs.getBoolean(9);
            
+            System.out.println("hello"+ user_email);
            return new Staff(userid, user_email, fname, lname, phone_number, password, staff_number, is_Activated);
        }
        selectStatement.close();
@@ -58,7 +59,6 @@ public class DBStaffManager {
         try (ResultSet generatedKeys = insertStatement.getGeneratedKeys()) {
             if (generatedKeys.next()) {
                 id = generatedKeys.getInt(1);   
-
             }
             else {
                 insertStatement.close();
@@ -68,11 +68,11 @@ public class DBStaffManager {
         
         insertStatement.close();
         
-        PreparedStatement insertStatement1 = conn.prepareStatement("INSERT INTO tblStaff( Password, Staff_Number, Is_Activated, Staff_ID) VALUES (?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-        insertStatement1.setString(1, password);
-        insertStatement1.setString(2, staff_number);
-        insertStatement1.setBoolean(3, is_Activated);
-        insertStatement1.setInt(4, staff_id);
+        PreparedStatement insertStatement1 = conn.prepareStatement("INSERT INTO tblStaff(Staff_ID, Password, staff_number, Is_Activated) VALUES (?,?,?,?)");
+        insertStatement1.setInt(1,id);
+        insertStatement1.setString(2, password);
+        insertStatement1.setString(3, staff_number);
+        insertStatement1.setBoolean(4, is_Activated);
         
         insertStatement1.executeUpdate();
         insertStatement1.close();

@@ -26,7 +26,7 @@ public class DBAccessLogManager {
     }
     
     public ArrayList <AccessLog> findAccessLogByUserID (int user_ID) throws SQLException {
-        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblAccessLog WHERE User_ID = ?");
+        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM  tblAccess_Log WHERE User_ID = ?");
         selectStatement.setInt(1, user_ID);
         ResultSet rs = selectStatement.executeQuery();
         
@@ -47,10 +47,10 @@ public class DBAccessLogManager {
         return AccessLogList;
     }
     
-    public ArrayList <AccessLog> findAccessLogByUserIDDate (int user_ID, Date access_date) throws SQLException {
-        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblAccessLog WHERE User_ID = ? AND Access_Date_Time = ?");
+    public ArrayList <AccessLog> findAccessLogByUserIDDate (int user_ID, Timestamp access_date) throws SQLException {
+        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM  tblAccess_Log WHERE User_ID = ? AND Access_Date_Time = ?");
         selectStatement.setInt(1, user_ID);
-        selectStatement.setDate(2, (java.sql.Date) access_date);
+        selectStatement.setTimestamp(2, access_date);
         ResultSet rs = selectStatement.executeQuery();
         
         ArrayList <AccessLog> AccessLogList = new ArrayList<>();
@@ -70,10 +70,10 @@ public class DBAccessLogManager {
         return AccessLogList;
     }
     
-    public void addAccessLog (int user_ID, Date date, String event) throws SQLException {
-        PreparedStatement insertStatement = conn.prepareStatement("INSERT INTO tblAccessLog(User_ID, Access_Date_Time, Event) VALUES (?,?,?)");
+    public void addAccessLog (int user_ID, Timestamp date, String event) throws SQLException {
+        PreparedStatement insertStatement = conn.prepareStatement("INSERT INTO  tblAccess_Log(User_ID, Access_Date_Time, Event) VALUES (?,?,?)");
         insertStatement.setInt(1, user_ID);
-        insertStatement.setDate(2, (java.sql.Date) date);
+        insertStatement.setTimestamp(2, date);
         insertStatement.setString(3, event);
         
         insertStatement.executeUpdate();

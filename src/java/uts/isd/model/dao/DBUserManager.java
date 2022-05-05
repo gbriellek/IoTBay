@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import uts.isd.model.User;
 
 /**
@@ -24,13 +23,7 @@ public class DBUserManager {
     }
 
     //Find user by email and password in the database   
-    public User findUser(String email) throws SQLException {       
-       //setup the select sql query string       
-       //execute this query using the statement field       
-       //add the results to a ResultSet       
-       //search the ResultSet for a user using the parameters    
-//       ResultSet rs = st.executeQuery();
-       
+    public User findUser(String email) throws SQLException {              
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblUser WHERE Email_Address = ?");
         selectStatement.setString(1, email);
         ResultSet rs = selectStatement.executeQuery();

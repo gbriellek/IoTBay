@@ -322,8 +322,8 @@ public class TestDB {
             System.out.println(id);
             // Update address
             System.out.println("updateCustomerByID");
-            addressManager.updateAddress(null, "26", "First Street", "Sydney", 2000, "NSW");
-            result = addressManager.findCustomerByEmail("hello@gmail.com");
+            addressManager.updateAddress(1, null, "26", "First Street", "Sydney", 2000, "NSW");
+            result = addressManager.findAddressByID(1);
             System.out.println(result);
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);

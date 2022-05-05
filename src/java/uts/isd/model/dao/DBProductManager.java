@@ -97,23 +97,23 @@ public class DBProductManager {
        
     }
     
-//    public int findProductID(String name) throws SQLException {       
-//       //setup the select sql query string       
-//       //execute this query using the statement field       
-//       //add the results to a ResultSet       
-//       //search the ResultSet for a user using the parameters    
-//       PreparedStatement selectStatement = conn.prepareStatement("SELECT Product_ID FROM tblProduct WHERE Product_name = ? AND Is_Active = True");
-//       selectStatement.setString(1, name);
-//       ResultSet rs = selectStatement.executeQuery();
-//       
-//       while (rs.next()){
-//           int productid = rs.getInt(1);
-//           
-//           return productid;
-//       }
-//       selectStatement.close();
-//       throw new SQLException("No such product exists."); 
-//    }
+    public int findProductID(String name) throws SQLException {       
+       //setup the select sql query string       
+       //execute this query using the statement field       
+       //add the results to a ResultSet       
+       //search the ResultSet for a user using the parameters    
+       PreparedStatement selectStatement = conn.prepareStatement("SELECT Product_ID FROM tblProduct WHERE Product_name = ? AND Is_Active = True");
+       selectStatement.setString(1, name);
+       ResultSet rs = selectStatement.executeQuery();
+       
+       while (rs.next()){
+           int productid = rs.getInt(1);
+           
+           return productid;
+       }
+       selectStatement.close();
+       throw new SQLException("No such product exists."); 
+    }
 
     //Add a user-data into the database   
     public void addProduct(String name, String description, double price, int stock, String category, boolean is_active) throws SQLException {                    

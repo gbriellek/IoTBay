@@ -19,7 +19,7 @@
         <div class="container">
             <a class="mainbtn" href="registerSelect.jsp" >Register</a> 
             <a class="mainbtn" href="login.jsp" >Login</a>
-            <a class="mainbtn">View Products</a>
+            <a class="mainbtn" href="UserEnterServlet">View Products</a>
         </div>
         
         

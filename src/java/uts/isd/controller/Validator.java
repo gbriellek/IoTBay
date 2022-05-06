@@ -12,10 +12,15 @@ public class Validator implements Serializable{
  
    private String emailPattern = "([a-zA-Z0-9]+)(([._-])([a-zA-Z0-9]+))*(@)([a-z]+)(.)([a-z]{3})((([.])[a-z]{0,2})*)"; 
    private String staffEmailPattern = "([a-zA-Z0-9]+)(([._-])([a-zA-Z0-9]+))*(@)(iotbay)(.)([a-z]{3})((([.])[a-z]{0,2})*)";
-   private String namePattern = "([A-Za-z]+)";       
+   private String namePattern = "([A-Za-z]+)"; 
    private String passwordPattern = "[a-zA-Z0-9.@&%$#!*]{4,}";
    private String phonePattern = "([0-9]{10})";   
    private String staffNoPattern = "(S[0-9]+)";
+   private String productNamePattern = "([A-Za-z0-9\\- ]+)";
+   private String descriptionPattern = "([A-Za-z0-9\\- .:,]+)";
+   private String pricePattern = "([0-9]+.[0-9]+)";
+   private String stockPattern = "([0-9]+)";
+   private String categoryPattern = "([A-Za-z/\\ ]+)"; 
               
    public Validator(){    }       
 
@@ -51,5 +56,25 @@ public class Validator implements Serializable{
     
    public boolean validateStaffNo(String staffNo) {
        return validate(staffNoPattern, staffNo);
+   }
+   
+   public boolean validateProductName(String productName){
+       return validate(productNamePattern,productName);
+   }
+   
+   public boolean validateDescription(String description){
+       return validate(descriptionPattern,description);
+   }
+   
+   public boolean validatePrice(String price){
+       return validate(pricePattern,price);
+   }
+   
+   public boolean validateStock(String stock){
+       return validate(stockPattern,stock);
+   }
+   
+   public boolean validateCategory(String category){
+       return validate(categoryPattern,category);
    }
 }

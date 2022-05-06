@@ -39,8 +39,6 @@
         <%
             } else if (userType.equals("customer")) {
             Customer customer = (Customer) session.getAttribute("user");
-            String fname = customer.getFirstName();
-            String lname = customer.getLastName();
         %>
         
         <nav id="navbar" class="navbar navbar-expand-sm bg-light navbar-light">
@@ -80,8 +78,6 @@
         <%
             } else if (userType.equals("staff")) {
             Staff staff = (Staff) session.getAttribute("user");
-            String fname = staff.getFirstName();
-            String lname = staff.getLastName();
         %>
         
         <nav id="navbar" class="navbar navbar-expand-sm bg-light navbar-light">

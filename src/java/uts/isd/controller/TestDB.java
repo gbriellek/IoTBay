@@ -177,7 +177,7 @@ public class TestDB {
             System.out.println(result);
             // Add staff
             System.out.println("addStaff");
-            staffManager.addStaff("hello@gmail.com", "Hello", "World", "0412345678", "helloworld", "S21", true,52);
+            staffManager.addStaff("hello@gmail.com", "Hello", "World", "0412345678", "helloworld", "S21", true);
             result = staffManager.findStaff("hello@gmail.com");
             System.out.println(result);
             // Update staff

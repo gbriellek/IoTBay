@@ -39,7 +39,7 @@ INSERT INTO tblUser (Email_Address, First_Name, Last_Name, Phone_Number) VALUES
     ('molly.garza@iotbay.com.au', 'Molly', 'Garza', '0487289902'),
     
     ('ahmed.bender@gmail.com', 'Ahmed', 'Bender', '0461163236'),
-    ('slconrad@yahoo.com', 'Sarah-Louise', 'Conrad', '0261650536'),
+    ('slconrad@yahoo.com', 'Sarah', 'Conrad', '0261650536'),
     ('reeseg15@yahoo.com', 'Reese', 'Gentry', '0431886821'),
     ('princesscrown1@gmail.com', 'Sienna', 'Moses', '0457593334'),
     ('gamingtourn@gmail.com', 'Reese', 'Gentry', '0468836836'),

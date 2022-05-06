@@ -18,9 +18,6 @@ public class LoginServlet extends HttpServlet {
         //1- retrieve the current session
         HttpSession session = request.getSession();
         
-        //Clear error in the session
-        session.removeAttribute("loginError");
-        
         //2- create an instance of the Validator class    
         Validator validator = new Validator();
         //3- capture the posted email      
@@ -29,14 +26,14 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         if (!validator.validateEmail(email)) {
             //set the session attribute to email error
-            session.setAttribute("loginError", "Incorrect email format");
+            request.setAttribute("loginError", "Incorrect email format");
             //Sending user back to login page
             request.getRequestDispatcher("login.jsp").include(request, response);
             return;
         }
         if (!validator.validatePassword(password)) {
             //set the session attribute to email error
-            session.setAttribute("loginError", "Incorrect password format");
+            request.setAttribute("loginError", "Incorrect password format");
             //Sending user back to login page
             request.getRequestDispatcher("login.jsp").include(request, response);
             return;
@@ -62,14 +59,14 @@ public class LoginServlet extends HttpServlet {
                     request.getRequestDispatcher("welcome.jsp").include(request, response);
                     return;
                 } else {
-                    session.setAttribute("loginError", "Incorrect password");
+                    request.setAttribute("loginError", "Incorrect password");
                     //Sending user back to login page
                     request.getRequestDispatcher("login.jsp").include(request, response);
                     return;
                 }
             } catch (SQLException ex) {    
                 Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-                session.setAttribute("loginError", "Customer not found");
+                request.setAttribute("loginError", "Customer not found");
                 //Sending user back to login page
                 request.getRequestDispatcher("login.jsp").include(request, response);
                 return;
@@ -88,14 +85,14 @@ public class LoginServlet extends HttpServlet {
                 request.getRequestDispatcher("welcome.jsp").include(request, response);
                 return;
             } else {
-                session.setAttribute("loginError", "Incorrect password");
+                request.setAttribute("loginError", "Incorrect password");
                 //Sending user back to login page
                 request.getRequestDispatcher("login.jsp").include(request, response);
                 return;
             }
         } catch (SQLException ex) {    
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-            session.setAttribute("loginError", "Staff not found");
+            request.setAttribute("loginError", "Staff not found");
             //Sending user back to login page
             request.getRequestDispatcher("login.jsp").include(request, response);
             return;

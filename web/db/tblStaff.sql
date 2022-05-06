@@ -20,7 +20,7 @@ INSERT INTO tblStaff (Staff_ID, Password, Staff_Number, Is_Activated) VALUES
     (1, 'wheel423', 'S1', true),
     (2, 'naomi@24', 'S2', true),
     (3, 'king.energy', 'S3', true),
-    (4, 'Mila-r0se', 'S4', false), 
+    (4, 'Mila*r0se', 'S4', false), 
     (5, 'Imagin@tion', 'S5', true),
     (6, 'actor.method21', 'S6', true),
     (7, 'guitarWorld', 'S7', true),

@@ -13,7 +13,7 @@ public class Validator implements Serializable{
    private String emailPattern = "([a-zA-Z0-9]+)(([._-])([a-zA-Z0-9]+))*(@)([a-z]+)(.)([a-z]{3})((([.])[a-z]{0,2})*)"; 
    private String staffEmailPattern = "([a-zA-Z0-9]+)(([._-])([a-zA-Z0-9]+))*(@)(iotbay)(.)([a-z]{3})((([.])[a-z]{0,2})*)";
    private String namePattern = "([A-Za-z]+)";       
-   private String passwordPattern = "[a-zA-Z0-9.]{4,}";
+   private String passwordPattern = "[a-zA-Z0-9.@&%$#!*]{4,}";
    private String phonePattern = "([0-9]{10})";   
    private String staffNoPattern = "(S[0-9]+)";
               

@@ -18,9 +18,6 @@ public class RegisterStaffServlet extends HttpServlet {
         //1- retrieve the current session
         HttpSession session = request.getSession();
         
-        //Clear error in the session
-        session.removeAttribute("registerError");
-        
         //2- create an instance of the Validator class    
         Validator validator = new Validator();
         //Get fname
@@ -40,7 +37,7 @@ public class RegisterStaffServlet extends HttpServlet {
         
         if (!validator.validateName(fName)) {
             //set the session attribute to email error
-            session.setAttribute("registerError", "Please enter a first name");
+            request.setAttribute("registerError", "Please enter a first name (must contain only letters)");
             //Sending user back to login page
             request.getRequestDispatcher("registerStaff.jsp").include(request, response);
             return;
@@ -48,7 +45,7 @@ public class RegisterStaffServlet extends HttpServlet {
         
         if (!validator.validateName(lName)) {
             //set the session attribute to email error
-            session.setAttribute("registerError", "Please enter a last name");
+            request.setAttribute("registerError", "Please enter a last name (must contain only letters)");
             //Sending user back to login page
             request.getRequestDispatcher("registerStaff.jsp").include(request, response);
             return;
@@ -56,15 +53,7 @@ public class RegisterStaffServlet extends HttpServlet {
         
         if (!validator.validateStaffEmail(email)) {
             //set the session attribute to email error
-            session.setAttribute("registerError", "Incorrect email format");
-            //Sending user back to login page
-            request.getRequestDispatcher("registerStaff.jsp").include(request, response);
-            return;
-        }
-        
-        if (!validator.validatePassword(password)) {
-            //set the session attribute to email error
-            session.setAttribute("registerError", "Incorrect password format");
+            request.setAttribute("registerError", "Incorrect email format");
             //Sending user back to login page
             request.getRequestDispatcher("registerStaff.jsp").include(request, response);
             return;
@@ -72,7 +61,7 @@ public class RegisterStaffServlet extends HttpServlet {
         
         if (!validator.validatePhone(phoneNo)) {
             //set the session attribute to email error
-            session.setAttribute("registerError", "Enter a mobile phone number e.g. 0478418342");
+            request.setAttribute("registerError", "Enter a mobile phone number e.g. 0478418342");
             //Sending user back to login page
             request.getRequestDispatcher("registerStaff.jsp").include(request, response);
             return;
@@ -80,7 +69,15 @@ public class RegisterStaffServlet extends HttpServlet {
         
         if (!validator.validateStaffNo(staffNo)) {
             //set the session attribute to email error
-            session.setAttribute("registerError", "Enter a staff number e.g. S123");
+            request.setAttribute("registerError", "Enter a staff number e.g. S123");
+            //Sending user back to login page
+            request.getRequestDispatcher("registerStaff.jsp").include(request, response);
+            return;
+        }
+        
+         if (!validator.validatePassword(password)) {
+            //set the session attribute to email error
+            request.setAttribute("registerError", "Incorrect password format (must be longer than 4 characters)");
             //Sending user back to login page
             request.getRequestDispatcher("registerStaff.jsp").include(request, response);
             return;
@@ -88,7 +85,7 @@ public class RegisterStaffServlet extends HttpServlet {
         
         //Test is they acceoted TOS
         if (tos == null) {
-            session.setAttribute("registerError", "You cannot proceed without accepting TOS");
+            request.setAttribute("registerError", "You cannot proceed without accepting TOS");
              //Sending user back to register page
             request.getRequestDispatcher("registerStaff.jsp").include(request, response);
             return;
@@ -109,7 +106,7 @@ public class RegisterStaffServlet extends HttpServlet {
             return;
         } catch (SQLException ex) {    
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-            session.setAttribute("registerError", "Staff not found");
+            request.setAttribute("registerError", "Staff not found");
             //Sending user back to register page
             request.getRequestDispatcher("registerStaff.jsp").include(request, response);
             return;

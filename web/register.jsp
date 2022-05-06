@@ -16,7 +16,7 @@
         <h1>IoTBay</h1>
     </header>
      <%
-       String registerError = (String) session.getAttribute("registerError");
+       String registerError = (String) request.getAttribute("registerError");
        String errorMessage = registerError == null ? "": registerError;
     %>
     <body>

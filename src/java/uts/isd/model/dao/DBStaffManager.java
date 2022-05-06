@@ -45,7 +45,7 @@ public class DBStaffManager {
        throw new SQLException("No such staff exists.");
     }
     
-    public void addStaff (String email, String fname, String lname, String phoneno, String password, String staff_number, boolean is_Activated, int staff_id) throws SQLException {
+    public void addStaff (String email, String fname, String lname, String phoneno, String password, String staff_number, boolean is_Activated) throws SQLException {
         PreparedStatement insertStatement = conn.prepareStatement("INSERT INTO tblUser(Email_Address, First_Name, Last_Name, Phone_Number) VALUES (?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
         insertStatement.setString(1, email);
         insertStatement.setString(2, fname);

@@ -16,7 +16,7 @@
         <h1>IoTBay</h1>
     </header>
     <%
-       String loginError = (String) session.getAttribute("loginError");
+       String loginError = (String) request.getAttribute("loginError");
        String errorMessage = loginError == null ? "": loginError;
     %>
     
@@ -41,7 +41,7 @@
                     <td><input class="extendfield" id= "submit" type="submit" value="Login"></td>
                 </tr>
                 <tr>
-                    <td><p><%=errorMessage%></td>
+                    <td colspan="2"><p><%=errorMessage%></td>
                 </tr>
             </form>
         </table>

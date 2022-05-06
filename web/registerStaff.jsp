@@ -16,7 +16,7 @@
         <h1>IoTBay</h1>
     </header>
     <%
-       String registerError = (String) session.getAttribute("registerError");
+       String registerError = (String) request.getAttribute("registerError");
        String errorMessage = registerError == null ? "": registerError;
     %>
     <body>
@@ -29,20 +29,20 @@
                         
                     </tr>
                     <tr>
-                        <td><input class="extendfield" type="text" placeholder="Enter your first name" name="fname" required></input></td>
-                        <td><input class="extendfield" type="text" placeholder="Enter your last name" name="lname" required></input></td>
+                        <td><input class="extendfield" type="text" placeholder="Enter your first name" name="fname"></input></td>
+                        <td><input class="extendfield" type="text" placeholder="Enter your last name" name="lname"></input></td>
                     </tr>
                     <tr>
                         <td><label for="email">Email</label></td>  
                     </tr>
                     <tr>
-                        <td colspan = "2"><input class="extendfield" type="email" placeholder="Enter your email" name="email" required></input></td>
+                        <td colspan = "2"><input class="extendfield" type="text" placeholder="Enter your email" name="email"></input></td>
                     </tr>
                     <tr>
                         <td><label for="phone">Phone Number</label></td>  
                     </tr>
                     <tr>
-                        <td colspan = "2"><input class="extendfield" type="tel" placeholder="Enter your phone number" name="phone" pattern="([0-9]{10}|[0-9]{8})" title="Enter a mobile or home phone number e.g. 0478418342 or 67784228" required></input></td>
+                        <td colspan = "2"><input class="extendfield" type="text" placeholder="Enter your phone number" name="phone"></input></td>
                     </tr>
                      <tr>
                         <td><label for="phone">Staff Number</label></td>  
@@ -54,7 +54,7 @@
                         <td><label for="password">Password</label></td>
                     </tr>
                     <tr>
-                        <td colspan = "2"><input class="extendfield" type="password" placeholder="Enter your password" name="password" required></input></td>
+                        <td colspan = "2"><input class="extendfield" type="password" placeholder="Enter your password" name="password"></input></td>
                     </tr>
                     <tr>
                         <td colspan = "2"><input type="checkbox" name="tos">   I agree to the terms of service.</input></td>

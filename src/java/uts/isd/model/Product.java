@@ -77,7 +77,7 @@ public class Product implements Serializable{
         this.category = category;
     }
 
-    public boolean isIsActive() {
+    public boolean getIsActive() {
         return isActive;
     }
 

@@ -32,7 +32,7 @@
                     <a  class="nav-link" href="main.jsp">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="products.jsp">View Products</a>
+                    <a class="nav-link" href="ProductServlet">View Products</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="savedOrder.jsp">Saved Order</a>
@@ -96,7 +96,7 @@
                     <a class="nav-link" href="accessLogs.jsp">Access Logs</a>
                 </li>
                  <li class="nav-item">
-                    <a class="nav-link" href="products.jsp">View Products</a>
+                    <a class="nav-link" href="ProductServlet">View Products</a>
                 </li>
                 <li class=" testing">
                     <a id="logout" class="nav-link test" href="logout.jsp">Logout</a>

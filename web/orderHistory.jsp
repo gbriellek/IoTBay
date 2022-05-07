@@ -24,13 +24,13 @@
             String fieldOrderDate = requestOrderDate == null? "": requestOrderDate;
         %>
         <form action="FilterOrdersServlet" method="POST">
-            <table border="0px">
+            <table class="searchTable"border="0px">
                 <tr>
                     <td><label for="orderID">Order ID</label></td>  
-                    <td><input type="text" name="orderID" placeholder="enter an order id" value="<%=fieldOrderID%>"></input></td>
+                    <td><input class="searchField" type="text" name="orderID" placeholder="enter an order id" value="<%=fieldOrderID%>"></input></td>
                     <td><label for="lname">Order Date</label></td> 
-                    <td><input type="text" name="orderDate" placeholder="yyyy-mm-dd" value="<%=fieldOrderDate%>"></input></td>
-                    <td><input type="submit" value="Filter"></td>
+                    <td><input class="searchField" type="text" name="orderDate" placeholder="yyyy-mm-dd" value="<%=fieldOrderDate%>"></input></td>
+                    <td><input type="submit" value="Filter" class="filterButton"></td>
                 </tr>
             </table>
         </form>
@@ -63,9 +63,9 @@
             for (int i = 0; i < orders.size(); i++) {
                 Order o = orders.get(i);
         %>
-        <div id="order">
-            <p id="orderID"><strong>Order ID:</strong> <%=o.getOrderID()%></p>
-            <table id="orderTable" style="border-collapse: collapse">
+        <div class="order">
+            <p class="orderID"><strong>Order ID:</strong> <%=o.getOrderID()%></p>
+            <table class="orderTable" style="border-collapse: collapse">
                 <tr class="profile">
                     <td><p style="font-weight:bold">Shipment Detail ID</p></td>
                     <td><p><%=o.getShipmentDetailID()%></p></td>

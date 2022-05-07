@@ -10,7 +10,7 @@
         <servlet-class>uts.isd.controller.OrderHistoryServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>FilterOrdersSerlvet</servlet-name>
+        <servlet-name>FilterOrdersServlet</servlet-name>
         <servlet-class>uts.isd.controller.FilterOrdersServlet</servlet-class>
     </servlet>
     <servlet>
@@ -66,8 +66,8 @@
         <url-pattern>/OrderHistoryServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>FilterOrdersSerlvet</servlet-name>
-        <url-pattern>/FilterOrdersSerlvet</url-pattern>
+        <servlet-name>FilterOrdersServlet</servlet-name>
+        <url-pattern>/FilterOrdersServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProductServlet</servlet-name>

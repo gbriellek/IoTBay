@@ -27,7 +27,7 @@ public class OrderHistoryServlet extends HttpServlet {
             // find past orders in db for the customer
             ArrayList<Order> pastOrders = orderManager.findPastOrdersByUserID(customer.getCustomerID());
             // store the orders in a session attribute
-            request.setAttribute("orders", pastOrders);
+            session.setAttribute("orders", pastOrders);
             
             // find orderline for each order id
             ArrayList<ArrayList<OrderLine>> orderLines = new ArrayList<ArrayList<OrderLine>>();
@@ -35,7 +35,7 @@ public class OrderHistoryServlet extends HttpServlet {
                 orderLines.add(orderLineManager.findOrderLineByOrderID(o.getOrderID()));
             }
             // store the orders in a session attribute
-            request.setAttribute("orderLines", orderLines);
+            session.setAttribute("orderLines", orderLines);
             
             // get product names for each orderline
             ArrayList<ArrayList<String>> productNames = new ArrayList<ArrayList<String>>();
@@ -47,9 +47,7 @@ public class OrderHistoryServlet extends HttpServlet {
                 }
                 productNames.add(innerProductNames);
             }
-            request.setAttribute("productNames", productNames);
-//            System.out.println(productNames.size());
-//            System.out.println(productNames.get(0).size());
+            session.setAttribute("productNames", productNames);
             
             // redirect customer to order history page
             request.getRequestDispatcher("orderHistory.jsp").include(request, response);
@@ -57,6 +55,9 @@ public class OrderHistoryServlet extends HttpServlet {
         } catch (SQLException ex) {           
             Logger.getLogger(OrderHistoryServlet.class.getName()).log(Level.SEVERE, null, ex);       
             request.setAttribute("orderError", ex.getMessage());
+            // redirect customer to order history page
+            request.getRequestDispatcher("orderHistory.jsp").include(request, response);
+            return;
         }        
     }
 }

@@ -19,7 +19,7 @@ public class Validator implements Serializable{
 
    
    private String IDPattern = "[0-9]+";
-   private String datePattern = "([0-9]{1,2}\\/[0-9]{1,2}\\/[0-9]{4})";
+   private String datePattern = "([0-9]{4}-[0-9]{2}-[0-9]{2})";
 
    private String productNamePattern = "([A-Za-z0-9\\- ]+)";
    private String descriptionPattern = "([A-Za-z0-9\\- .:,]+)";

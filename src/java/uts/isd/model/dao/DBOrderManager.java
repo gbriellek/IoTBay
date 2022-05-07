@@ -77,7 +77,66 @@ public class DBOrderManager {
     public ArrayList<Order> findPastOrdersByUserIDDate (int userID, Date date) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE User_ID = ? AND Order_Status NOT IN ('Not submitted','Cancelled') AND Order_Date = ?");
         selectStatement.setInt(1, userID);
-        selectStatement.setDate(2, (java.sql.Date) (java.util.Date) date);
+        selectStatement.setDate(2, date);
+        ResultSet rs = selectStatement.executeQuery();
+        
+        ArrayList <Order> OrderList = new ArrayList<>();
+        
+        while (rs.next()){
+            int order_ID = rs.getInt(1);
+            int user_ID = rs.getInt(2);
+            int paymentinfo_ID = rs.getInt(3);
+            int shipment_ID = rs.getInt(4);
+            Date order_date = rs.getDate(5);
+            double cost = rs.getDouble(6);
+            String status = rs.getString(7);
+            
+            
+            OrderList.add(new Order(order_ID, user_ID, paymentinfo_ID, shipment_ID, order_date, cost, status));
+        }
+        
+        selectStatement.close();
+        
+        if (OrderList.isEmpty()){
+            throw new SQLException("Order does not exist.");
+        }
+        return OrderList;
+    }
+    
+    public ArrayList<Order> findPastOrdersByUserIDAndOrderID (int userID, int orderID) throws SQLException {
+        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE User_ID = ? AND Order_Status NOT IN ('Not submitted','Cancelled') AND Order_ID = ?");
+        selectStatement.setInt(1, userID);
+        selectStatement.setInt(2, orderID);
+        ResultSet rs = selectStatement.executeQuery();
+        
+        ArrayList <Order> OrderList = new ArrayList<>();
+        
+        while (rs.next()){
+            int order_ID = rs.getInt(1);
+            int user_ID = rs.getInt(2);
+            int paymentinfo_ID = rs.getInt(3);
+            int shipment_ID = rs.getInt(4);
+            Date order_date = rs.getDate(5);
+            double cost = rs.getDouble(6);
+            String status = rs.getString(7);
+            
+            
+            OrderList.add(new Order(order_ID, user_ID, paymentinfo_ID, shipment_ID, order_date, cost, status));
+        }
+        
+        selectStatement.close();
+        
+        if (OrderList.isEmpty()){
+            throw new SQLException("Order does not exist.");
+        }
+        return OrderList;
+    }
+    
+    public ArrayList<Order> findPastOrdersByUserIDAndDateAndOrderID (int userID, Date date, int orderID) throws SQLException {
+        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE User_ID = ? AND Order_Status NOT IN ('Not submitted','Cancelled') AND Order_Date = ? AND Order_ID = ?");
+        selectStatement.setInt(1, userID);
+        selectStatement.setDate(2, date);
+        selectStatement.setInt(3, orderID);
         ResultSet rs = selectStatement.executeQuery();
         
         ArrayList <Order> OrderList = new ArrayList<>();

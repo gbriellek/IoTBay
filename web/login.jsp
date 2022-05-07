@@ -20,7 +20,7 @@
        String errorMessage = loginError == null ? "": loginError;
     %>
     
-    <body>
+    <body class="noNavBody">
         <h1>Login</h1>
         <table>
             <form action="LoginServlet" method="POST">
@@ -37,11 +37,11 @@
                     <td colspan = "2"><input class="extendfield" placeholder="Enter your password" type="password" id="password" name="password"><br></td>
                 </tr>
                 <tr>
-                    <td><a class="extendfield" id="cancel" href='index.jsp'>Back</a></td>
-                    <td><input class="extendfield" id= "submit" type="submit" value="Login"></td>
+                    <td colspan="2"><p><%=errorMessage%></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><p><%=errorMessage%></td>
+                    <td><a class="extendfield" id="cancel" href='index.jsp'>Back</a></td>
+                    <td><input style="cursor:pointer" class="extendfield" id= "submit" type="submit" value="Login"></td>
                 </tr>
             </form>
         </table>

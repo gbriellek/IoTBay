@@ -93,6 +93,18 @@ public class RegisterStaffServlet extends HttpServlet {
         
         //5- retrieve the manager instance from session      
         DBStaffManager staffManager = (DBStaffManager) session.getAttribute("staffManager");
+        try {
+            staffManager.findStaff(email);
+            //set the session attribute to account already exists error
+            request.setAttribute("registerError", "Account already exists please login");
+             //Sending user back to register page
+            request.getRequestDispatcher("registerStaff.jsp").include(request, response);
+            return;
+        }   catch (SQLException ex) {    
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+            // if customer isn't found proceed to next try block to add them
+        }       
+        
         try {    
             //add new customer to databse
             staffManager.addStaff(email, fName, lName, phoneNo, password, staffNo, true);

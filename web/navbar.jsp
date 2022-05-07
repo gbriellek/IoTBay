@@ -124,7 +124,7 @@
                     <a class="nav-link" href="accessLogs.jsp">Access Logs</a>
                 </li>
                 <li class=" testing">
-                    <a id="logout" class="nav-link test" href="logout.jsp">Logout</a>
+                    <a id="logout" class="nav-link test" href="index.jsp">Exit</a>
                 </li>
             </ul>
         </div>

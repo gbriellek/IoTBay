@@ -39,7 +39,6 @@
         %>
         <p><%=orderError == null ? "" : orderError%></p>
         <%
-          //  try {
             // make new lists for display
             ArrayList<Order> orders = new ArrayList<Order>();
             ArrayList<ArrayList<OrderLine>> orderLines = new ArrayList<ArrayList<OrderLine>>();
@@ -85,7 +84,7 @@
                 <tr class="profile">
                     <td><p style="font-weight:bold">Item</p></td>
                     <td><p style="font-weight:bold">Quantity</p></td>
-                    <td><p style="font-weight:bold">Price</p></td>
+                    <td><p style="font-weight:bold">Total Price</p></td>
                 </tr>
 
                 <%
@@ -100,18 +99,18 @@
                     <td><p>$<%=ol.getPrice()%>0</p></td>
                 </tr>
                 <%}%>
-                <tr>
+                <tr class="profile">
                     <td><p style="font-weight:bold">Total Cost</p></td>
                     <td><p>$<%=o.getTotalCost()%>0</p></td>
+                </tr> 
+                <tr>
+                    <td><p style="font-weight:bold">Order Status</p></td>
+                    <td><p><%=o.getOrderStatus()%></p></td>
                 </tr> 
             </table>
         </div>            
         <%
-            } 
-          //  }catch (Exception e) {
-
-        //    }   
-        
+            }         
         %>
     </body>
 </html>

@@ -24,45 +24,17 @@ public class FilterProductServlet extends HttpServlet {
         //1- retrieve the current session
         HttpSession session = request.getSession();
         // get request parameters
-        String productName = request.getParameter("productName");
-        String category = request.getParameter("category");
+        String productName = request.getParameter("productName").trim();
+        String category = request.getParameter("category").trim();
         Validator validator = new Validator();
         if (productName.length() > 0 && !validator.validateProductName(productName)) {
             request.setAttribute("productError", "Please enter a valid product name");
             //redirect to page
             DBProductManager productManager = (DBProductManager) session.getAttribute("productManager");
-            try {
-                //getting all products from database
-                ArrayList<Product> product = productManager.findAllProduct();
-                request.setAttribute("products", product);
-                //redirect to page
-                request.getRequestDispatcher("products.jsp").include(request, response);
-                return;
-            } catch (SQLException ex) {
-                Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE, null, ex);
-                request.setAttribute("productError", ex.getMessage());
-                //redirect to page
-                request.getRequestDispatcher("products.jsp").include(request, response);
-                return;
-            }
         } else if (category.length() > 0 && !validator.validateCategory(category)) {
             request.setAttribute("productError", "Please enter a valid category");
             //redirect to page
             DBProductManager productManager = (DBProductManager) session.getAttribute("productManager");
-            try {
-                //getting all products from database
-                ArrayList<Product> product = productManager.findAllProduct();
-                request.setAttribute("products", product);
-                //redirect to page
-                request.getRequestDispatcher("products.jsp").include(request, response);
-                return;
-            } catch (SQLException ex) {
-                Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE, null, ex);
-                request.setAttribute("productError", ex.getMessage());
-                //redirect to page
-                request.getRequestDispatcher("products.jsp").include(request, response);
-                return;
-            }
         }
 
         //2- retrieve the manager instance from session      
@@ -70,18 +42,23 @@ public class FilterProductServlet extends HttpServlet {
         try {
             if (productName.length() == 0 && category.length() != 0) {
                 ArrayList<Product> filterCategory = productManager.findProductByCategory(category);
-                request.setAttribute("filterCategory", filterCategory);
+                request.setAttribute("filterProducts", filterCategory);
             } else if (productName.length() != 0 && category.length() == 0) {
-                Product filterProductName = productManager.findProductByName(productName);
-                request.setAttribute("filterName", filterProductName);
+                ArrayList<Product> filterProductName = productManager.findProductByName(productName);
+                request.setAttribute("filterProducts", filterProductName);
             } else if (productName.length() != 0 && category.length() != 0) {
-                Product filterProductNameAndCategory = productManager.findProductByNameAndCategory(productName, category);
-                request.setAttribute("filterName", filterProductNameAndCategory);
+                ArrayList<Product> filterProductNameAndCategory = productManager.findProductByNameAndCategory(productName, category);
+                request.setAttribute("filterProducts", filterProductNameAndCategory);
             } else {
                  ArrayList<Product> product = productManager.findAllProduct();
                 request.setAttribute("products", product);
             }
            
+            // required to keep product name and category in the textfields
+            request.setAttribute("requestName", productName);
+            request.setAttribute("requestCategory", category);
+
+            
             //redirect to page
             request.getRequestDispatcher("products.jsp").include(request, response);
             return;

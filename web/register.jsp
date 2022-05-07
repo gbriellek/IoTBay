@@ -19,7 +19,7 @@
        String registerError = (String) request.getAttribute("registerError");
        String errorMessage = registerError == null ? "": registerError;
     %>
-    <body>
+    <body class="noNavBody">
         <h1>Register Customer for IoTBay</h1>
             <form action="RegisterServlet" method="POST">
                 <table border="0px">
@@ -58,11 +58,11 @@
                         <td>         </td>
                     </tr>
                     <tr>
-                        <td><a id="cancel" class="extendfield" id="cancel" href="index.jsp">Cancel</a></td>
-                        <td><input class="extendfield" id = "submit" type="submit" value="Sign Up"></td>
+                        <td colspan="2"><p><%=errorMessage%></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><p><%=errorMessage%></td>
+                        <td><a id="cancel" class="extendfield" href="index.jsp">Cancel</a></td>
+                        <td><input style="cursor:pointer" class="extendfield" id = "submit" type="submit" value="Sign Up"></td>
                     </tr>
             </table>
         </form>

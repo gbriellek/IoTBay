@@ -15,7 +15,7 @@
     <header>
         <h1>IoTBay</h1>
     </header>
-    <body>
+    <body class="noNavBody">
         <h1>Staff or Customer?</h1>
         
         <div class="container">

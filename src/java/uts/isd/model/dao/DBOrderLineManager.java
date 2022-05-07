@@ -26,7 +26,7 @@ public class DBOrderLineManager {
     
     
     public ArrayList<OrderLine> findOrderLineByOrderID (int orderID) throws SQLException {
-        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder_Line WHERE Order_ID = ?");
+        PreparedStatement selectStatement = conn.prepareStatement("SELECT Product_ID, Quantity, Price FROM tblOrder_Line WHERE Order_ID = ?");
         selectStatement.setInt(1, orderID);
         ResultSet rs = selectStatement.executeQuery();
         
@@ -48,6 +48,22 @@ public class DBOrderLineManager {
         
     }
     
+    public OrderLine findOrderLineByOrderIDAndProductID (int orderID, int productID) throws SQLException {
+        PreparedStatement selectStatement = conn.prepareStatement("SELECT Product_ID, Quantity, Price FROM tblOrder_Line WHERE Order_ID = ? AND Product_ID = ?");
+        selectStatement.setInt(1, orderID);
+        selectStatement.setInt(2, productID);
+        ResultSet rs = selectStatement.executeQuery();
+        
+        while (rs.next()){
+            int quantity = rs.getInt(2);
+            double price = rs.getDouble(3);
+            
+            return new OrderLine(orderID, productID, quantity, price);
+        }
+        selectStatement.close();
+        return null;
+    }
+    
     public void addOrderLine(int OrderID, int ProductID, int quantity, double price) throws SQLException {
         PreparedStatement insertStatement = conn.prepareStatement("INSERT INTO tblOrder_Line (Order_ID, Product_ID, Quantity, Price) VALUES (?,?,?,?)");
         insertStatement.setInt(1, OrderID);
@@ -59,9 +75,10 @@ public class DBOrderLineManager {
         insertStatement.close();
     }
     
-    public void deleteOrderLine(int ProductID) throws SQLException {
-        PreparedStatement deleteStatement = conn.prepareStatement("DELETE FROM tblOrder_Line WHERE Product_ID = ?");
-        deleteStatement.setInt(1, ProductID);
+    public void deleteOrderLine(int orderID, int productID) throws SQLException {
+        PreparedStatement deleteStatement = conn.prepareStatement("DELETE FROM tblOrder_Line WHERE Order_ID = ? AND Product_ID = ?");
+        deleteStatement.setInt(1, orderID);
+        deleteStatement.setInt(2, productID);
         
         deleteStatement.executeUpdate();
         deleteStatement.close();

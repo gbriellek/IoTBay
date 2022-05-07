@@ -15,14 +15,22 @@
         <title>Products</title>
     </head>
     <body>
+        <!--insert nav bar-->
+        <a href="SavedOrderServlet">saved order</a>
         <h1>Products</h1>
+        <%
+            String requestName = (String) request.getAttribute("requestName");
+            String requestCategory = (String) request.getAttribute("requestCategory");
+            String fieldName = requestName == null? "": requestName;
+            String fieldCategory = requestCategory == null? "": requestCategory;
+        %>
         <table>
             <form action="FilterProductServlet" method="POST">
                 <tr>
                     <td colspan = "2"><label for="productName">Product Name</label></td>
-                    <td colspan = "2"><input placeholder="Enter your product name" type="text" id="productName" name="productName"><br></td>
+                    <td colspan = "2"><input value="<%=fieldName%>" placeholder="Enter your product name" type="text" id="productName" name="productName"><br></td>
                     <td colspan = "2"><label for="category">Category</label></td>
-                    <td colspan = "2"><input placeholder="Enter your category" type="text" id="category" name="category"><br></td>
+                    <td colspan = "2"><input value="<%=fieldCategory%>" placeholder="Enter your category" type="text" id="category" name="category"><br></td>
                     <td><input type="submit" value="Filter"></td>
                 </tr>
             </form>
@@ -32,16 +40,12 @@
         %>
         <p><%=productError == null ? "" : productError%></p>
         <%
-            try {
                 ArrayList<Product> list_products = new ArrayList<Product>();
-                ArrayList<Product> filterCategory = (ArrayList<Product>) request.getAttribute("filterCategory");
-                Product filterName = (Product) request.getAttribute("filterName");
-                if (filterCategory != null) {
-                    list_products = filterCategory;
-                } else if (filterName != null) {
-                    list_products.add(filterName);
+                ArrayList<Product> filterProducts = (ArrayList<Product>) request.getAttribute("filterProducts");
+                if (filterProducts != null) {
+                    list_products = filterProducts;
                 } else {
-                    list_products = (ArrayList<Product>) request.getAttribute("products");
+                    list_products = (ArrayList<Product>) session.getAttribute("products");
                 }
                 String userType = (String) session.getAttribute("userType");
                 if (userType != null && userType.equals("admin") || userType != null && userType.equals("staff")) {
@@ -94,10 +98,13 @@
                 <th>Price</th>
                 <th>Stock</th>
                 <th>Category</th>
+                <th>Quantity</th>
                 <th>Add to Cart</th>
             </tr> 
             <%
                 for (Product product : list_products) {
+                    boolean inStock = product.getStock() > 0;
+                    String quantity = inStock ? "1" : "Out of Stock";
             %>
             <tr>
                 <td><%=product.getName()%></td>
@@ -105,17 +112,26 @@
                 <td><%=product.getPrice()%></td>
                 <td><%=product.getStock()%></td>
                 <td><%=product.getCategory()%></td>
-                <td><p>Add to Cart</p></td>
+            <form action="AddToOrderServlet" method="POST">
+                <input name="productID" type="hidden" value="<%=product.getProductID()%>"></input>
+                <input name="productName" type="hidden" value="<%=product.getName()%>"></input>
+                <input name="productStock" type="hidden" value="<%=product.getStock()%>"></input>
+                <input name="productPrice" type="hidden" value="<%=product.getPrice()%>"></input>
+                <td><input name="quantity" type="text" value="<%=quantity%>"></input></td>
+                <%if (inStock) {%>
+                <td><input style="cursor:pointer" value="Add to Order" type="submit" ></input></td>
+                <%}else{%>
+                <td><input style="cursor:pointer" value="Add to Order" type="submit" disabled></input></td>
+                <%}%>
+            </form>
             </tr>
             <%
                 }
             %>
         </table>
         <%
-                }
-            } catch (Exception e) {
-
             }
+            
         %>
     </body>
 </html>

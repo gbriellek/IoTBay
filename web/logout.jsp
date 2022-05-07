@@ -15,7 +15,7 @@
     <header>
         <h1>IoTBay</h1>
     </header>
-    <body>
+    <body class="noNavBody">
         <h1>Logout</h1>
         <p>You have been logged out. <br> Click <a id="nothing" href = index.jsp>here</a> to return to the homepage.</p>
         <%session.invalidate();%>

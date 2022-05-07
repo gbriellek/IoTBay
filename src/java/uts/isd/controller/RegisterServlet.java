@@ -36,7 +36,7 @@ public class RegisterServlet extends HttpServlet {
         if (!validator.validateName(fName)) {
             //set the session attribute to first name error
             request.setAttribute("registerError", "Please enter a first name (must contain only letters)");
-            //Sending user back to login page
+            //Sending user back to register page
             request.getRequestDispatcher("register.jsp").include(request, response);
             return;
         }
@@ -44,7 +44,7 @@ public class RegisterServlet extends HttpServlet {
         if (!validator.validateName(lName)) {
             //set the session attribute to last name error
             request.setAttribute("registerError", "Please enter a last name (must contain only letters)");
-            //Sending user back to login page
+            //Sending user back to register page
             request.getRequestDispatcher("register.jsp").include(request, response);
             return;
         }
@@ -52,7 +52,7 @@ public class RegisterServlet extends HttpServlet {
         if (!validator.validateEmail(email)) {
             //set the session attribute to email error
             request.setAttribute("registerError", "Incorrect email format");
-            //Sending user back to login page
+            //Sending user back to register page
             request.getRequestDispatcher("register.jsp").include(request, response);
             return;
         }
@@ -60,14 +60,14 @@ public class RegisterServlet extends HttpServlet {
         if (!validator.validatePhone(phoneNo)) {
             //set the session attribute to phone error
             request.setAttribute("registerError", "Enter a mobile phone number e.g. 0478418342");
-            //Sending user back to login page
+            //Sending user back to register page
             request.getRequestDispatcher("register.jsp").include(request, response);
             return;
         }
         if (!validator.validatePassword(password)) {
             //set the session attribute to password error
             request.setAttribute("registerError", "Incorrect password format (must be longer than 4 characters)");
-            //Sending user back to login page
+            //Sending user back to register page
             request.getRequestDispatcher("register.jsp").include(request, response);
             return;
         }
@@ -83,7 +83,20 @@ public class RegisterServlet extends HttpServlet {
         
         //5- retrieve the manager instance from session      
         DBCustomerManager customerManager = (DBCustomerManager) session.getAttribute("customerManager");
-        try {    
+        // check customer isn't already in the database
+        try {
+            customerManager.findCustomerByEmail(email);
+            //set the session attribute to account already exists error
+            request.setAttribute("registerError", "Account already exists please login");
+             //Sending user back to register page
+            request.getRequestDispatcher("register.jsp").include(request, response);
+            return;
+        }   catch (SQLException ex) {    
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+            // if customer isn't found proceed to next try block to add them
+        }
+        
+        try {                
             //add new customer to database
             customerManager.addCustomer(email, fName, lName, phoneNo, password, true);
             //6- find user by email

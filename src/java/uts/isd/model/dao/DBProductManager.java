@@ -44,7 +44,31 @@ public class DBProductManager {
        throw new SQLException("No such product exists."); 
     }
     
-    public Product findProductByCategory(String category) throws SQLException {       
+    public Product findProductByNameAndCategory(String name, String category) throws SQLException {       
+       //setup the select sql query string       
+       //execute this query using the statement field       
+       //add the results to a ResultSet       
+       //search the ResultSet for a user using the parameters    
+       PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblProduct WHERE Product_name = ? AND Category = ? AND Is_Active = True");
+       selectStatement.setString(1, name);
+       selectStatement.setString(2, category);
+       ResultSet rs = selectStatement.executeQuery();
+       
+       while (rs.next()){
+           int productid = rs.getInt(1);
+           String productname = rs.getString(2);
+           String description = rs.getString(3);
+           double price = rs.getDouble(4);
+           int stock = rs.getInt(5);
+           boolean is_active = rs.getBoolean(7);
+           
+           return new Product(productid, productname, description, price, stock, category, is_active);
+       }
+       selectStatement.close();
+       throw new SQLException("No such product exists."); 
+    }
+    
+    public ArrayList<Product> findProductByCategory(String category) throws SQLException {       
        //setup the select sql query string       
        //execute this query using the statement field       
        //add the results to a ResultSet       
@@ -52,6 +76,8 @@ public class DBProductManager {
        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblProduct WHERE Category = ? AND Is_Active = True");
        selectStatement.setString(1, category);
        ResultSet rs = selectStatement.executeQuery();
+       
+       ArrayList <Product> productList = new ArrayList<>();
        
        while (rs.next()){
            int productid = rs.getInt(1);
@@ -62,10 +88,13 @@ public class DBProductManager {
            String productcategory = rs.getString(6);
            boolean is_active = rs.getBoolean(7);
            
-           return new Product(productid, productname, description, price, stock, productcategory, is_active);
+           productList.add(new Product(productid, productname, description, price, stock, category, is_active));
        }
        selectStatement.close();
-       throw new SQLException("No such product exists."); 
+       if (productList.isEmpty()){
+           throw new SQLException("No such product exists."); 
+       }
+       return productList;
     }
     
     public ArrayList <Product> findAllProduct() throws SQLException {       

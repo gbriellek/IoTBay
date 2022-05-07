@@ -135,9 +135,12 @@ public class TestDB {
             result = productManager.findProductByName("Moisture Sensor");
             System.out.println(result);
             // Find product by category
+            ArrayList<Product> resultList = new ArrayList<>();
             System.out.println("findProductByCategory");
-            result = productManager.findProductByCategory("Navigation Modules");
-            System.out.println(result);
+            resultList = productManager.findProductByCategory("Navigation Modules");
+            for (Product p: resultList) {
+                System.out.println(p);
+            }
             // Find all product
             System.out.println("findAllProduct");
             System.out.println(productManager.findAllProduct());

@@ -13,6 +13,26 @@
         <servlet-name>FilterOrdersSerlvet</servlet-name>
         <servlet-class>uts.isd.controller.FilterOrdersServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProductServlet</servlet-name>
+        <servlet-class>uts.isd.controller.ProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FilterProductServlet</servlet-name>
+        <servlet-class>uts.isd.controller.FilterProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddProductServlet</servlet-name>
+        <servlet-class>uts.isd.controller.AddProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateProductServlet</servlet-name>
+        <servlet-class>uts.isd.controller.UpdateProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserEnterServlet</servlet-name>
+        <servlet-class>uts.isd.controller.UserEnterServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
         <url-pattern>/ConnServlet</url-pattern>
@@ -48,6 +68,26 @@
     <servlet-mapping>
         <servlet-name>FilterOrdersSerlvet</servlet-name>
         <url-pattern>/FilterOrdersSerlvet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductServlet</servlet-name>
+        <url-pattern>/ProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FilterProductServlet</servlet-name>
+        <url-pattern>/FilterProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddProductServlet</servlet-name>
+        <url-pattern>/AddProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateProductServlet</servlet-name>
+        <url-pattern>/UpdateProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserEnterServlet</servlet-name>
+        <url-pattern>/UserEnterServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -84,7 +84,7 @@ public class RegisterServlet extends HttpServlet {
         //5- retrieve the manager instance from session      
         DBCustomerManager customerManager = (DBCustomerManager) session.getAttribute("customerManager");
         try {    
-            //add new customer to databse
+            //add new customer to database
             customerManager.addCustomer(email, fName, lName, phoneNo, password, true);
             //6- find user by email
             Customer customer = customerManager.findCustomerByEmail(email);

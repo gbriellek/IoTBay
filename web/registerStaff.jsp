@@ -26,7 +26,6 @@
                     <tr>
                         <td><label for="fname">First Name</label></td>  
                         <td><label for="lname">Last Name</label></td> 
-                        
                     </tr>
                     <tr>
                         <td><input class="extendfield" type="text" placeholder="Enter your first name" name="fname"></input></td>

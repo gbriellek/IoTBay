@@ -16,6 +16,9 @@ public class Validator implements Serializable{
    private String passwordPattern = "[a-zA-Z0-9.@&%$#!*]{4,}";
    private String phonePattern = "([0-9]{10})";   
    private String staffNoPattern = "(S[0-9]+)";
+   
+   private String IDPattern = "[0-9]+";
+   private String datePattern = "([0-9]{1,2}\\/[0-9]{1,2}\\/[0-9]{4})";
               
    public Validator(){    }       
 
@@ -51,5 +54,13 @@ public class Validator implements Serializable{
     
    public boolean validateStaffNo(String staffNo) {
        return validate(staffNoPattern, staffNo);
+   }
+   
+   public boolean validateID(String ID) {
+       return validate(IDPattern, ID);
+   }
+   
+   public boolean validateDate(String date) {
+       return validate(datePattern, date);
    }
 }

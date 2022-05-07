@@ -38,7 +38,7 @@
                 <a class="mainbtn" href="main.jsp">Profile</a>
                 <a class="mainbtn" href="ProductServlet">View Products</a>
                 <a class="mainbtn" href="savedOrder.jsp">Saved Order</a>
-                <a class="mainbtn" href="orderHistory.jsp">Order History</a>
+                <a class="mainbtn" href="OrderHistoryServlet">Order History</a>
                 <a class="mainbtn" href="shipmentHistory.jsp">Shipment History</a>
                 <a class="mainbtn" href="paymentHistory.jsp">Payment History</a>
                 <a class="mainbtn" href="accessLogs.jsp">Access Logs</a>

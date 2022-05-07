@@ -16,11 +16,17 @@ public class Validator implements Serializable{
    private String passwordPattern = "[a-zA-Z0-9.@&%$#!*]{4,}";
    private String phonePattern = "([0-9]{10})";   
    private String staffNoPattern = "(S[0-9]+)";
+
+   
+   private String IDPattern = "[0-9]+";
+   private String datePattern = "([0-9]{4}-[0-9]{2}-[0-9]{2})";
+
    private String productNamePattern = "([A-Za-z0-9\\- ]+)";
    private String descriptionPattern = "([A-Za-z0-9\\- .:,]+)";
    private String pricePattern = "([0-9]+.[0-9]+)";
    private String stockPattern = "([0-9]+)";
    private String categoryPattern = "([A-Za-z/\\ ]+)"; 
+
               
    public Validator(){    }       
 
@@ -58,6 +64,15 @@ public class Validator implements Serializable{
        return validate(staffNoPattern, staffNo);
    }
    
+
+   public boolean validateID(String ID) {
+       return validate(IDPattern, ID);
+   }
+   
+   public boolean validateDate(String date) {
+       return validate(datePattern, date);
+   }
+       
    public boolean validateProductName(String productName){
        return validate(productNamePattern,productName);
    }
@@ -76,5 +91,6 @@ public class Validator implements Serializable{
    
    public boolean validateCategory(String category){
        return validate(categoryPattern,category);
+
    }
 }

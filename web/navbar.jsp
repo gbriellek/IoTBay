@@ -57,7 +57,7 @@
                     <a class="nav-link" href="savedOrder.jsp">Saved Order</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="orderHistory.jsp">Order History</a>
+                    <a class="nav-link" href="OrderHistoryServlet">Order History</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="shipmentHistory.jsp">Shipment History</a>

@@ -9,7 +9,7 @@
 //import javax.servlet.http.HttpServletRequest;
 //import javax.servlet.http.HttpServletResponse;
 //import javax.servlet.http.HttpSession;
-//import uts.isd.model.User;
+//import uts.isd.model.*;
 //import uts.isd.model.dao.*;
 //
 //public class templateServlet extends HttpServlet {

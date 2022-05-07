@@ -18,7 +18,7 @@
     <body>
         <%
             // only staff and customer can view this page
-           String userType = (String) session.getAttribute("userType");
+            String userType = (String) session.getAttribute("userType");
             if (userType.equals("customer")) {
             Customer customer = (Customer)session.getAttribute("user");
         %>

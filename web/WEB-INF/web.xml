@@ -61,6 +61,18 @@
         <servlet-name>SubmitOrderServlet</servlet-name>
         <servlet-class>uts.isd.controller.SubmitOrderServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShipmentDetailServlet</servlet-name>
+        <servlet-class>uts.isd.controller.ShipmentDetailServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FilterShipmentDetailServlet</servlet-name>
+        <servlet-class>uts.isd.controller.FilterShipmentDetailServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SavedShipmentDetailServlet</servlet-name>
+        <servlet-class>uts.isd.controller.SavedShipmentDetailServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
         <url-pattern>/ConnServlet</url-pattern>
@@ -144,6 +156,18 @@
     <servlet-mapping>
         <servlet-name>SubmitOrderServlet</servlet-name>
         <url-pattern>/SubmitOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShipmentDetailServlet</servlet-name>
+        <url-pattern>/ShipmentDetailServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FilterShipmentDetailServlet</servlet-name>
+        <url-pattern>/FilterShipmentDetailServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SavedShipmentDetailServlet</servlet-name>
+        <url-pattern>/SavedShipmentDetailServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

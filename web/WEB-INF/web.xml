@@ -33,6 +33,54 @@
         <servlet-name>UserEnterServlet</servlet-name>
         <servlet-class>uts.isd.controller.UserEnterServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddToOrderServlet</servlet-name>
+        <servlet-class>uts.isd.controller.AddToOrderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SavedOrderServlet</servlet-name>
+        <servlet-class>uts.isd.controller.SavedOrderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateSavedOrderServlet</servlet-name>
+        <servlet-class>uts.isd.controller.UpdateSavedOrderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteSavedItemServlet</servlet-name>
+        <servlet-class>uts.isd.controller.DeleteSavedItemServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteOrderServlet</servlet-name>
+        <servlet-class>uts.isd.controller.DeleteOrderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddUserDetailsServlet</servlet-name>
+        <servlet-class>uts.isd.controller.AddUserDetailsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SubmitOrderServlet</servlet-name>
+        <servlet-class>uts.isd.controller.SubmitOrderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PaymentInformationServlet</servlet-name>
+        <servlet-class>uts.isd.controller.PaymentInformationServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FilterPaymentInformationServlet</servlet-name>
+        <servlet-class>uts.isd.controller.FilterPaymentInformationServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SavedPaymentServlet</servlet-name>
+        <servlet-class>uts.isd.controller.SavedPaymentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateSavedPaymentServlet</servlet-name>
+        <servlet-class>uts.isd.controller.UpdateSavedPaymentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeletePaymentServlet</servlet-name>
+        <servlet-class>uts.isd.controller.DeletePaymentServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
         <url-pattern>/ConnServlet</url-pattern>
@@ -88,6 +136,54 @@
     <servlet-mapping>
         <servlet-name>UserEnterServlet</servlet-name>
         <url-pattern>/UserEnterServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToOrderServlet</servlet-name>
+        <url-pattern>/AddToOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SavedOrderServlet</servlet-name>
+        <url-pattern>/SavedOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateSavedOrderServlet</servlet-name>
+        <url-pattern>/UpdateSavedOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteSavedItemServlet</servlet-name>
+        <url-pattern>/DeleteSavedItemServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteOrderServlet</servlet-name>
+        <url-pattern>/DeleteOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddUserDetailsServlet</servlet-name>
+        <url-pattern>/AddUserDetailsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubmitOrderServlet</servlet-name>
+        <url-pattern>/SubmitOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PaymentInformationServlet</servlet-name>
+        <url-pattern>/PaymentInformationServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FilterPaymentInformationServlet</servlet-name>
+        <url-pattern>/FilterPaymentInformationServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SavedPaymentServlet</servlet-name>
+        <url-pattern>/SavedPaymentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateSavedPaymentServlet</servlet-name>
+        <url-pattern>/UpdateSavedPaymentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeletePaymentServlet</servlet-name>
+        <url-pattern>/DeletePaymentServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

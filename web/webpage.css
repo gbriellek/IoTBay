@@ -179,3 +179,48 @@ a{
 .orderTable {
     width:90%;
 }
+
+.savedItemButtons {
+    font-size: 15px;
+    background-color: #0583d2;
+    border-radius: 20px;
+    border: none;
+    border-color: blue;
+    padding: 10px 25px 10px 25px;
+    font-weight: bold;
+    color: white;
+    display: block;
+    margin:0;
+}
+
+#savedOrder {
+    margin-bottom: 20px;
+}
+
+.orderBar {
+    margin: auto;
+    width: 1000px;
+    padding: 10px 0 10px 0;
+}
+
+.orderBarButton {
+    border-radius: 20px;
+    background-color: #0583d2;
+    color: white;
+    font-size: 20px;
+}
+
+#updateOrderBarButton {
+    border: none;
+    border-color: blue;
+    padding: 10px 15px 10px 15px;
+}
+
+.mainbtn:hover, #submit:hover, .savedItemButtons:hover, .orderBarButton:hover {
+    background-color: #0099ff;
+}
+
+#cancel:hover {
+    background-color: #666666;
+}
+

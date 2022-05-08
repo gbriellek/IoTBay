@@ -19,13 +19,18 @@ public class Validator implements Serializable{
 
    
    private String IDPattern = "[0-9]+";
-   private String datePattern = "([0-9]{4}-[0-9]{2}-[0-9]{2})";
+   private String datePattern = "^([0-9]{4}-[0-9]{2}-[0-9]{2})$";
 
    private String productNamePattern = "([A-Za-z0-9\\- ]+)";
    private String descriptionPattern = "([A-Za-z0-9\\- .:,]+)";
    private String pricePattern = "([0-9]+.[0-9]+)";
    private String stockPattern = "([0-9]+)";
    private String categoryPattern = "([A-Za-z/\\ ]+)"; 
+   
+   private String cardNoPattern = "[0-9]{16}";
+   private String cardTypePattern = "^(Mastercard|Visa|AMEX)$";
+   private String expiryDatePattern = "^([0-9]{4}-[0-9]{2})$";
+   private String cvvPattern = "[0-9]{3,4}";
 
               
    public Validator(){    }       
@@ -91,6 +96,22 @@ public class Validator implements Serializable{
    
    public boolean validateCategory(String category){
        return validate(categoryPattern,category);
-
    }
+   
+   public boolean validateCardNo(String cardNo){
+       return validate(cardNoPattern,cardNo);
+   }
+   
+   public boolean validateCardType(String cardType){
+       return validate(cardTypePattern,cardType);
+   }
+   
+   public boolean validateExpiryDate(String expiryDate){
+       return validate(expiryDatePattern,expiryDate);
+   }
+   
+   public boolean validateCVV(String cvv){
+       return validate(cvvPattern,cvv);
+   }           
+   
 }

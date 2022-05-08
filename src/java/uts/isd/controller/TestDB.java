@@ -289,7 +289,7 @@ public class TestDB {
             }
             // Add order
             System.out.println("addOrder");
-            orderManager.addOrder(41, 2, 6, new Date(2022, 2, 11), 24.50, "Delivered");
+            orderManager.addOrder(41, new Date(2022, 2, 11), 24.50);
             result = orderManager.findOrderByUserID(41);
             System.out.println(result);
             // Update order

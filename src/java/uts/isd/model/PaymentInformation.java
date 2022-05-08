@@ -61,7 +61,7 @@ public class PaymentInformation implements Serializable{
         return cvv;
     }
 
-    public void setCVV(int CVV) {
+    public void setCVV(int cvv) {
         this.cvv = cvv;
     }
 

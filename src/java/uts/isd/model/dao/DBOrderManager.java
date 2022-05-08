@@ -183,7 +183,94 @@ public class DBOrderManager {
         }
         return OrderList;
     }
+
+    public ArrayList<Order> findPastOrderPaymentsByUserIDDate (int userID, Date date) throws SQLException {
+        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE User_ID = ? AND Order_Status NOT IN ('Not Submitted','Cancelled') AND Order_Date = ?");
+        selectStatement.setInt(1, userID);
+        selectStatement.setDate(2, date);
+        ResultSet rs = selectStatement.executeQuery();
+        
+        ArrayList <Order> OrderList = new ArrayList<>();
+        
+        while (rs.next()){
+            int order_ID = rs.getInt(1);
+            int user_ID = rs.getInt(2);
+            int paymentinfo_ID = rs.getInt(3);
+            int shipment_ID = rs.getInt(4);
+            Date order_date = rs.getDate(5);
+            double cost = rs.getDouble(6);
+            String status = rs.getString(7);
+            
+            
+            OrderList.add(new Order(order_ID, user_ID, paymentinfo_ID, shipment_ID, order_date, cost, status));
+        }
+        
+        selectStatement.close();
+        
+        if (OrderList.isEmpty()){
+            throw new SQLException("Payment Information does not exist.");
+        }
+        return OrderList;
+    }
     
+    public ArrayList<Order> findPastOrderPaymentsByUserIDAndPaymentID (int userID, int payID) throws SQLException {
+        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE User_ID = ? AND Order_Status NOT IN ('Not Submitted','Cancelled') AND Payment_Info_ID = ?");
+        selectStatement.setInt(1, userID);
+        selectStatement.setInt(2, payID);
+        ResultSet rs = selectStatement.executeQuery();
+        
+        ArrayList <Order> OrderList = new ArrayList<>();
+        
+        while (rs.next()){
+            int order_ID = rs.getInt(1);
+            int user_ID = rs.getInt(2);
+            int paymentinfo_ID = rs.getInt(3);
+            int shipment_ID = rs.getInt(4);
+            Date order_date = rs.getDate(5);
+            double cost = rs.getDouble(6);
+            String status = rs.getString(7);
+            
+            
+            OrderList.add(new Order(order_ID, user_ID, paymentinfo_ID, shipment_ID, order_date, cost, status));
+        }
+        
+        selectStatement.close();
+        
+        if (OrderList.isEmpty()){
+            throw new SQLException("Payment Information does not exist.");
+        }
+        return OrderList;
+    }
+    
+    public ArrayList<Order> findPastOrderPaymentsByUserIDAndDateAndPaymentID (int userID, Date date, int payID) throws SQLException {
+        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE User_ID = ? AND Order_Status NOT IN ('Not Submitted','Cancelled') AND Order_Date = ? AND Payment_Info_ID = ?");
+        selectStatement.setInt(1, userID);
+        selectStatement.setDate(2, date);
+        selectStatement.setInt(3, payID);
+        ResultSet rs = selectStatement.executeQuery();
+        
+        ArrayList <Order> OrderList = new ArrayList<>();
+        
+        while (rs.next()){
+            int order_ID = rs.getInt(1);
+            int user_ID = rs.getInt(2);
+            int paymentinfo_ID = rs.getInt(3);
+            int shipment_ID = rs.getInt(4);
+            Date order_date = rs.getDate(5);
+            double cost = rs.getDouble(6);
+            String status = rs.getString(7);
+            
+            
+            OrderList.add(new Order(order_ID, user_ID, paymentinfo_ID, shipment_ID, order_date, cost, status));
+        }
+        
+        selectStatement.close();
+        
+        if (OrderList.isEmpty()){
+            throw new SQLException("Payment Information does not exist.");
+        }
+        return OrderList;
+    }
     public int addOrder (int userID, Date date, double cost) throws SQLException {
         PreparedStatement insertStatement = conn.prepareStatement("INSERT INTO tblOrder(User_ID, Order_Date, Total_Cost, Order_Status) VALUES (?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
         insertStatement.setInt(1, userID);
@@ -201,7 +288,7 @@ public class DBOrderManager {
             }
             else {
                 insertStatement.close();
-                throw new SQLException("Creating user failed, no ID obtained.");
+                throw new SQLException("Creating order failed, no ID obtained.");
             }
         }
         
@@ -210,7 +297,7 @@ public class DBOrderManager {
     }
     
     public void updateOrder (int orderID, int userID, int paymentinfoID, int shipmentID, Date date, double cost, String status) throws SQLException {
-        PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblOrder SET User_ID = ?, Payment_Information_ID = ?, Shipment_Detail_ID = ?, Order_Date = ?, Total_Cost = ?, Order_Status = ? WHERE Order_ID = ?");
+        PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblOrder SET User_ID = ?, Payment_Info_ID = ?, Shipment_Detail_ID = ?, Order_Date = ?, Total_Cost = ?, Order_Status = ? WHERE Order_ID = ?");
         updateStatement.setInt(1, userID);
         updateStatement.setInt(2, paymentinfoID);
         updateStatement.setInt(3, shipmentID);
@@ -218,6 +305,20 @@ public class DBOrderManager {
         updateStatement.setDouble(5, cost);
         updateStatement.setString(6, status);
         updateStatement.setInt(7, orderID);
+         
+        updateStatement.executeUpdate();
+        updateStatement.close();
+    }
+
+    public void updateOrderPaymentID (int orderID, int paymentInfoID) throws SQLException {
+        PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblOrder SET Payment_Info_ID = ? WHERE Order_ID = ?");
+        if (paymentInfoID == 0) {
+            updateStatement.setString(1, null);
+        }
+        else {
+            updateStatement.setInt(1, paymentInfoID);;
+        }
+        updateStatement.setInt(2, orderID);
          
         updateStatement.executeUpdate();
         updateStatement.close();

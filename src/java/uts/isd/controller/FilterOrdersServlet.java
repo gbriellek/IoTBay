@@ -29,14 +29,14 @@ public class FilterOrdersServlet extends HttpServlet {
         if (orderID.length() > 0 && !validator.validateID(orderID)) {
             //set the session attribute to order id error
             request.setAttribute("orderError", "Please enter a valid order ID");
-            //Sending user back to login page
+            //Sending user back to order history page
             request.getRequestDispatcher("orderHistory.jsp").include(request, response);
             return;
         }
         if (orderDate.length() > 0 && !validator.validateDate(orderDate)) {
             //set the session attribute to order id error
             request.setAttribute("orderError", "Please enter a valid order date (yyyy-mm-dd)");
-            //Sending user back to login page
+            //Sending user back to order history page
             request.getRequestDispatcher("orderHistory.jsp").include(request, response);
             return;
         }

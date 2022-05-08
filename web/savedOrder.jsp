@@ -4,8 +4,8 @@
     Author     : Sarah F
 --%>
 
-<%@page import="uts.isd.model.*"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="uts.isd.model.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -117,7 +117,7 @@
                 String payText = payID ==0 ? "Add Payment" : "View Payment";
             %>
             <a class="orderBarButton"><%=shipText%></a>
-            <a class="orderBarButton"><%=payText%></a>
+            <a class="orderBarButton" href="SavedPaymentServlet"><%=payText%></a>
             
             <a class="orderBarButton" href="SubmitOrderServlet">Submit</a>
         </div>

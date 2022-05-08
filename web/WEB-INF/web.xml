@@ -72,6 +72,24 @@
     <servlet>
         <servlet-name>SavedShipmentDetailServlet</servlet-name>
         <servlet-class>uts.isd.controller.SavedShipmentDetailServlet</servlet-class>
+        <servlet-name>PaymentInformationServlet</servlet-name>
+        <servlet-class>uts.isd.controller.PaymentInformationServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FilterPaymentInformationServlet</servlet-name>
+        <servlet-class>uts.isd.controller.FilterPaymentInformationServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SavedPaymentServlet</servlet-name>
+        <servlet-class>uts.isd.controller.SavedPaymentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateSavedPaymentServlet</servlet-name>
+        <servlet-class>uts.isd.controller.UpdateSavedPaymentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeletePaymentServlet</servlet-name>
+        <servlet-class>uts.isd.controller.DeletePaymentServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
@@ -168,6 +186,24 @@
     <servlet-mapping>
         <servlet-name>SavedShipmentDetailServlet</servlet-name>
         <url-pattern>/SavedShipmentDetailServlet</url-pattern>
+        <servlet-name>PaymentInformationServlet</servlet-name>
+        <url-pattern>/PaymentInformationServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FilterPaymentInformationServlet</servlet-name>
+        <url-pattern>/FilterPaymentInformationServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SavedPaymentServlet</servlet-name>
+        <url-pattern>/SavedPaymentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateSavedPaymentServlet</servlet-name>
+        <url-pattern>/UpdateSavedPaymentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeletePaymentServlet</servlet-name>
+        <url-pattern>/DeletePaymentServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

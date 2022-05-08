@@ -65,7 +65,7 @@ public class SavedOrderServlet extends HttpServlet {
             request.getRequestDispatcher("savedOrder.jsp").include(request, response);
             return;
         } catch (SQLException ex) {    
-            Logger.getLogger(AddToOrderServlet.class.getName()).log(Level.SEVERE, null, ex);            
+            Logger.getLogger(SavedOrderServlet.class.getName()).log(Level.SEVERE, null, ex);            
             // show error being like add please browse for products
             request.setAttribute("noSavedOrderError", "You have no saved orders. Please browse for products.");
             request.getRequestDispatcher("savedOrder.jsp").include(request, response);

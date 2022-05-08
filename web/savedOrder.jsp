@@ -4,7 +4,6 @@
     Author     : Sarah F
 --%>
 
-<<<<<<< HEAD
 <%@page import="java.util.ArrayList"%>
 <%@page import="uts.isd.model.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -118,11 +117,7 @@
                 String payText = payID ==0 ? "Add Payment" : "View Payment";
             %>
             <a class="orderBarButton"><%=shipText%></a>
-<<<<<<< HEAD
             <a class="orderBarButton" href="SavedPaymentServlet"><%=payText%></a>
-=======
-            <a class="orderBarButton"><%=payText%></a>
->>>>>>> 9433542c3eb2b1c2b20703366733a45f0e0a1efd
             
             <a class="orderBarButton" href="SubmitOrderServlet">Submit</a>
         </div>

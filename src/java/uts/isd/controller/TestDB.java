@@ -86,7 +86,7 @@ public class TestDB {
             }
             // Delete orderLine
             System.out.println("deleteOrderLine");
-            orderLineManager.deleteOrderLine(3);
+            orderLineManager.deleteOrderLine(3, 3);
             resultList = orderLineManager.findOrderLineByOrderID(3);
         }catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
@@ -129,13 +129,15 @@ public class TestDB {
             connector  = new DBConnector();
             conn = connector.openConnection();
             DBProductManager productManager = new DBProductManager(conn);
-            Product result;
+            ArrayList<Product> resultList = new ArrayList<>();
             // Find product by name
             System.out.println("findProductByName");
-            result = productManager.findProductByName("Moisture Sensor");
-            System.out.println(result);
+            resultList = productManager.findProductByName("Moisture Sensor");
+            for (Product p: resultList) {
+                System.out.println(p);
+            }
             // Find product by category
-            ArrayList<Product> resultList = new ArrayList<>();
+            
             System.out.println("findProductByCategory");
             resultList = productManager.findProductByCategory("Navigation Modules");
             for (Product p: resultList) {
@@ -152,17 +154,21 @@ public class TestDB {
             // Add product
             System.out.println("addProduct");
             productManager.addProduct("Hello - Test", "Hi this is a test product", 6, 4, "Test category", true);
-            result = productManager.findProductByName("Hello - Test");
-            System.out.println(result);
+            resultList = productManager.findProductByName("Hello - Test");
+            for (Product p: resultList) {
+                System.out.println(p);
+            }
             // Update product
             System.out.println("updateProduct");
             productManager.updateProduct(20, "Joystick", "TEST UPDATED: One of these analog modules is a 2-axis joystick. Two potentiometers (see below) for X and Y axes are installed, which allow more or less voltage to pass through the movement. If one converts the analog value into a digital, one gets numbers between 0 (no voltage) and 1023 (full voltage). In the center, a digital value of approx. 512 is returned on both axes.", 6, 4, "Analogous Raspberry Pi Sensors", true);
-            result = productManager.findProductByName("Joystick");
-            System.out.println(result);
+            resultList = productManager.findProductByName("Joystick");
+            for (Product p: resultList) {
+                System.out.println(p);
+            }
             // Delete product
             System.out.println("deleteProduct");
             productManager.deleteProduct(1);
-            result = productManager.findProductByName("USB GPS Receiver");
+//            result = productManager.findProductByName("USB GPS Receiver");
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(TestDB.class.getName()).log(Level.SEVERE, null, ex);
         }

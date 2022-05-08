@@ -29,7 +29,7 @@ public class ProductServlet extends HttpServlet {
         try {    
             //getting all products from database
             ArrayList<Product> product = productManager.findAllProduct();
-            request.setAttribute("products", product);
+            session.setAttribute("products", product);
             //redirect to page
             request.getRequestDispatcher("products.jsp").include(request, response);
             return;

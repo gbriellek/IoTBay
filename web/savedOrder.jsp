@@ -1,9 +1,10 @@
 <%-- 
     Document   : savedOrder
-    Created on : 5 May 2022, 11:23:11 pm
-    Author     : rauna
+    Created on : 5 May 2022, 11:23:49 pm
+    Author     : Sarah F
 --%>
 
+<<<<<<< HEAD
 <%@page import="java.util.ArrayList"%>
 <%@page import="uts.isd.model.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -11,7 +12,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link rel="stylesheet" href="webpage.css"> 
+        <title>Saved Order</title>
     </head>
     <body>
         <!--insert nav bar-->
@@ -116,7 +118,11 @@
                 String payText = payID ==0 ? "Add Payment" : "View Payment";
             %>
             <a class="orderBarButton"><%=shipText%></a>
+<<<<<<< HEAD
             <a class="orderBarButton" href="SavedPaymentServlet"><%=payText%></a>
+=======
+            <a class="orderBarButton"><%=payText%></a>
+>>>>>>> 9433542c3eb2b1c2b20703366733a45f0e0a1efd
             
             <a class="orderBarButton" href="SubmitOrderServlet">Submit</a>
         </div>

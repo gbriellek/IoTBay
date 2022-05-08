@@ -16,7 +16,7 @@
     <header>
         <h1>IoTBay</h1>
     </header>
-    <body>
+    <body class="noNavBody">
         <%
         String userType = (String) session.getAttribute("userType");
         if (userType.equals("admin")) {
@@ -37,7 +37,7 @@
             <div class="container">
                 <a class="mainbtn" href="main.jsp">Profile</a>
                 <a class="mainbtn" href="ProductServlet">View Products</a>
-                <a class="mainbtn" href="savedOrder.jsp">Saved Order</a>
+                <a class="mainbtn" href="SavedOrderServlet">Saved Order</a>
                 <a class="mainbtn" href="OrderHistoryServlet">Order History</a>
                 <a class="mainbtn" href="shipmentHistory.jsp">Shipment History</a>
                 <a class="mainbtn" href="PaymentInformationServlet">Payment History</a>

@@ -21,7 +21,7 @@ public class FilterOrdersServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {               //1- retrieve the current session
         HttpSession session = request.getSession();
         // get the search terms from the request
-        String orderID = request.getParameter("orderID");
+        String orderID = request.getParameter("orderID").trim();
         String orderDate = request.getParameter("orderDate").trim();
         // get instance of validator
         Validator validator = new Validator();

@@ -10,7 +10,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 table{
     margin: auto;
     text-align: left;
-    width:400px;
+    width:450px;
 }
 
 form{
@@ -34,6 +34,9 @@ input{
     
 }
 
+.noNavBody {
+    padding-top:125px;
+}
 
 body{
     text-align:center;
@@ -45,7 +48,6 @@ body{
     margin:0 auto;
     top:0;
     min-height:700px;
-    padding-top:125px;
     width:100%;
 }
 
@@ -113,9 +115,12 @@ a{
     font-size: 18px;
     color: white;
     height: 50px;
+    margin-top: 15px;
 }
 
 #cancel {
+    margin-bottom: 0;
+    margin-top: 15px;
     background-color: #3a3b3c;
     color: white;
     text-align: center;

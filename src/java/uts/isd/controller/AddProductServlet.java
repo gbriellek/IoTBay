@@ -34,88 +34,18 @@ public class AddProductServlet extends HttpServlet {
         if (!validator.validateProductName(productName)) {
             request.setAttribute("productError", "Please enter a valid product name");
             DBProductManager productManager = (DBProductManager) session.getAttribute("productManager");
-            try {
-                //getting all products from database
-                ArrayList<Product> product = productManager.findAllProduct();
-                request.setAttribute("products", product);
-                //redirect to page
-                request.getRequestDispatcher("products.jsp").include(request, response);
-                return;
-            } catch (SQLException ex) {
-                Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE, null, ex);
-                request.setAttribute("productError", ex.getMessage());
-                //redirect to page
-                request.getRequestDispatcher("products.jsp").include(request, response);
-                return;
-            }
         } else if (!validator.validateDescription(description)) {
             request.setAttribute("productError", "Please enter a valid description");
             DBProductManager productManager = (DBProductManager) session.getAttribute("productManager");
-            try {
-                //getting all products from database
-                ArrayList<Product> product = productManager.findAllProduct();
-                request.setAttribute("products", product);
-                //redirect to page
-                request.getRequestDispatcher("products.jsp").include(request, response);
-                return;
-            } catch (SQLException ex) {
-                Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE, null, ex);
-                request.setAttribute("productError", ex.getMessage());
-                //redirect to page
-                request.getRequestDispatcher("products.jsp").include(request, response);
-                return;
-            }
         } else if (!validator.validatePrice(price)) {
             request.setAttribute("productError", "Please enter a valid price");
             DBProductManager productManager = (DBProductManager) session.getAttribute("productManager");
-            try {
-                //getting all products from database
-                ArrayList<Product> product = productManager.findAllProduct();
-                request.setAttribute("products", product);
-                //redirect to page
-                request.getRequestDispatcher("products.jsp").include(request, response);
-                return;
-            } catch (SQLException ex) {
-                Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE, null, ex);
-                request.setAttribute("productError", ex.getMessage());
-                //redirect to page
-                request.getRequestDispatcher("products.jsp").include(request, response);
-                return;
-            }
         } else if (!validator.validateStock(stock)) {
             request.setAttribute("productError", "Please enter a valid stock");
             DBProductManager productManager = (DBProductManager) session.getAttribute("productManager");
-            try {
-                //getting all products from database
-                ArrayList<Product> product = productManager.findAllProduct();
-                request.setAttribute("products", product);
-                //redirect to page
-                request.getRequestDispatcher("products.jsp").include(request, response);
-                return;
-            } catch (SQLException ex) {
-                Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE, null, ex);
-                request.setAttribute("productError", ex.getMessage());
-                //redirect to page
-                request.getRequestDispatcher("products.jsp").include(request, response);
-                return;
-            }
         } else if (!validator.validateCategory(category)) {
             request.setAttribute("productError", "Please enter a valid category");
             DBProductManager productManager = (DBProductManager) session.getAttribute("productManager");
-            try {
-                //getting all products from database
-                ArrayList<Product> product = productManager.findAllProduct();
-                request.setAttribute("products", product);
-                //redirect to page
-                request.getRequestDispatcher("products.jsp").include(request, response);
-                return;
-            } catch (SQLException ex) {
-                Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE, null, ex);
-                request.setAttribute("productError", ex.getMessage());
-                //redirect to page
-                request.getRequestDispatcher("products.jsp").include(request, response);
-                return;
-            }
         }
 
         //2- retrieve the manager instance from session      

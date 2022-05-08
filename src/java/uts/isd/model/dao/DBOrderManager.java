@@ -27,7 +27,7 @@ public class DBOrderManager {
     }
     
     public Order findOrderByUserID (int userID) throws SQLException {
-        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE User_ID = ? AND Order_Status = 'Not submitted'");
+        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE User_ID = ? AND Order_Status = 'Not Submitted'");
         selectStatement.setInt(1, userID);
         ResultSet rs = selectStatement.executeQuery();
         
@@ -48,7 +48,7 @@ public class DBOrderManager {
     }
     
     public ArrayList<Order> findPastOrdersByUserID (int userID) throws SQLException {
-        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE User_ID = ? AND Order_Status NOT IN ('Not submitted','Cancelled')");
+        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE User_ID = ? AND Order_Status NOT IN ('Not Submitted','Cancelled')");
         selectStatement.setInt(1, userID);
         ResultSet rs = selectStatement.executeQuery();
         
@@ -76,7 +76,7 @@ public class DBOrderManager {
     }
     
     public ArrayList<Order> findPastOrdersByUserIDDate (int userID, Date date) throws SQLException {
-        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE User_ID = ? AND Order_Status NOT IN ('Not submitted','Cancelled') AND Order_Date = ?");
+        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE User_ID = ? AND Order_Status NOT IN ('Not Submitted','Cancelled') AND Order_Date = ?");
         selectStatement.setInt(1, userID);
         selectStatement.setDate(2, date);
         ResultSet rs = selectStatement.executeQuery();
@@ -105,7 +105,7 @@ public class DBOrderManager {
     }
     
     public ArrayList<Order> findPastOrdersByUserIDAndOrderID (int userID, int orderID) throws SQLException {
-        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE User_ID = ? AND Order_Status NOT IN ('Not submitted','Cancelled') AND Order_ID = ?");
+        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE User_ID = ? AND Order_Status NOT IN ('Not Submitted','Cancelled') AND Order_ID = ?");
         selectStatement.setInt(1, userID);
         selectStatement.setInt(2, orderID);
         ResultSet rs = selectStatement.executeQuery();
@@ -134,7 +134,7 @@ public class DBOrderManager {
     }
     
     public ArrayList<Order> findPastOrdersByUserIDAndDateAndOrderID (int userID, Date date, int orderID) throws SQLException {
-        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE User_ID = ? AND Order_Status NOT IN ('Not submitted','Cancelled') AND Order_Date = ? AND Order_ID = ?");
+        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE User_ID = ? AND Order_Status NOT IN ('Not Submitted','Cancelled') AND Order_Date = ? AND Order_ID = ?");
         selectStatement.setInt(1, userID);
         selectStatement.setDate(2, date);
         selectStatement.setInt(3, orderID);
@@ -162,7 +162,6 @@ public class DBOrderManager {
         }
         return OrderList;
     }
-    
 
     public ArrayList<Order> findPastOrderPaymentsByUserIDDate (int userID, Date date) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE User_ID = ? AND Order_Status NOT IN ('Not Submitted','Cancelled') AND Order_Date = ?");
@@ -251,12 +250,12 @@ public class DBOrderManager {
         }
         return OrderList;
     }
-    
     public int addOrder (int userID, Date date, double cost) throws SQLException {
         PreparedStatement insertStatement = conn.prepareStatement("INSERT INTO tblOrder(User_ID, Order_Date, Total_Cost, Order_Status) VALUES (?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
         insertStatement.setInt(1, userID);
-        insertStatement.setDate(4, (java.sql.Date) date);
-        insertStatement.setDouble(5, cost);
+        insertStatement.setDate(2, date);
+        insertStatement.setDouble(3, cost);
+        insertStatement.setString(4, "Not Submitted");
         
         insertStatement.executeUpdate();
         
@@ -281,7 +280,7 @@ public class DBOrderManager {
         updateStatement.setInt(1, userID);
         updateStatement.setInt(2, paymentinfoID);
         updateStatement.setInt(3, shipmentID);
-        updateStatement.setDate(4, (java.sql.Date) date);
+        updateStatement.setDate(4, date);
         updateStatement.setDouble(5, cost);
         updateStatement.setString(6, status);
         updateStatement.setInt(7, orderID);

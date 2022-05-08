@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import uts.isd.model.PaymentInformation;
@@ -40,6 +41,46 @@ public class DBPaymentInformationManager {
         selectStatement.close();
         throw new SQLException("No such payment information exists.");
     }
+    
+    public ArrayList<PaymentInformation> findPastPaymentInformationByUserID (int userID) throws SQLException {
+        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblPayment_Information INNER JOIN tblOrder ON tblPayment_Information.Payment_Info_ID = tblOrder.Payment_Info_ID WHERE user_id = ? AND Order_Status != 'Not Submitted'");
+        selectStatement.setInt(1,userID);
+        ResultSet rs = selectStatement.executeQuery();
+        
+        ArrayList<PaymentInformation> paymentInfo = new ArrayList<PaymentInformation>();
+        
+        while (rs.next()){
+            int ID = rs.getInt(1);
+            String card_number = rs.getString(2);
+            String card_type = rs.getString(3);
+            String expiry_date = rs.getString(4);
+            
+            paymentInfo.add(new PaymentInformation(ID, card_number, card_type, expiry_date, 0));
+        }
+        selectStatement.close();
+        
+        if (paymentInfo.isEmpty()){
+            throw new SQLException("No such payment information exists.");
+        }
+        return paymentInfo;
+    }
+    
+    public PaymentInformation findSavedPaymentInformationByUserID (int userID) throws SQLException {
+        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblPayment_Information INNER JOIN tblOrder WHERE user_id = ? AND Order_Status = 'Not Submitted'");
+        selectStatement.setInt(1,userID);
+        ResultSet rs = selectStatement.executeQuery();
+        
+        while (rs.next()){
+            int ID = rs.getInt(1);
+            String card_number = rs.getString(2);
+            String card_type = rs.getString(3);
+            String expiry_date = rs.getString(4);
+            
+            return new PaymentInformation(ID, card_number, card_type, expiry_date, 0);
+        }
+        selectStatement.close();
+        throw new SQLException("No such payment information exists.");
+    }    
     
     public PaymentInformation findPaymentInformationByCardNumber (String card_number) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblPayment_Information WHERE Card_Number = ?");
@@ -81,14 +122,27 @@ public class DBPaymentInformationManager {
         return PaymentInfoList;
     }
     
-    public void addPaymentInformation (String card_number, String card_type, String expiry_date) throws SQLException {
-        PreparedStatement insertStatement = conn.prepareStatement("INSERT INTO tblPayment_Information (Card_Number, Card_Type, Expiry_Date) VALUES (?,?,?)");
+    public int addPaymentInformation (String card_number, String card_type, String expiry_date) throws SQLException {
+        PreparedStatement insertStatement = conn.prepareStatement("INSERT INTO tblPayment_Information (Card_Number, Card_Type, Expiry_Date) VALUES (?,?,?)", Statement.RETURN_GENERATED_KEYS);
         insertStatement.setString(1, card_number);
         insertStatement.setString(2, card_type);
         insertStatement.setString(3, expiry_date);
         
         insertStatement.executeUpdate();
+        int id;
+        
+        try (ResultSet generatedKeys = insertStatement.getGeneratedKeys()) {
+            if (generatedKeys.next()) {
+                id = generatedKeys.getInt(1);   
+            }
+            else {
+                insertStatement.close();
+                throw new SQLException("Creating user failed, no ID obtained.");
+            }
+        }
+        
         insertStatement.close();
+        return id;
     }
     
     public void updatePaymentInformation (int paymentInfoID, String card_type, String expiry_date) throws SQLException {

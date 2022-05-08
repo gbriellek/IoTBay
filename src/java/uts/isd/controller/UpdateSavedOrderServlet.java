@@ -31,7 +31,7 @@ public class UpdateSavedOrderServlet extends HttpServlet {
         if (!validator.validateStock(quantity)) {
             //set the session attribute to quantity error
             request.setAttribute("savedOrderError", "Please enter a number for quantity");
-            //Sending user back to products page
+            //Sending user back to saved order page
             request.getRequestDispatcher("savedOrder.jsp").include(request, response);
             return;
         }

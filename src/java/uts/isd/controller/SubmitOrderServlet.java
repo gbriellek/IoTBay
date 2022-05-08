@@ -64,6 +64,7 @@ public class SubmitOrderServlet extends HttpServlet {
             session.removeAttribute("savedOrder");
             session.removeAttribute("savedOrderLines");
             session.removeAttribute("savedProductNames");
+            session.removeAttribute("savedPayment");
             
             request.setAttribute("orderSubmitted", "Order Submitted!");
             

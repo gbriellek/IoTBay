@@ -204,7 +204,7 @@ a{
 
 .orderBar {
     margin: auto;
-    width: 900px;
+    width: 1000px;
     padding: 10px 0 10px 0;
 }
 
@@ -212,6 +212,13 @@ a{
     border-radius: 20px;
     background-color: #0583d2;
     color: white;
+    font-size: 20px;
+}
+
+#updateOrderBarButton {
+    border: none;
+    border-color: blue;
+    padding: 10px 15px 10px 15px;
 }
 
 .mainbtn:hover, #submit:hover, .savedItemButtons:hover, .orderBarButton:hover {

@@ -23,7 +23,7 @@
         %>
             <h1>Welcome back Sys Admin!</h1>
             <div class="container">
-                <a class="mainbtn" href="accessLogs.jsp">Access Logs</a>
+                <a class="mainbtn" href="AccessLogServlet">Access Logs</a>
                 <a class="mainbtn" href="ProductServlet">View Products</a>
                 <a class="mainbtn" href="logout.jsp">Logout</a>
             </div>
@@ -41,7 +41,7 @@
                 <a class="mainbtn" href="OrderHistoryServlet">Order History</a>
                 <a class="mainbtn" href="shipmentHistory.jsp">Shipment History</a>
                 <a class="mainbtn" href="PaymentInformationServlet">Payment History</a>
-                <a class="mainbtn" href="accessLogs.jsp">Access Logs</a>
+                <a class="mainbtn" href="AccessLogServlet">Access Logs</a>
                 <a class="mainbtn" href="logout.jsp">Logout</a>
             </div>
         <%
@@ -53,7 +53,7 @@
             <h1>Hi <%=fname%> <%=lname%>!</h1>
             <div class="container">
                 <a class="mainbtn" href="main.jsp">Profile</a>
-                <a class="mainbtn" href="accessLogs.jsp">Access Logs</a>
+                <a class="mainbtn" href="AccessLogServlet">Access Logs</a>
                 <a class="mainbtn" href="ProductServlet">View Products</a>
                 <a class="mainbtn" href="logout.jsp">Logout</a>
             </div>

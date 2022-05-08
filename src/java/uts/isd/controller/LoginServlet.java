@@ -2,6 +2,7 @@ package uts.isd.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -48,6 +49,7 @@ public class LoginServlet extends HttpServlet {
        if (!email.contains("@iotbay.com.au")) {
             //5- retrieve the manager instance from session      
             DBCustomerManager customerManager = (DBCustomerManager) session.getAttribute("customerManager");
+            DBAccessLogManager accessLogManager = (DBAccessLogManager) session.getAttribute("accessLogManager");
             try {       
                 //6- find user by email
                 Customer customer = customerManager.findCustomerByEmail(email);
@@ -56,6 +58,8 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("user", customer);
                     session.setAttribute("requestType", "login");
                     session.setAttribute("userType", "customer");
+                    //add log to access logs for customer
+                    accessLogManager.addAccessLog(customer.getCustomerID(), new Timestamp(System.currentTimeMillis()), "Login");
                     request.getRequestDispatcher("welcome.jsp").include(request, response);
                     return;
                 } else {
@@ -74,6 +78,7 @@ public class LoginServlet extends HttpServlet {
        } else {
            //5- retrieve the manager instance from session      
             DBStaffManager staffManager = (DBStaffManager) session.getAttribute("staffManager");
+            DBAccessLogManager accessLogManager = (DBAccessLogManager) session.getAttribute("accessLogManager");
             try {       
             //6- find user by email
             Staff staff = staffManager.findStaff(email);
@@ -82,6 +87,8 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("user", staff);
                 session.setAttribute("requestType", "login");
                 session.setAttribute("userType", "staff");
+                //add log to access logs for staff
+                accessLogManager.addAccessLog(staff.getStaffID(), new Timestamp(System.currentTimeMillis()), "Login");
                 request.getRequestDispatcher("welcome.jsp").include(request, response);
                 return;
             } else {

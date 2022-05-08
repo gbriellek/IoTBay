@@ -81,6 +81,18 @@
         <servlet-name>DeletePaymentServlet</servlet-name>
         <servlet-class>uts.isd.controller.DeletePaymentServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>uts.isd.controller.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AccessLogServlet</servlet-name>
+        <servlet-class>uts.isd.controller.AccessLogServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FilterAccessLogServlet</servlet-name>
+        <servlet-class>uts.isd.controller.FilterAccessLogServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
         <url-pattern>/ConnServlet</url-pattern>
@@ -184,6 +196,18 @@
     <servlet-mapping>
         <servlet-name>DeletePaymentServlet</servlet-name>
         <url-pattern>/DeletePaymentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AccessLogServlet</servlet-name>
+        <url-pattern>/AccessLogServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FilterAccessLogServlet</servlet-name>
+        <url-pattern>/FilterAccessLogServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

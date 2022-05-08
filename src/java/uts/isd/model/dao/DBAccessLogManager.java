@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import uts.isd.model.AccessLog;
 
 /**
@@ -47,10 +47,53 @@ public class DBAccessLogManager {
         return AccessLogList;
     }
     
-    public ArrayList <AccessLog> findAccessLogByUserIDDate (int user_ID, Timestamp access_date) throws SQLException {
-        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM  tblAccess_Log WHERE User_ID = ? AND Access_Date_Time = ?");
+    public ArrayList <AccessLog> findAllAccessLog() throws SQLException {
+        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM  tblAccess_Log");
+        ResultSet rs = selectStatement.executeQuery();
+        
+        ArrayList <AccessLog> AccessLogList = new ArrayList<>();
+        
+        while (rs.next()){
+            int userID = rs.getInt(2);
+            Timestamp access_date_time = rs.getTimestamp(3);
+            String event = rs.getString(4);
+            
+            AccessLogList.add(new AccessLog(userID, access_date_time, event));
+        }
+        selectStatement.close();
+        
+        if (AccessLogList.isEmpty()){
+            throw new SQLException("Access log does not exist.");
+        }
+        return AccessLogList;
+    }
+    
+    public ArrayList <AccessLog> findAccessLogByUserIDDate (int user_ID, Date access_date) throws SQLException {
+        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM  tblAccess_Log WHERE User_ID = ? AND DATE(Access_Date_Time) = ?");
         selectStatement.setInt(1, user_ID);
-        selectStatement.setTimestamp(2, access_date);
+        selectStatement.setDate(2, access_date);
+        ResultSet rs = selectStatement.executeQuery();
+        
+        ArrayList <AccessLog> AccessLogList = new ArrayList<>();
+        
+        while (rs.next()){
+            int userID = rs.getInt(2);
+            Timestamp access_date_time = rs.getTimestamp(3);
+            String event = rs.getString(4);
+            
+            AccessLogList.add(new AccessLog(userID, access_date_time, event));
+        }
+        selectStatement.close();
+        
+        if (AccessLogList.isEmpty()){
+            throw new SQLException("Access log does not exist.");
+        }
+        return AccessLogList;
+    }
+    
+    public ArrayList <AccessLog> findAllAccessLogByDate (Date access_date) throws SQLException {
+        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM  tblAccess_Log WHERE DATE(Access_Date_Time) = ?");
+        selectStatement.setDate(1, access_date);
         ResultSet rs = selectStatement.executeQuery();
         
         ArrayList <AccessLog> AccessLogList = new ArrayList<>();

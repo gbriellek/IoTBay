@@ -35,7 +35,7 @@ public class UserEnterServlet extends HttpServlet {
         request.getRequestDispatcher("ProductServlet").include(request, response);
         return;
         } catch (SQLException ex) { 
-            Logger.getLogger(AddToOrderServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserEnterServlet.class.getName()).log(Level.SEVERE, null, ex);
             // create new order
             request.setAttribute("registerError", ex.getMessage());
             //Sending user back to register page

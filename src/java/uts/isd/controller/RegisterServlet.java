@@ -2,6 +2,7 @@ package uts.isd.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -83,6 +84,7 @@ public class RegisterServlet extends HttpServlet {
         
         //5- retrieve the manager instance from session      
         DBCustomerManager customerManager = (DBCustomerManager) session.getAttribute("customerManager");
+        DBAccessLogManager accessLogManager = (DBAccessLogManager) session.getAttribute("accessLogManager");
         // check customer isn't already in the database
         try {
             customerManager.findCustomerByEmail(email);
@@ -105,6 +107,9 @@ public class RegisterServlet extends HttpServlet {
             session.setAttribute("user", customer);
             session.setAttribute("requestType", "register");
             session.setAttribute("userType", "customer");
+            //add log to access logs for customer
+            accessLogManager.addAccessLog(customer.getCustomerID(), new Timestamp(System.currentTimeMillis()), "Login");
+            
             request.getRequestDispatcher("welcome.jsp").include(request, response);
             return;
         } catch (SQLException ex) {    

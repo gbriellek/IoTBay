@@ -15,6 +15,11 @@ import javax.servlet.http.HttpSession;
 import uts.isd.model.*;
 import uts.isd.model.dao.*;
 
+/**
+ *
+ * @author Mia Z
+ */
+
 public class FilterPaymentInformationServlet extends HttpServlet {
 
     @Override

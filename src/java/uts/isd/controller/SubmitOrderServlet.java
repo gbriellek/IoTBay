@@ -15,6 +15,11 @@ import javax.servlet.http.HttpSession;
 import uts.isd.model.dao.*;
 import uts.isd.model.*;
 
+/*
+ * Author:  Sarah F
+ * Created: 7 May 2022
+ */
+
 public class SubmitOrderServlet extends HttpServlet {
     @Override   
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {               
@@ -49,7 +54,14 @@ public class SubmitOrderServlet extends HttpServlet {
             request.setAttribute("savedOrderError", "Please Add Your Payment Information to the Order");
             request.getRequestDispatcher("savedOrder.jsp").include(request, response);
             return;
-        }       
+        }  
+        PaymentInformation savedPayment = (PaymentInformation) session.getAttribute("savedPayment");
+        if (savedPayment.getCVV() == 0) {
+            // set error telling them to enter cvv for payment information
+            request.setAttribute("savedOrderError", "Please Enter Your CVV For Your Saved Payment Information");
+            request.getRequestDispatcher("savedOrder.jsp").include(request, response);
+            return;
+        }  
 
         
         

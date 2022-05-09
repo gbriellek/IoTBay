@@ -47,6 +47,27 @@ public class DBOrderManager {
         throw new SQLException("Order does not exist.");
     }
     
+    public Order findPastOrderByShipmentID (int shipmentID) throws SQLException {
+        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE Shipment_Detail_ID = ? AND Order_Status NOT IN ('Not Submitted','Cancelled')");
+        selectStatement.setInt(1, shipmentID);
+        ResultSet rs = selectStatement.executeQuery();
+        
+        while (rs.next()){
+            int order_ID = rs.getInt(1);
+            int user_ID = rs.getInt(2);
+            int paymentinfo_ID = rs.getInt(3);
+            int shipment_ID = rs.getInt(4);
+            Date order_date = rs.getDate(5);
+            double cost = rs.getDouble(6);
+            String status = rs.getString(7);
+            
+            
+            return new Order(order_ID, user_ID, paymentinfo_ID, shipment_ID, order_date, cost, status);
+        }
+        selectStatement.close();
+        throw new SQLException("Order does not exist.");
+    }
+    
     public ArrayList<Order> findPastOrdersByUserID (int userID) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE User_ID = ? AND Order_Status NOT IN ('Not Submitted','Cancelled')");
         selectStatement.setInt(1, userID);
@@ -296,6 +317,20 @@ public class DBOrderManager {
         }
         else {
             updateStatement.setInt(1, paymentInfoID);;
+        }
+        updateStatement.setInt(2, orderID);
+         
+        updateStatement.executeUpdate();
+        updateStatement.close();
+    }
+    
+    public void updateOrderShipmentDetailID (int orderID, int shipmentID) throws SQLException {
+        PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblOrder SET Shipment_Detail_ID = ? WHERE Order_ID = ?");
+        if (shipmentID == 0) {
+            updateStatement.setString(1, null);
+        }
+        else {
+            updateStatement.setInt(1, shipmentID);;
         }
         updateStatement.setInt(2, orderID);
          

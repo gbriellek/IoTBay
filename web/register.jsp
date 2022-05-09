@@ -40,7 +40,6 @@
                     </tr>
                     <tr>
                         <td><label for="phone">Phone Number</label></td>  
-                        
                     </tr>
                     <tr>
                         <td colspan = "2"><input class="extendfield" type="text" placeholder="Enter your phone number" name="phone"></input></td>

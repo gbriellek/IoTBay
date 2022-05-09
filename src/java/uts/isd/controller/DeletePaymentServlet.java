@@ -15,6 +15,11 @@ import javax.servlet.http.HttpSession;
 import uts.isd.model.dao.*;
 import uts.isd.model.*;
 
+/**
+ *
+ * @author Mia Z
+ */
+
 public class DeletePaymentServlet extends HttpServlet {
     @Override   
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {               

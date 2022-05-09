@@ -33,7 +33,7 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         //Get TOS
         String tos = request.getParameter("tos");
-        
+        // validate user details
         if (!validator.validateName(fName)) {
             //set the session attribute to first name error
             request.setAttribute("registerError", "Please enter a first name (must contain only letters)");

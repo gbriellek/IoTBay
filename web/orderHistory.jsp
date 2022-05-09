@@ -27,8 +27,8 @@
             <table class="searchTable"border="0px">
                 <tr>
                     <td><label for="orderID">Order ID</label></td>  
-                    <td><input class="searchField" type="text" name="orderID" placeholder="enter an order id" value="<%=fieldOrderID%>"></input></td>
-                    <td><label for="lname">Order Date</label></td> 
+                    <td><input class="searchField" type="text" name="orderID" placeholder="Enter an Order ID" value="<%=fieldOrderID%>"></input></td>
+                    <td><label for="orderDate">Order Date</label></td> 
                     <td><input class="searchField" type="text" name="orderDate" placeholder="yyyy-mm-dd" value="<%=fieldOrderDate%>"></input></td>
                     <td><input type="submit" value="Filter" class="filterButton"></td>
                 </tr>
@@ -70,7 +70,7 @@
                     <td><p><%=o.getShipmentDetailID()%></p></td>
                 </tr>
                 <tr class="profile">
-                    <td><p style="font-weight:bold">Payment ID</p></td>  
+                    <td><p style="font-weight:bold">Payment Information ID</p></td>  
                     <td><p><%=o.getPaymentInformationID()%></p></td>
                 </tr>
                 <tr class="profile">

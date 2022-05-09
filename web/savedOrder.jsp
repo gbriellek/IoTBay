@@ -116,7 +116,7 @@
                 String shipText = shipID ==0 ? "Add Shipment" : "View Shipment";
                 String payText = payID ==0 ? "Add Payment" : "View Payment";
             %>
-            <a class="orderBarButton"><%=shipText%></a>
+            <a class="orderBarButton" href="SavedShipmentDetailServlet"><%=shipText%></a>
             <a class="orderBarButton" href="SavedPaymentServlet"><%=payText%></a>
             
             <a class="orderBarButton" href="SubmitOrderServlet">Submit</a>

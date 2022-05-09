@@ -44,7 +44,7 @@ public class TestDB {
             System.out.println(result);
             // Update customer
             System.out.println("updateCustomerByID");
-            customerManager.updateCustomerByID(44, "hello@gmail.com", "Goodbye", "World", "0412345678", "byeworld", true);
+            customerManager.updateCustomerByID(44, "Goodbye", "World", "0412345678", "byeworld");
             result = customerManager.findCustomerByEmail("hello@gmail.com");
             System.out.println(result);
             // Delete customer
@@ -108,7 +108,7 @@ public class TestDB {
             }
             // Find access log by userID and date
             System.out.println("findAccessLogByUserIDDate");
-            resultList = accessLogManager.findAccessLogByUserIDDate(1,Timestamp.valueOf("2022-2-5 09:10:35"));
+            resultList = accessLogManager.findAccessLogByUserIDDate(1, Date.valueOf("2022-2-5 09:10:35"));
             for (int i = 0; i < resultList.size(); i++) {
                 System.out.println(resultList.get(i));
             }
@@ -191,7 +191,7 @@ public class TestDB {
             System.out.println(result);
             // Update staff
             System.out.println("updateStaff");
-            staffManager.updateStaff(52, "hello@gmail.com", "Hello", "World", "0412345678", "helloworld", "S21", true);
+            staffManager.updateStaff(52, "Hello", "World", "0412345678", "helloworld", "S21");
             result = staffManager.findStaff("hello@gmail.com");
             System.out.println(result);
             // Delete staff
@@ -356,7 +356,7 @@ public class TestDB {
             System.out.println(result);
             // Update shipment detail
             System.out.println("updateShipmentDetail");
-            shipmentDetailManager.updateShipmentDetail(26,20,null,Date.valueOf("2022-7-23"),"express");
+            shipmentDetailManager.updateShipmentDetail(2, 26,20,null,Date.valueOf("2022-7-23"),"express");
             result = shipmentDetailManager.findShipmentDetail(26);
             System.out.println(result);
             // Delete shipment detail

@@ -53,6 +53,13 @@ public class LoginServlet extends HttpServlet {
             try {       
                 //6- find user by email
                 Customer customer = customerManager.findCustomerByEmail(email);
+                // check if their account is active
+                if (!customer.isIsActivated()) {
+                    request.setAttribute("loginError", "Account is no longer active");
+                    //Sending user back to login page
+                    request.getRequestDispatcher("login.jsp").include(request, response);
+                    return;
+                }
                 // validate password
                 if (customer.getPassword().equals(password)) {
                     session.setAttribute("user", customer);
@@ -82,6 +89,13 @@ public class LoginServlet extends HttpServlet {
             try {       
             //6- find user by email
             Staff staff = staffManager.findStaff(email);
+            // check if their account is active
+                if (!staff.isIsActivated()) {
+                    request.setAttribute("loginError", "Account is no longer active");
+                    //Sending user back to login page
+                    request.getRequestDispatcher("login.jsp").include(request, response);
+                    return;
+                }
             // validate password
             if (staff.getPassword().equals(password)) {
                 session.setAttribute("user", staff);

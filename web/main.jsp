@@ -11,127 +11,77 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="webpage.css"> 
-        <link rel="stylesheet" href="nav.css"> 
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <title>Main Page</title>
     </head>
     <body>
         <%
+            // get feedback message from request
+            String updateMsg = (String) request.getAttribute("updatedDetails");
+            
             // only staff and customer can view this page
             String userType = (String) session.getAttribute("userType");
+            String emailText = "";
+            String fnameText = "";
+            String lnameText = "";
+            String phoneText = "";
             if (userType.equals("customer")) {
-            Customer customer = (Customer)session.getAttribute("user");
+                Customer customer = (Customer)session.getAttribute("user");
+                emailText = customer.getEmailAddress();
+                fnameText = customer.getFirstName();
+                lnameText = customer.getLastName();
+                phoneText = customer.getPhoneNumber();
+            }
+            else{
+                Staff staff = (Staff)session.getAttribute("user");
+                emailText = staff.getEmailAddress();
+                fnameText = staff.getFirstName();
+                lnameText = staff.getLastName();
+                phoneText = staff.getPhoneNumber();
+            }
         %>
-        <nav id="navbar" class="navbar navbar-expand-sm bg-light navbar-light">
-        <div class="container-fluid">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <h3 id="name">IoTBay</h1>
-                </li>
-                <li class="nav-item">
-                    <a  class="nav-link" href="main.jsp">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="ProductServlet">View Products</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="savedOrder.jsp">Saved Order</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="orderHistory.jsp">Order History</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="shipmentHistory.jsp">Shipment History</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="paymentHistory.jsp">Payment History</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="accessLogs.jsp">Access Logs</a>
-                </li>
-                <li class=" testing">
-                    <a id="logout" class="nav-link test" href="logout.jsp">Logout</a>
-                </li>
-            </ul>
-        </div>
-        </nav>
         
         <h1>My Account</h1>
+        <p><%=updateMsg==null?"":updateMsg%></p>
         <table style="border-collapse: collapse">
-            <tr class="profile">
-                <td><p style="font-weight:bold">First Name</p></td>
-                <td><p><%=customer.getFirstName()%></p></td>
-            </tr>
-            <tr class="profile">
-                <td><p style="font-weight:bold">Last Name</p></td>
-                <td><p><%=customer.getLastName()%></p></td>
-            </tr>
-            <tr class="profile">
+            <tr>
                 <td><p style="font-weight:bold">Email</p></td>  
-                <td><p><%=customer.getEmailAddress()%></p></td>
+                <td><p><%=emailText%></p></td>
             </tr>
-            <tr class="profile">
-                <td><p style="font-weight:bold">Phone Number</p></td>  
-                <td><p><%=customer.getPhoneNumber()%></p></td>
-            </tr>
-            <tr class="profile">
-                <td><p style="font-weight:bold">Password</p></td>
-                <td><p><%=customer.getPassword()%></p></td>
-            </tr>
-        </table>
-        <% }else {
-            //staff is viewing the page
-            Staff staff = (Staff)session.getAttribute("user");
-        %>
-        <nav id="navbar" class="navbar navbar-expand-sm bg-light navbar-light">
-        <div class="container-fluid">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <h3 id="name">IoTBay</h1>
-                </li>
-                <li class="nav-item">
-                    <a  class="nav-link" href="main.jsp">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="accessLogs.jsp">Access Logs</a>
-                </li>
-                 <li class="nav-item">
-                    <a class="nav-link" href="ProductServlet">View Products</a>
-                </li>
-                <li class=" testing">
-                    <a id="logout" class="nav-link test" href="logout.jsp">Logout</a>
-                </li>
-            </ul>
-        </div>
-        </nav>        
-        
-        <h1>My Account</h1>
-        <table style="border-collapse: collapse">
-            <tr class="profile">
-                <td><p style="font-weight:bold">First Name</p></td>
-                <td><p><%=staff.getFirstName()%></p></td>
-            </tr>
-            <tr class="profile">
-                <td><p style="font-weight:bold">Last Name</p></td>
-                <td><p><%=staff.getLastName()%></p></td>
-            </tr>
-            <tr class="profile">
-                <td><p style="font-weight:bold">Email</p></td>  
-                <td><p><%=staff.getEmailAddress()%></p></td>
-            </tr>
-            <tr class="profile">
-                <td><p style="font-weight:bold">Phone Number</p></td>  
-                <td><p><%=staff.getPhoneNumber()%></p></td>
-            </tr>
-            <tr class="profile">
+            <%
+                if (userType.equals("staff")) {
+                    Staff staff = (Staff)session.getAttribute("user");
+            %>
+            <tr >
                 <td><p style="font-weight:bold">Staff Number</p></td>
                 <td><p><%=staff.getStaffNumber()%></p></td>
             </tr>
-            <tr class="profile">
-                <td><p style="font-weight:bold">Password</p></td>
-                <td><p><%=staff.getPassword()%></p></td>
+            <%
+                }
+            %>
+            <form action="UpdateUserDetailsServlet" method="POST">
+            <tr>
+                <td><p style="font-weight:bold">First Name</p></td>
+                <td><input class="extendfield" type="text" placeholder="Enter your first name" name="fname" value="<%=fnameText%>"></input></td>
             </tr>
-        </table>
-        <%}%>
+            <tr>
+                <td><p style="font-weight:bold">Last Name</p></td>
+                <td><input class="extendfield" type="text" placeholder="Enter your last name" name="lname" value="<%=lnameText%>"></input></td>
+            </tr>
+            <tr>
+                <td><p style="font-weight:bold">Phone Number</p></td>
+                <td><input class="extendfield" type="text" placeholder="Enter your phone number" name="phone" value="<%=phoneText%>"></input></td>
+            </tr>
+            <tr>
+                <td><p style="font-weight:bold">Password</p></td>
+                <td><input class="extendfield" type="password" placeholder="Enter a new password" name="password"></input></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input style="cursor:pointer" class="extendfield" id = "submit" type="submit" value="Update Details"></td>
+            </tr>
+            </form>
+            <tr>
+                <td colspan="2"><a id="cancel" class="extendfield" href="CancelAccountServlet">Cancel Account</a></td>
+            </tr>
+        </table>    
     </body>
 </html>

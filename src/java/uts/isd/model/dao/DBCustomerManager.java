@@ -77,7 +77,7 @@ public class DBCustomerManager {
         insertStatement1.close();
     }
     
-    public void updateCustomerByID(int id, String email, String fname, String lname, String phoneno, String password, boolean Is_Activated) throws SQLException {
+    public void updateCustomerByID(int id, String fname, String lname, String phoneno, String password) throws SQLException {
         PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblUser SET First_Name = ?, Last_Name = ?, Phone_Number = ? WHERE User_ID = ?");
         updateStatement.setString(1, fname);
         updateStatement.setString(2, lname);
@@ -87,10 +87,9 @@ public class DBCustomerManager {
         updateStatement.executeUpdate();
         updateStatement.close();
         
-        PreparedStatement updateStatement1 = conn.prepareStatement("UPDATE tblCustomer SET Password = ?, Is_Activated = ? WHERE Customer_ID = ?");
+        PreparedStatement updateStatement1 = conn.prepareStatement("UPDATE tblCustomer SET Password = ? WHERE Customer_ID = ?");
         updateStatement1.setString(1, password);
-        updateStatement1.setBoolean(2, Is_Activated);
-        updateStatement1.setInt(3, id);
+        updateStatement1.setInt(2, id);
         
         updateStatement1.executeUpdate();
         updateStatement1.close();

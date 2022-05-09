@@ -18,14 +18,6 @@
         <!--insert nav bar-->
         <h1>Saved Payment Information</h1>
         <%
-            String paymentSubmitted = (String) request.getAttribute("paymentSubmitted");
-            String noSavedPayment = (String) request.getAttribute("noSavedPayment");
-            if (paymentSubmitted != null) {
-        %>
-        <p><%=paymentSubmitted%></p>
-        <a href="PaymentHistoryServlet">View Payment Information History</a>
-        <%
-        } else {
             //get the saved payment, order, shipment details from the session
             PaymentInformation savedPayment = (PaymentInformation) session.getAttribute("savedPayment");  
             Order savedOrder = (Order) session.getAttribute("savedOrder");
@@ -63,7 +55,7 @@ if (savedShip != null) {
                     <td><p style="font-weight:bold">CVV</p></td>
                     <td><input name="cvv" type="text" value="<%=savedPayment.getCVV()==0? "" : savedPayment.getCVV()%>"></input></td>
                 </tr>
-                <tr class="profile">
+                <tr>
                     <td><p style="font-weight:bold">Amount To Pay</p></td>
                     <td colspan="3"><p><%=amountToPay%></p></td>
                 </tr>
@@ -73,18 +65,18 @@ if (savedShip != null) {
         <div class="orderBar">
             
             <input style="cursor:pointer" id="updateOrderBarButton" class="orderBarButton" value="Update Payment Info" type="submit">
-            <a class="orderBarButton" href="DeletePaymentServlet">Delete Payment Info</a>
-            
             <%
+                if (payID != 0) {
+            %>
+            <a class="orderBarButton" href="DeletePaymentServlet">Delete Payment Info</a>
+            <%
+                }
                 // set the text depending on shipment being set or not
                 String shipText = shipID ==0 ? "Add Shipment" : "View Shipment";
             %>
-            <a class="orderBarButton"><%=shipText%></a>
+            <a class="orderBarButton" href="SavedShipmentDetailServlet"><%=shipText%></a>
             <a class="orderBarButton" href="SavedOrderServlet">View Order</a>
         </div>
         </form>
-        <%
-            }
-        %>
     </body>
 </html>

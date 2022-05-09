@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Date;
+import java.sql.Statement;
 import uts.isd.model.ShipmentDetail;
 
 /**
@@ -172,25 +173,40 @@ public class DBShipmentDetailManager {
        
     }
     
-    public void addShipmentDetail (int addressID, double fee, String instructions, Date date, String method) throws SQLException {
-        PreparedStatement insertStatement = conn.prepareStatement("INSERT INTO tblShipment_Detail (Address_ID, Delivery_Fee, Delivery_Instructions, Delivery_Date, Delivery_Method) VALUES (?,?,?,?,?)");
+    public int addShipmentDetail (int addressID, double fee, String instructions, Date date, String method) throws SQLException {
+        PreparedStatement insertStatement = conn.prepareStatement("INSERT INTO tblShipment_Detail (Address_ID, Delivery_Fee, Delivery_Instructions, Delivery_Date, Delivery_Method) VALUES (?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
         insertStatement.setInt(1, addressID);
         insertStatement.setDouble(2, fee);
         insertStatement.setString(3, instructions);
-        insertStatement.setDate(4, (java.sql.Date) date);
+        insertStatement.setDate(4, date);
         insertStatement.setString(5, method);
          
         insertStatement.executeUpdate();
+        
+        int id;
+        
+        try (ResultSet generatedKeys = insertStatement.getGeneratedKeys()) {
+            if (generatedKeys.next()) {
+                id = generatedKeys.getInt(1);   
+            }
+            else {
+                insertStatement.close();
+                throw new SQLException("Creating shipment detail failed, no ID obtained.");
+            }
+        }
+        
         insertStatement.close();
+        return id;
     }
     
-    public void updateShipmentDetail (int shipmentID, double fee, String instructions, Date date, String method) throws SQLException {
-        PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblShipment_Detail SET Delivery_Fee = ?, Delivery_Instructions = ?, Delivery_Date = ?, Delivery_Method = ? WHERE Shipment_Detail_ID = ?");
-        updateStatement.setDouble(1, fee);
-        updateStatement.setString(2, instructions);
-        updateStatement.setDate(3, (java.sql.Date) date);
-        updateStatement.setString(4, method);
-        updateStatement.setInt(5, shipmentID);
+    public void updateShipmentDetail (int shipmentID, int addressID, double fee, String instructions, Date date, String method) throws SQLException {
+        PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblShipment_Detail SET Address_ID = ?, Delivery_Fee = ?, Delivery_Instructions = ?, Delivery_Date = ?, Delivery_Method = ? WHERE Shipment_Detail_ID = ?");
+        updateStatement.setInt(1, addressID);
+        updateStatement.setDouble(2, fee);
+        updateStatement.setString(3, instructions);
+        updateStatement.setDate(4, (java.sql.Date) date);
+        updateStatement.setString(5, method);
+        updateStatement.setInt(6, shipmentID);
         
         updateStatement.executeUpdate();
         updateStatement.close();
@@ -205,9 +221,9 @@ public class DBShipmentDetailManager {
         updateStatement.close();
     }
     
-    public void deleteShipmentDetail(int orderID) throws SQLException {
-        PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblOrder SET tblOrder.Shipment_Detail_ID = null WHERE Order_Id = ?");
-        updateStatement.setInt(1, orderID);
+    public void deleteShipmentDetail(int shipmentID) throws SQLException {
+        PreparedStatement updateStatement = conn.prepareStatement("DELETE FROM tblShipment_Detail WHERE Shipment_Detail_ID = ?");
+        updateStatement.setInt(1, shipmentID);
         
         updateStatement.executeUpdate();
         updateStatement.close();

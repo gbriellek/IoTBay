@@ -72,6 +72,8 @@
     <servlet>
         <servlet-name>SavedShipmentDetailServlet</servlet-name>
         <servlet-class>uts.isd.controller.SavedShipmentDetailServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>PaymentInformationServlet</servlet-name>
         <servlet-class>uts.isd.controller.PaymentInformationServlet</servlet-class>
     </servlet>
@@ -90,6 +92,14 @@
     <servlet>
         <servlet-name>DeletePaymentServlet</servlet-name>
         <servlet-class>uts.isd.controller.DeletePaymentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteShipmentDetailServlet</servlet-name>
+        <servlet-class>uts.isd.controller.DeleteShipmentDetailServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateShipmentDetailServlet</servlet-name>
+        <servlet-class>uts.isd.controller.UpdateShipmentDetailServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
@@ -186,6 +196,8 @@
     <servlet-mapping>
         <servlet-name>SavedShipmentDetailServlet</servlet-name>
         <url-pattern>/SavedShipmentDetailServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>PaymentInformationServlet</servlet-name>
         <url-pattern>/PaymentInformationServlet</url-pattern>
     </servlet-mapping>
@@ -204,6 +216,14 @@
     <servlet-mapping>
         <servlet-name>DeletePaymentServlet</servlet-name>
         <url-pattern>/DeletePaymentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteShipmentDetailServlet</servlet-name>
+        <url-pattern>/DeleteShipmentDetailServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateShipmentDetailServlet</servlet-name>
+        <url-pattern>/UpdateShipmentDetailServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -31,7 +31,13 @@ public class Validator implements Serializable{
    private String cardTypePattern = "^(Mastercard|Visa|AMEX)$";
    private String expiryDatePattern = "^([0-9]{4}-[0-9]{2})$";
    private String cvvPattern = "[0-9]{3,4}";
-
+   
+   private String addressNoPattern = "([a-zA-Z0-9]+)";
+   private String streetPattern = "([a-zA-Z .]+)";
+   private String statePattern = "^(ACT|NSW|NT|QLD|SA|TAS|VIC|WA)$";
+   private String postCodePattern = "([0-9]+)";
+   private String deliveryMethodPattern = "^(express|standard)$";
+   private String deliveryInstructionsPattern = "[a-zA-Z0-9.@&%$#!* ]+";
               
    public Validator(){    }       
 
@@ -113,5 +119,29 @@ public class Validator implements Serializable{
    public boolean validateCVV(String cvv){
        return validate(cvvPattern,cvv);
    }           
+   
+   public boolean validateAddressNo(String addressNo){
+       return validate(addressNoPattern,addressNo);
+   }
+   
+   public boolean validateStreet(String street){
+       return validate(streetPattern,street);
+   }
+   
+   public boolean validateState(String state){
+       return validate(statePattern,state);
+   }
+   
+   public boolean validatePostcode(String postcode){
+       return validate(postCodePattern,postcode);
+   }
+   
+   public boolean validateDeliveryMethod(String deliveryMethod){
+       return validate(deliveryMethodPattern,deliveryMethod);
+   }
+   
+   public boolean validateDeliveryInstructions(String deliveryInstructions){
+       return validate(deliveryInstructionsPattern,deliveryInstructions);
+   }
    
 }

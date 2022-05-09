@@ -12,6 +12,11 @@ import javax.servlet.http.HttpSession;
 import uts.isd.model.dao.*;
 import uts.isd.model.*;
 
+/*
+ * Author:  Sarah F
+ * Created: 7 May 2022
+ */
+
 public class AddUserDetailsServlet extends HttpServlet {
     @Override   
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {               

@@ -324,6 +324,20 @@ public class DBOrderManager {
         updateStatement.close();
     }
     
+    public void updateOrderShipmentDetailID (int orderID, int shipmentID) throws SQLException {
+        PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblOrder SET Shipment_Detail_ID = ? WHERE Order_ID = ?");
+        if (shipmentID == 0) {
+            updateStatement.setString(1, null);
+        }
+        else {
+            updateStatement.setInt(1, shipmentID);;
+        }
+        updateStatement.setInt(2, orderID);
+         
+        updateStatement.executeUpdate();
+        updateStatement.close();
+    }
+    
      public void updateOrderStatus (int orderID) throws SQLException {
         PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblOrder SET Order_Status = ? WHERE Order_ID = ?");
         updateStatement.setString(1, "Dispatched");

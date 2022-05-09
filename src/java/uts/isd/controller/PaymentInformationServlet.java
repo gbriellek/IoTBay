@@ -13,6 +13,11 @@ import javax.servlet.http.HttpSession;
 import uts.isd.model.*;
 import uts.isd.model.dao.*;
 
+/**
+ *
+ * @author Mia Z
+ */
+
 public class PaymentInformationServlet extends HttpServlet {
     @Override   
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {               //1- retrieve the current session

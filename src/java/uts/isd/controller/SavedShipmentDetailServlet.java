@@ -20,21 +20,6 @@ public class SavedShipmentDetailServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {               
         //1- retrieve the current session
         HttpSession session = request.getSession();        
-
-        //get user type
-        String userType = (String) session.getAttribute("userType");
-        
-        int userID = 0;
-        // set userID to id customer or userid
-        if (userType.equals("customer")) {
-            //get customer object from session
-            Customer customer = (Customer) session.getAttribute("user");
-            userID = customer.getCustomerID();
-        } else{
-            //get user object from session
-            User user = (User) session.getAttribute("user");
-            userID = user.getUserID();
-        }
         
         //5- retrieve the manager instance from session      
         DBShipmentDetailManager shipmentDetailManager = (DBShipmentDetailManager) session.getAttribute("shipmentDetailManager");
@@ -43,18 +28,30 @@ public class SavedShipmentDetailServlet extends HttpServlet {
             Order savedOrder = (Order) session.getAttribute("savedOrder");
             // looks for saved shipment detail in database
             ShipmentDetail savedShipmentDetail = shipmentDetailManager.findShipmentDetail(savedOrder.getShipmentDetailID());
+            //calculate date            
+            Date date = Date.valueOf(savedOrder.getOrderDate().toLocalDate().plusWeeks(1));
+            if (savedShipmentDetail.getDeliveryMethod().equals("express")) {
+                
+                date = Date.valueOf(savedOrder.getOrderDate().toLocalDate().plusWeeks(2));
+            }
             // update order date in db and object
-            shipmentDetailManager.updateShipmentDate(savedShipmentDetail.getShipmentDetailID(), Date.valueOf(LocalDate.now()));
-            savedOrder.setOrderDate(Date.valueOf(LocalDate.now()));
+            shipmentDetailManager.updateShipmentDate(savedShipmentDetail.getShipmentDetailID(), date);
+            savedShipmentDetail.setDeliveryDate(date);
             //add the saved order to session
             session.setAttribute("savedShipmentDetail", savedShipmentDetail);
+            
+            //get the address by id 
+            Address savedAddress = addressManager.findAddressByID(savedShipmentDetail.getAddressID());
+            session.setAttribute("savedAddress", savedAddress);
+            
             
             request.getRequestDispatcher("savedShipment.jsp").include(request, response);
             return;
         } catch (SQLException ex) {    
             Logger.getLogger(AddToOrderServlet.class.getName()).log(Level.SEVERE, null, ex);            
-            // show error being like add please browse for products
-            request.setAttribute("noSavedShipment", "You have no saved shipment details.");
+            // if no shipment details make a new one for the session
+            session.setAttribute("savedShipmentDetail", new ShipmentDetail(0,0,0,null,Date.valueOf(LocalDate.now()), ""));
+            session.setAttribute("savedAddress", new Address(0,null,"","","",0,""));
             request.getRequestDispatcher("savedShipment.jsp").include(request, response);
             return;
         }

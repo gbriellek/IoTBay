@@ -17,19 +17,8 @@
     <body>
         <!--insert nav bar-->
         <h1>Saved Shipment Details</h1>
-        <%
-            String shipmentDetailSubmitted = (String) request.getAttribute("shipmentDetailSubmitted");
-            String noSavedShipment = (String) request.getAttribute("noSavedShipment");
-            if (shipmentDetailSubmitted != null) {
-        %>
-        <p><%=shipmentDetailSubmitted%></p>
-        <a href="ShipmentDetailServlet">View Shipment Detail History</a>
-        <%
-        } else if (noSavedShipment != null) {
-        %>
 
         <%
-        } else {
             //get the saved shipment detail from the session
             ShipmentDetail savedShipmentDetail = (ShipmentDetail) session.getAttribute("savedShipmentDetail");
             Address savedAddress = (Address) session.getAttribute("savedAddress");
@@ -37,13 +26,22 @@
             // then display the shipment detail
             int shipID = savedShipmentDetail.getShipmentDetailID();
             int payID = savedOrder.getPaymentInformationID();
-            //  get any savedOrderErrors from the request
-            String savedShipmentError = (String) request.getAttribute("savedOrderError");
+            
+            String unitNo = savedAddress.getUnitNo();
+            // fee and date if not new shipment detail
+            String feeText = shipID == 0? "Please Add Shipment Details" : "$"+savedShipmentDetail.getDeliveryFee()+0;
+            String dateText = shipID == 0? "Please Add Shipment Details" : savedShipmentDetail.getDeliveryDate()+"";
+            String postcodeText = shipID == 0? "" : savedAddress.getPostcode()+"";
+            
+            //  get errors or feedback messages
+            String savedShipmentError = (String) request.getAttribute("savedShipmentError");
+            String updatedSavedShipment = (String) request.getAttribute("updatedSavedShipment");
         %>
         <p><%=savedShipmentError == null ? "" : savedShipmentError%></p>
-        <form>
+        <p><%=updatedSavedShipment == null ? "" : updatedSavedShipment%></p>
+        <form action="UpdateShipmentDetailServlet" method="POST">
             <div class="order" id="savedOrder">
-                <p class="orderID"><strong>Shipment Detail ID:</strong> <%=shipID%></p>
+                <p class="orderID"><strong>Shipment Detail ID:</strong> <%=shipID==0?"N/A":shipID%></p>
 
                 <table class="orderTable" style="border-collapse: collapse">
                     <input name="shipmentID" type="hidden" value="<%=shipID%>"></input>
@@ -51,79 +49,64 @@
                         <td><p style="font-weight:bold">Address</p></td>
                     </tr>
                     <tr class="profile">
-                        <td style="width:30%"><p>Unit Number</p></td>
-                        <td><input name="unitnumber" type="text" value="<%=savedAddress.getUnitNo()%>"></input></td>
+                        <td style="width:30%"><p style="font-weight:bold">Unit Number</p></td>
+                        <td><input name="unitNo" type="text" value="<%=unitNo==null?"":unitNo%>"></input></td>
                     </tr>
                     <tr class="profile">
-                        <td><p>Street Number</p></td>
-                        <td><input name="streetnumber" type="text" value="<%=savedAddress.getStreetNo()%>"></input></td>
+                        <td><p style="font-weight:bold">Street Number</p></td>
+                        <td><input name="streetNo" type="text" value="<%=savedAddress.getStreetNo()%>"></input></td>
                     </tr>
                     <tr class="profile">
-                        <td><p>Street Name</p></td>
-                        <td><input name="streetname" type="text" value="<%=savedAddress.getStreetName()%>"></input></td>
+                        <td><p style="font-weight:bold">Street Name</p></td>
+                        <td><input name="streetName" type="text" value="<%=savedAddress.getStreetName()%>"></input></td>
                     </tr>
                     <tr class="profile">
-                        <td><p>City</p></td>
+                        <td><p style="font-weight:bold">City</p></td>
                         <td><input name="city" type="text" value="<%=savedAddress.getCity()%>"></input></td>
                     </tr>
                     <tr class="profile">
-                        <td><p>Postcode</p></td>
-                        <td><input name="postcode" type="text" value="<%=savedAddress.getPostcode()%>"></input></td>
+                        <td><p style="font-weight:bold">Postcode</p></td>
+                        <td><input name="postcode" type="text" value="<%=postcodeText%>"></input></td>
                     </tr>
                     <tr class="profile">
-                        <td><p>State</p></td>
+                        <td><p style="font-weight:bold">State</p></td>
                         <td><input name="state" type="text" value="<%=savedAddress.getState()%>"></input></td>
                     </tr>
                     <tr class="profile">
-                        <td><p>Delivery Date</p></td>
-                        <td><p><%=savedShipmentDetail.getDeliveryDate()%></p></td>
+                        <td><p style="font-weight:bold">Delivery Date</p></td>
+                        <td><p><%=dateText%></p></td>
                     </tr>
                     <tr class="profile">
-                        <td><p>Delivery Fee</p></td>
-                        <td><p><%=savedShipmentDetail.getDeliveryFee()%></p></td>
+                        <td><p style="font-weight:bold">Delivery Fee</p></td>
+                        <td><p><%=feeText%></p></td>
                     </tr>
                     <tr class="profile">
-                        <td><p>Delivery Type</p></td>
-                        <td><input name="deliverytype" type="text" value="<%=savedShipmentDetail.getDeliveryMethod()%>"></input></td>
+                        <td><p style="font-weight:bold">Delivery Type</p></td>
+                        <td><input name="deliveryMethod" type="text" placeholder="express/standard" value="<%=savedShipmentDetail.getDeliveryMethod()%>"></input></td>
                     </tr>
-                    <tr class="profile">
-                        <td><p>Delivery Instructions</p></td>
-                        <td><input name="deliveryinstructions" type="text" value="<%=savedShipmentDetail.getDeliveryInstructions()%>"></input></td>
+                    <tr>
+                        <td><p style="font-weight:bold">Delivery Instructions</p></td>
+                        <td><input name="deliveryInstructions" type="text" value="<%=savedShipmentDetail.getDeliveryInstructions()==null?"":savedShipmentDetail.getDeliveryInstructions()%>"></input></td>
                     </tr>
 
                 </table>
             </div>   
-            <%
-                // check whether it is customer or user
-
-            %>
             <div class="orderBar">
-                <input style="cursor:pointer" class="savedItemButtons" value="Update Details" type="submit" ></input>
-                <%                String userType = (String) session.getAttribute("userType");
-                    if (userType.equals("user")) {
-                        // get user object and check if name is empty or not
-                        User user = (User) session.getAttribute("user");
-                        boolean emptyUser = user.getFirstName().length() == 0;
-                        String userDetailButton = emptyUser ? "Add User Details" : "View User Details";
+                <input style="cursor:pointer" id="updateOrderBarButton" class="orderBarButton" value="Update Shipment Details" type="submit" ></input>
+                <%
+                if (shipID != 0) {
                 %>
-                <a class="orderBarButton" href="addUserDetails.jsp"><%=userDetailButton%></a>
-                <%}%>
-                <a class="orderBarButton" href="DeleteOrderServlet">Delete Order</a>
+                <a class="orderBarButton" href="DeleteShipmentDetailServlet">Delete Shipment Details</a>
 
                 <%
+                    }
                     // set the text depending on shipment/payment info being set or not
-                    String shipText = shipID == 0 ? "Add Shipment" : "View Shipment";
                     String payText = payID == 0 ? "Add Payment" : "View Payment";
-                %>
-                <a class="orderBarButton"><%=shipText%></a>
-                <a class="orderBarButton"><%=payText%></a>
-
-                <a class="orderBarButton" href="SubmitOrderServlet">Submit</a>
+                %>                
+                <a class="orderBarButton" href="SavedPaymentServlet"><%=payText%></a>
+                <a class="orderBarButton" href="SavedOrderServlet">View Order</a>
             </div>
         </form>
-        <%
-            }
-        %>
     </body>
 </html>
 

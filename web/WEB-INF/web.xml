@@ -94,12 +94,32 @@
         <servlet-class>uts.isd.controller.DeletePaymentServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>uts.isd.controller.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AccessLogServlet</servlet-name>
+        <servlet-class>uts.isd.controller.AccessLogServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FilterAccessLogServlet</servlet-name>
+        <servlet-class>uts.isd.controller.FilterAccessLogServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>DeleteShipmentDetailServlet</servlet-name>
         <servlet-class>uts.isd.controller.DeleteShipmentDetailServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UpdateShipmentDetailServlet</servlet-name>
         <servlet-class>uts.isd.controller.UpdateShipmentDetailServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateUserDetailsServlet</servlet-name>
+        <servlet-class>uts.isd.controller.UpdateUserDetailsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CancelAccountServlet</servlet-name>
+        <servlet-class>uts.isd.controller.CancelAccountServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
@@ -218,12 +238,32 @@
         <url-pattern>/DeletePaymentServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AccessLogServlet</servlet-name>
+        <url-pattern>/AccessLogServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FilterAccessLogServlet</servlet-name>
+        <url-pattern>/FilterAccessLogServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>DeleteShipmentDetailServlet</servlet-name>
         <url-pattern>/DeleteShipmentDetailServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UpdateShipmentDetailServlet</servlet-name>
         <url-pattern>/UpdateShipmentDetailServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateUserDetailsServlet</servlet-name>
+        <url-pattern>/UpdateUserDetailsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CancelAccountServlet</servlet-name>
+        <url-pattern>/CancelAccountServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

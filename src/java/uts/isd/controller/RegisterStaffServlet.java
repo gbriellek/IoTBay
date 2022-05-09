@@ -2,6 +2,7 @@ package uts.isd.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -93,6 +94,7 @@ public class RegisterStaffServlet extends HttpServlet {
         
         //5- retrieve the manager instance from session      
         DBStaffManager staffManager = (DBStaffManager) session.getAttribute("staffManager");
+        DBAccessLogManager accessLogManager = (DBAccessLogManager) session.getAttribute("accessLogManager");
         try {
             staffManager.findStaff(email);
             //set the session attribute to account already exists error
@@ -114,6 +116,8 @@ public class RegisterStaffServlet extends HttpServlet {
             session.setAttribute("user", staff);
             session.setAttribute("requestType", "register");
             session.setAttribute("userType", "staff");
+            //add log to access logs for staff
+            accessLogManager.addAccessLog(staff.getStaffID(), new Timestamp(System.currentTimeMillis()), "Login");
             request.getRequestDispatcher("welcome.jsp").include(request, response);
             return;
         } catch (SQLException ex) {    

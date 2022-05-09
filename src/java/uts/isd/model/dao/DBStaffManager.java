@@ -24,7 +24,7 @@ public class DBStaffManager {
     }
     
     public Staff findStaff(String email) throws SQLException {
-        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblUser INNER JOIN tblStaff ON tblUser.User_ID = tblStaff.Staff_ID WHERE Email_Address = ? AND Is_Activated = True");
+        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblUser INNER JOIN tblStaff ON tblUser.User_ID = tblStaff.Staff_ID WHERE Email_Address = ?");
         selectStatement.setString(1, email);
         ResultSet rs = selectStatement.executeQuery();
         
@@ -78,7 +78,7 @@ public class DBStaffManager {
         insertStatement1.close();
     }
     
-    public void updateStaff(int id, String email, String fname, String lname, String phoneno, String password, String staff_number, boolean is_Activated) throws SQLException {
+    public void updateStaff(int id, String fname, String lname, String phoneno, String password, String staff_number) throws SQLException {
         PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblUser SET First_Name = ?, Last_Name = ?, Phone_Number = ? WHERE User_ID = ?");
         updateStatement.setString(1, fname);
         updateStatement.setString(2, lname);
@@ -88,11 +88,10 @@ public class DBStaffManager {
         updateStatement.executeUpdate();
         updateStatement.close();
         
-        PreparedStatement updateStatement1 = conn.prepareStatement("UPDATE tblStaff SET Password = ?, Staff_Number = ?, Is_Activated = ? WHERE Staff_ID = ?");
+        PreparedStatement updateStatement1 = conn.prepareStatement("UPDATE tblStaff SET Password = ?, Staff_Number = ? WHERE Staff_ID = ?");
         updateStatement1.setString(1, password);
         updateStatement1.setString(2, staff_number);
-        updateStatement1.setBoolean(3, is_Activated);
-        updateStatement1.setInt(4, id);
+        updateStatement1.setInt(3, id);
         
         updateStatement1.executeUpdate();
         updateStatement1.close();

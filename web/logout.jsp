@@ -17,7 +17,9 @@
     </header>
     <body class="noNavBody">
         <h1>Logout</h1>
-        <p>You have been logged out. <br> Click <a id="nothing" href = index.jsp>here</a> to return to the homepage.</p>
-        <%session.invalidate();%>
+        <%
+            String logoutMessage = (String) request.getAttribute("logoutMessage");
+        %>
+        <p><%=logoutMessage%><br> Click <a id="nothing" href = index.jsp>here</a> to return to the homepage.</p>
     </body>
 </html>

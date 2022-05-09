@@ -356,7 +356,7 @@ public class TestDB {
             System.out.println(result);
             // Update shipment detail
             System.out.println("updateShipmentDetail");
-            shipmentDetailManager.updateShipmentDetail(26,20,null,Date.valueOf("2022-7-23"),"express");
+            shipmentDetailManager.updateShipmentDetail(2, 26,20,null,Date.valueOf("2022-7-23"),"express");
             result = shipmentDetailManager.findShipmentDetail(26);
             System.out.println(result);
             // Delete shipment detail

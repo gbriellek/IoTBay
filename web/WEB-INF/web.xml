@@ -121,6 +121,10 @@
         <servlet-name>CancelAccountServlet</servlet-name>
         <servlet-class>uts.isd.controller.CancelAccountServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteProductServlet</servlet-name>
+        <servlet-class>uts.isd.controller.DeleteProductServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
         <url-pattern>/ConnServlet</url-pattern>
@@ -264,6 +268,10 @@
     <servlet-mapping>
         <servlet-name>CancelAccountServlet</servlet-name>
         <url-pattern>/CancelAccountServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteProductServlet</servlet-name>
+        <url-pattern>/DeleteProductServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

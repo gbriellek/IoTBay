@@ -57,7 +57,7 @@
                 <th>Price</th>
                 <th>Stock</th>
                 <th>Category</th>
-                <th>Update Product</th>
+                
             </tr>
             <form action="AddProductServlet" method="POST">
                 <tr>
@@ -72,18 +72,21 @@
             <%
                 for (Product product : list_products) {
             %>
-            <form action="UpdateProductServlet" method="POST">
-                <tr>
-                <input name="productID" type="hidden" value="<%=product.getProductID()%>"></input>
-                <td><input name="productName" type="text" value="<%=product.getName()%>"></input></td>
-                <td><input name="description" type="text" value="<%=product.getDescription()%>"></input></td>
-                <td><input name="price" type="text" value="<%=product.getPrice()%>"></input></td>
-                <td><input name="stock" type="text" value="<%=product.getStock()%>"></input></td>
-                <td><input name="category" type="text" value="<%=product.getCategory()%>"></input></td>
-                <td><input name="isActive" type="text" value="<%=product.getIsActive()%>"></input></td>
-                <td><input value="Update Product" type="submit"></input></td>
-                </tr>
-            </form>
+            <tr>
+                <form action="UpdateProductServlet" method="POST">
+                    <input name="productID" type="hidden" value="<%=product.getProductID()%>"></input>
+                    <td><input name="productName" type="text" value="<%=product.getName()%>"></input></td>
+                    <td><input name="description" type="text" value="<%=product.getDescription()%>"></input></td>
+                    <td><input name="price" type="text" value="<%=product.getPrice()%>"></input></td>
+                    <td><input name="stock" type="text" value="<%=product.getStock()%>"></input></td>
+                    <td><input name="category" type="text" value="<%=product.getCategory()%>"></input></td>
+                    <td><input value="Update Product" type="submit"></input></td>
+                </form>
+                <form action="DeleteProductServlet" method="POST">
+                    <input name="productID" type="hidden" value="<%=product.getProductID()%>"></input>
+                    <td><input value="Delete Product" type="submit"></input></td>
+                </form>
+            </tr>
             <%
                 }
             %>
@@ -123,7 +126,7 @@
                     <%} else {%>
                 <td><input style="cursor:pointer" value="Add to Order" type="submit" disabled></input></td>
                     <%}%>
-            </form>
+            </form>            
         </tr>
         <%
             }

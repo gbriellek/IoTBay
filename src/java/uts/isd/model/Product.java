@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package uts.isd.model;
 
 import java.io.Serializable;
@@ -88,6 +84,5 @@ public class Product implements Serializable{
     @Override
     public String toString() {
         return "productID: " + productID +", name: " + name +", description: " +description +", price: " +price + ", stock: " +stock + ", category: " +category+ ", isActive: " +isActive;
-    }
-    
+    } 
 }

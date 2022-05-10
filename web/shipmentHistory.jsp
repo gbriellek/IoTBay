@@ -15,13 +15,14 @@
         <title>Shipment Detail History</title>
     </head>
     <body>
-        <!--insert nav bar-->
+        <%@include file="./navbar.jsp"%>
         <h1>Shipment Detail History</h1>
         <%
+            // ensures search bar retains the search criteria
             String requestShipmentID = (String) request.getAttribute("shipmentID");
             String requestShipmentDate = (String) request.getAttribute("shipmentDate");
-            String fieldShipmentID = requestShipmentID == null? "": requestShipmentID;
-            String fieldShipmentDate = requestShipmentDate == null? "": requestShipmentDate;
+            String fieldShipmentID = requestShipmentID == null ? "" : requestShipmentID;
+            String fieldShipmentDate = requestShipmentDate == null ? "" : requestShipmentDate;
         %>
         <form action="FilterShipmentDetailServlet" method="POST">
             <table class="searchTable"border="0px">
@@ -50,8 +51,7 @@
                 shipmentDetails = filterShipmentDetail;
                 addresses = (ArrayList<Address>) request.getAttribute("filterAddress");
                 orders = (ArrayList<Order>) request.getAttribute("filterOrder");
-            }
-            else{
+            } else {
                 // else get the past orders + orderlines from session
                 shipmentDetails = (ArrayList<ShipmentDetail>) session.getAttribute("shipmentDetails");
                 addresses = (ArrayList<Address>) session.getAttribute("addresses");
@@ -121,7 +121,7 @@
             </table>
         </div>            
         <%
-            }         
+            }
         %>
     </body>
 </html>

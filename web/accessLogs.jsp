@@ -1,7 +1,7 @@
 <%-- 
-    Document   : products
+    Document   : accesssLogs
     Created on : 5 May 2022, 11:22:43 pm
-    Author     : raunak
+    Author     : raunak K
 --%>
 
 <%@page import="uts.isd.model.*"%>
@@ -15,11 +15,11 @@
         <title>Access Logs</title>
     </head>
     <body>
-        <!--insert nav bar-->
+        <%@include file="./navbar.jsp"%>
         <h1>Access Logs</h1>
         <%
             String requestDate = (String) request.getAttribute("requestDate");
-            String fieldDate = requestDate == null? "": requestDate;
+            String fieldDate = requestDate == null ? "" : requestDate;
         %>
         <table>
             <form action="FilterAccessLogServlet" method="POST">
@@ -35,14 +35,13 @@
         %>
         <p><%=accessLogError == null ? "" : accessLogError%></p>
         <%
-                ArrayList<AccessLog> accessLog = new ArrayList<AccessLog>();
-                ArrayList<AccessLog> filterAccessLog = (ArrayList<AccessLog>) request.getAttribute("filterAccessLog");
-                if (filterAccessLog != null) {
-                    accessLog = filterAccessLog;
-                } else {
-                    accessLog = (ArrayList<AccessLog>) session.getAttribute("accessLog");
-                }
-                String userType = (String) session.getAttribute("userType");
+            ArrayList<AccessLog> accessLog = new ArrayList<AccessLog>();
+            ArrayList<AccessLog> filterAccessLog = (ArrayList<AccessLog>) request.getAttribute("filterAccessLog");
+            if (filterAccessLog != null) {
+                accessLog = filterAccessLog;
+            } else {
+                accessLog = (ArrayList<AccessLog>) session.getAttribute("accessLog");
+            }
         %>
         <table>
             <tr>
@@ -54,11 +53,11 @@
                 for (AccessLog log : accessLog) {
             %>
 
-                <tr>
+            <tr>
                 <td><p><%=log.getUserID()%></p></td>
                 <td><p><%=log.getAccessDateTime()%></p></td>
                 <td><p><%=log.getEvent()%></p></td>
-                </tr>
+            </tr>
 
             <%
                 }

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package uts.isd.model;
 
 import java.io.Serializable;
@@ -69,5 +65,4 @@ public class PaymentInformation implements Serializable{
     public String toString() {
         return "paymentInformationID: "+paymentInformationID + ", cardNumber: " + cardNumber+ ", cardType: " + cardType+ ", expiryDate: " + expiryDate+ ", cvv: " +cvv;
     }
-    
 }

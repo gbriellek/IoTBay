@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : 23 Mar. 2022, 2:33:00 pm
-    Author     : Mia
+    Author     : Mia Z
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,8 +21,8 @@
             <a class="mainbtn" href="login.jsp" >Login</a>
             <a class="mainbtn" href="UserEnterServlet">View Products</a>
         </div>
-        
-        
+
+
         <jsp:include page="/ConnServlet" flush="true" />
     </body>
 </html>

@@ -15,16 +15,17 @@
         <title>Order History</title>
     </head>
     <body>
-        <!--insert nav bar-->
+        <%@include file="./navbar.jsp"%>
         <h1>Order History</h1>
         <%
+            // ensures search bar retains the search criteria
             String requestOrderID = (String) request.getAttribute("orderID");
             String requestOrderDate = (String) request.getAttribute("orderDate");
-            String fieldOrderID = requestOrderID == null? "": requestOrderID;
-            String fieldOrderDate = requestOrderDate == null? "": requestOrderDate;
+            String fieldOrderID = requestOrderID == null ? "" : requestOrderID;
+            String fieldOrderDate = requestOrderDate == null ? "" : requestOrderDate;
         %>
         <form action="FilterOrdersServlet" method="POST">
-            <table class="searchTable"border="0px">
+            <table class="searchTable" border="0px">
                 <tr>
                     <td><label for="orderID">Order ID</label></td>  
                     <td><input class="searchField" type="text" name="orderID" placeholder="Enter an Order ID" value="<%=fieldOrderID%>"></input></td>
@@ -50,8 +51,7 @@
                 orders = filterOrders;
                 orderLines = (ArrayList<ArrayList<OrderLine>>) request.getAttribute("filterOrderLines");
                 productNames = (ArrayList<ArrayList<String>>) request.getAttribute("filterProductNames");
-            }
-            else{
+            } else {
                 // else get the past orders + orderlines from session
                 orders = (ArrayList<Order>) session.getAttribute("orders");
                 orderLines = (ArrayList<ArrayList<OrderLine>>) session.getAttribute("orderLines");
@@ -110,7 +110,7 @@
             </table>
         </div>            
         <%
-            }         
+            }
         %>
     </body>
 </html>

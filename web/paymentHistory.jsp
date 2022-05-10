@@ -15,13 +15,14 @@
         <title>Payment Information History</title>
     </head>
     <body>
-        <!--insert nav bar-->
+        <%@include file="./navbar.jsp"%>
         <h1>Payment Information History</h1>
         <%
+            // ensures search bar retains the search criteria
             String requestPayID = (String) request.getAttribute("payID");
             String requestPayDate = (String) request.getAttribute("payDate");
-            String fieldPayID = requestPayID == null? "": requestPayID;
-            String fieldPayDate = requestPayDate == null? "": requestPayDate;
+            String fieldPayID = requestPayID == null ? "" : requestPayID;
+            String fieldPayDate = requestPayDate == null ? "" : requestPayDate;
         %>
         <form action="FilterPaymentInformationServlet" method="POST">
             <table class="searchTable"border="0px">
@@ -50,8 +51,7 @@
                 paymentInfo = filterPayments;
                 orders = (ArrayList<Order>) request.getAttribute("filterOrders");
                 ships = (ArrayList<ShipmentDetail>) request.getAttribute("filterShips");
-            }
-            else{
+            } else {
                 // else get the past payments from session
                 paymentInfo = (ArrayList<PaymentInformation>) session.getAttribute("paymentInfo");
                 orders = (ArrayList<Order>) session.getAttribute("orders");
@@ -99,7 +99,7 @@
             </table>
         </div>            
         <%
-            }         
+            }
         %>
     </body>
 </html>

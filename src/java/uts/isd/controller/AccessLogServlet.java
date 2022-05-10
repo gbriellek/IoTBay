@@ -16,9 +16,14 @@ import javax.servlet.http.HttpSession;
 import uts.isd.model.dao.*;
 import uts.isd.model.*;
 
+/**
+ *
+ * @author Raunak K
+ */
+
 public class AccessLogServlet extends HttpServlet {
     @Override   
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {               
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {     
         //1- retrieve the current session
         HttpSession session = request.getSession(); 
         // get the access log manager from session

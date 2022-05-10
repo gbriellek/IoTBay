@@ -1,7 +1,7 @@
 <%-- 
     Document   : LoginPage
     Created on : 30 Mar. 2022, 2:27:28 pm
-    Author     : rauna
+    Author     : raunak K
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -16,10 +16,10 @@
         <h1>IoTBay</h1>
     </header>
     <%
-       String loginError = (String) request.getAttribute("loginError");
-       String errorMessage = loginError == null ? "": loginError;
+        String loginError = (String) request.getAttribute("loginError");
+        String errorMessage = loginError == null ? "" : loginError;
     %>
-    
+
     <body class="noNavBody">
         <h1>Login</h1>
         <table>

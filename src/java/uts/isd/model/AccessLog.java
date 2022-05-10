@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package uts.isd.model;
 
 import java.io.Serializable;
@@ -49,7 +45,5 @@ public class AccessLog implements Serializable{
     @Override
     public String toString() {
         return "userId: " + userID + ", AccessDateTime: " + accessDateTime + ", event: " + event;
-    }
-    
-    
+    } 
 }

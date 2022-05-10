@@ -15,7 +15,7 @@
         <title>Saved Shipment Details</title>
     </head>
     <body>
-        <!--insert nav bar-->
+        <%@include file="./navbar.jsp"%>
         <h1>Saved Shipment Details</h1>
 
         <%
@@ -26,13 +26,13 @@
             // then display the shipment detail
             int shipID = savedShipmentDetail.getShipmentDetailID();
             int payID = savedOrder.getPaymentInformationID();
-            
+
             String unitNo = savedAddress.getUnitNo();
             // fee and date if not new shipment detail
-            String feeText = shipID == 0? "Please Add Shipment Details" : "$"+savedShipmentDetail.getDeliveryFee()+0;
-            String dateText = shipID == 0? "Please Add Shipment Details" : savedShipmentDetail.getDeliveryDate()+"";
-            String postcodeText = shipID == 0? "" : savedAddress.getPostcode()+"";
-            
+            String feeText = shipID == 0 ? "Please Add Shipment Details" : "$" + savedShipmentDetail.getDeliveryFee() + 0;
+            String dateText = shipID == 0 ? "Please Add Shipment Details" : savedShipmentDetail.getDeliveryDate() + "";
+            String postcodeText = shipID == 0 ? "" : savedAddress.getPostcode() + "";
+
             //  get errors or feedback messages
             String savedShipmentError = (String) request.getAttribute("savedShipmentError");
             String updatedSavedShipment = (String) request.getAttribute("updatedSavedShipment");
@@ -41,7 +41,7 @@
         <p><%=updatedSavedShipment == null ? "" : updatedSavedShipment%></p>
         <form action="UpdateShipmentDetailServlet" method="POST">
             <div class="order" id="savedOrder">
-                <p class="orderID"><strong>Shipment Detail ID:</strong> <%=shipID==0?"N/A":shipID%></p>
+                <p class="orderID"><strong>Shipment Detail ID:</strong> <%=shipID == 0 ? "N/A" : shipID%></p>
 
                 <table class="orderTable" style="border-collapse: collapse">
                     <input name="shipmentID" type="hidden" value="<%=shipID%>"></input>
@@ -50,7 +50,7 @@
                     </tr>
                     <tr class="profile">
                         <td style="width:30%"><p style="font-weight:bold">Unit Number</p></td>
-                        <td><input name="unitNo" type="text" value="<%=unitNo==null?"":unitNo%>"></input></td>
+                        <td><input name="unitNo" type="text" value="<%=unitNo == null ? "" : unitNo%>"></input></td>
                     </tr>
                     <tr class="profile">
                         <td><p style="font-weight:bold">Street Number</p></td>
@@ -86,7 +86,7 @@
                     </tr>
                     <tr>
                         <td><p style="font-weight:bold">Delivery Instructions</p></td>
-                        <td><input name="deliveryInstructions" type="text" value="<%=savedShipmentDetail.getDeliveryInstructions()==null?"":savedShipmentDetail.getDeliveryInstructions()%>"></input></td>
+                        <td><input name="deliveryInstructions" type="text" value="<%=savedShipmentDetail.getDeliveryInstructions() == null ? "" : savedShipmentDetail.getDeliveryInstructions()%>"></input></td>
                     </tr>
 
                 </table>
@@ -94,7 +94,7 @@
             <div class="orderBar">
                 <input style="cursor:pointer" id="updateOrderBarButton" class="orderBarButton" value="Update Shipment Details" type="submit" ></input>
                 <%
-                if (shipID != 0) {
+                    if (shipID != 0) {
                 %>
                 <a class="orderBarButton" href="DeleteShipmentDetailServlet">Delete Shipment Details</a>
 

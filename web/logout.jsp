@@ -1,7 +1,7 @@
 <%-- 
     Document   : logoutPage
     Created on : 30 Mar. 2022, 2:47:59 pm
-    Author     : rauna
+    Author     : raunak K
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

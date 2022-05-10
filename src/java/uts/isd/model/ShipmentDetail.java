@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package uts.isd.model;
 
 import java.io.Serializable;
@@ -79,5 +75,4 @@ public class ShipmentDetail implements Serializable{
     public String toString() {
         return "shipmentDetailID: "  + shipmentDetailID +  ", addressID: " + addressID + ", deliveryFee: " +deliveryFee + ", deliveryInstructions: " +deliveryInstructions + ", deliveryDate: " +deliveryDate + ", deliveryMethod: " +deliveryMethod;
     }
-
 }

@@ -1,10 +1,6 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
-*/
 /* 
     Created on : 30 Mar. 2022, 2:48:20 pm
-    Author     : Gabrielle K
+    Author     : Gabrielle K, Sarah F, Raunak K
 */
 
 table{
@@ -228,4 +224,63 @@ a{
 #cancel:hover {
     background-color: #666666;
 }
+
+/* Navbar - Raunak */
+
+.navbar-nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0px;
+    overflow: hidden;
+    background-color: #f3f3f3;
+}
+
+.nav-item {
+    float: left;
+    padding-bottom: 0px;
+    /*display: inline-block;*/
+}
+
+.nav-link {
+    display: block;
+    color: #3F4B53;
+    margin: 0;
+    text-align: center;
+    padding: 30px 17px;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.nav-item .nav-link:hover:not(.active) {
+    color: black;
+    font-weight: bold;
+}
+
+#name {
+    display: block;
+    padding: 25px 7px;
+    margin: 0 30px 0 20px;
+    font-family: sans-serif;
+}
+
+#nav-right {
+    float: right;
+    padding: 10px 7px 10px 7px;
+    background-color: #0583d2;
+    border-radius: 40px;
+    border: none;
+    border-color: blue;
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 17px;
+    margin-right: 40px;
+}
+
+#logout-btn {
+    color: white;
+}
+
+
+
+
 

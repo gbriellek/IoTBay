@@ -1,7 +1,7 @@
 <%-- 
     Document   : welcome
     Created on : 23 Mar. 2022, 3:34:17 pm
-    Author     : Sarah
+    Author     : Sarah F
 --%>
 
 <%@page import="uts.isd.model.*"%>
@@ -18,45 +18,45 @@
     </header>
     <body class="noNavBody">
         <%
-        String userType = (String) session.getAttribute("userType");
-        if (userType.equals("admin")) {
+            String userType = (String) session.getAttribute("userType");
+            if (userType.equals("admin")) {
         %>
-            <h1>Welcome back Sys Admin!</h1>
-            <div class="container">
-                <a class="mainbtn" href="AccessLogServlet">Access Logs</a>
-                <a class="mainbtn" href="ProductServlet">View Products</a>
-                <a class="mainbtn" href="logout.jsp">Logout</a>
-            </div>
+        <h1>Welcome back Sys Admin!</h1>
+        <div class="container">
+            <a class="mainbtn" href="AccessLogServlet">Access Logs</a>
+            <a class="mainbtn" href="ProductServlet">View Products</a>
+            <a class="mainbtn" href="LogoutServlet">Logout</a>
+        </div>
         <%
-            } else if (userType.equals("customer")) {
+        } else if (userType.equals("customer")) {
             Customer customer = (Customer) session.getAttribute("user");
             String fname = customer.getFirstName();
             String lname = customer.getLastName();
         %>
-            <h1>Hi <%=fname%> <%=lname%>!</h1>
-            <div class="container">
-                <a class="mainbtn" href="main.jsp">Profile</a>
-                <a class="mainbtn" href="ProductServlet">View Products</a>
-                <a class="mainbtn" href="SavedOrderServlet">Saved Order</a>
-                <a class="mainbtn" href="OrderHistoryServlet">Order History</a>
-                <a class="mainbtn" href="ShipmentDetailServlet">Shipment History</a>
-                <a class="mainbtn" href="PaymentInformationServlet">Payment History</a>
-                <a class="mainbtn" href="AccessLogServlet">Access Logs</a>
-                <a class="mainbtn" href="logout.jsp">Logout</a>
-            </div>
+        <h1>Hi <%=fname%> <%=lname%>!</h1>
+        <div class="container">
+            <a class="mainbtn" href="main.jsp">Profile</a>
+            <a class="mainbtn" href="ProductServlet">View Products</a>
+            <a class="mainbtn" href="SavedOrderServlet">Saved Order</a>
+            <a class="mainbtn" href="OrderHistoryServlet">Order History</a>
+            <a class="mainbtn" href="ShipmentDetailServlet">Shipment History</a>
+            <a class="mainbtn" href="PaymentInformationServlet">Payment History</a>
+            <a class="mainbtn" href="AccessLogServlet">Access Logs</a>
+            <a class="mainbtn" href="LogoutServlet">Logout</a>
+        </div>
         <%
-            } else if (userType.equals("staff")) {
+        } else if (userType.equals("staff")) {
             Staff staff = (Staff) session.getAttribute("user");
             String fname = staff.getFirstName();
             String lname = staff.getLastName();
         %>
-            <h1>Hi <%=fname%> <%=lname%>!</h1>
-            <div class="container">
-                <a class="mainbtn" href="main.jsp">Profile</a>
-                <a class="mainbtn" href="AccessLogServlet">Access Logs</a>
-                <a class="mainbtn" href="ProductServlet">View Products</a>
-                <a class="mainbtn" href="logout.jsp">Logout</a>
-            </div>
-                <% }%>
+        <h1>Hi <%=fname%> <%=lname%>!</h1>
+        <div class="container">
+            <a class="mainbtn" href="main.jsp">Profile</a>
+            <a class="mainbtn" href="AccessLogServlet">Access Logs</a>
+            <a class="mainbtn" href="ProductServlet">View Products</a>
+            <a class="mainbtn" href="LogoutServlet">Logout</a>
+        </div>
+        <% }%>
     </body>
 </html>

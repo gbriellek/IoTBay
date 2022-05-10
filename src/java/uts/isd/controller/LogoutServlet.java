@@ -23,6 +23,12 @@ public class LogoutServlet extends HttpServlet {
         String userType = (String) session.getAttribute("userType");
 
         try {
+            if (userType.equals("user")) {
+                // if its a user take them back to index.jsp
+                request.getRequestDispatcher("index.jsp").include(request, response);
+                return;
+            }
+            // otherwise log the logout event for staff/customer
             if (userType.equals("staff")) {
                 Staff staff = (Staff) session.getAttribute("user");
                 accessLogManager.addAccessLog(staff.getStaffID(), new Timestamp(System.currentTimeMillis()), "Logut");
@@ -34,7 +40,7 @@ public class LogoutServlet extends HttpServlet {
             //Invalidate the user session
             session.invalidate();
             //set the message
-            request.setAttribute("logoutMessage", "You have been logged out.");
+            request.setAttribute("logoutMessage", "You have been logged out.");            
             // redirect user to logout page
             request.getRequestDispatcher("logout.jsp").include(request, response);
             return;

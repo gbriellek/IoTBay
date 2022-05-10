@@ -1,7 +1,7 @@
 <%-- 
     Document   : main.jsp
     Created on : 23 Mar. 2022, 3:34:17 pm
-    Author     : Sarah
+    Author     : Raunak K
 --%>
 
 <%@page import="uts.isd.model.*"%>
@@ -14,12 +14,12 @@
         <title>Main Page</title>
     </head>
     <body>
+        <%@include file="./navbar.jsp"%>
         <%
             // get feedback message from request
             String updateMsg = (String) request.getAttribute("updatedDetails");
             
             // only staff and customer can view this page
-            String userType = (String) session.getAttribute("userType");
             String emailText = "";
             String fnameText = "";
             String lnameText = "";

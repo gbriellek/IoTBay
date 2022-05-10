@@ -1,7 +1,7 @@
 <%-- 
     Document   : products
     Created on : 5 May 2022, 11:22:43 pm
-    Author     : raunak
+    Author     : Jemma S
 --%>
 
 <%@page import="uts.isd.model.Product"%>
@@ -9,29 +9,30 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="webpage.css"> 
         <title>Products</title>
     </head>
     <body>
-        <!--insert nav bar-->
-        <a href="SavedOrderServlet">saved order</a>
+        <%@include file="./navbar.jsp"%>
         <h1>Products</h1>
         <%
+            // ensures search bar retains the search criteria
             String requestName = (String) request.getAttribute("requestName");
             String requestCategory = (String) request.getAttribute("requestCategory");
-            String fieldName = requestName == null? "": requestName;
-            String fieldCategory = requestCategory == null? "": requestCategory;
+            String fieldName = requestName == null ? "" : requestName;
+            String fieldCategory = requestCategory == null ? "" : requestCategory;
         %>
-        <table>
+        <table class="searchTable">
             <form action="FilterProductServlet" method="POST">
                 <tr>
-                    <td colspan = "2"><label for="productName">Product Name</label></td>
-                    <td colspan = "2"><input value="<%=fieldName%>" placeholder="Enter your product name" type="text" id="productName" name="productName"><br></td>
-                    <td colspan = "2"><label for="category">Category</label></td>
-                    <td colspan = "2"><input value="<%=fieldCategory%>" placeholder="Enter your category" type="text" id="category" name="category"><br></td>
-                    <td><input type="submit" value="Filter"></td>
+                    <td><label for="productName">Product Name</label></td>
+                    <td><input class="searchField" value="<%=fieldName%>" placeholder="Enter your product name" type="text" id="productName" name="productName"><br></td>
+                    <td><label for="category">Category</label></td>
+                    <td><input class="searchField" value="<%=fieldCategory%>" placeholder="Enter your category" type="text" id="category" name="category"><br></td>
+                    <td><input type="submit" value="Filter" class="filterButton"></td>
                 </tr>
             </form>
         </table>
@@ -40,15 +41,14 @@
         %>
         <p><%=productError == null ? "" : productError%></p>
         <%
-                ArrayList<Product> list_products = new ArrayList<Product>();
-                ArrayList<Product> filterProducts = (ArrayList<Product>) request.getAttribute("filterProducts");
-                if (filterProducts != null) {
-                    list_products = filterProducts;
-                } else {
-                    list_products = (ArrayList<Product>) session.getAttribute("products");
-                }
-                String userType = (String) session.getAttribute("userType");
-                if (userType != null && userType.equals("admin") || userType != null && userType.equals("staff")) {
+            ArrayList<Product> list_products = new ArrayList<Product>();
+            ArrayList<Product> filterProducts = (ArrayList<Product>) request.getAttribute("filterProducts");
+            if (filterProducts != null) {
+                list_products = filterProducts;
+            } else {
+                list_products = (ArrayList<Product>) session.getAttribute("products");
+            }
+            if (userType != null && userType.equals("admin") || userType != null && userType.equals("staff")) {
         %>
         <table>
             <tr>
@@ -118,20 +118,20 @@
                 <input name="productStock" type="hidden" value="<%=product.getStock()%>"></input>
                 <input name="productPrice" type="hidden" value="<%=product.getPrice()%>"></input>
                 <td><input name="quantity" type="text" value="<%=quantity%>"></input></td>
-                <%if (inStock) {%>
+                    <%if (inStock) {%>
                 <td><input style="cursor:pointer" value="Add to Order" type="submit" ></input></td>
-                <%}else{%>
+                    <%} else {%>
                 <td><input style="cursor:pointer" value="Add to Order" type="submit" disabled></input></td>
-                <%}%>
+                    <%}%>
             </form>
-            </tr>
-            <%
-                }
-            %>
-        </table>
+        </tr>
         <%
             }
-            
         %>
-    </body>
+    </table>
+    <%
+        }
+
+    %>
+</body>
 </html>

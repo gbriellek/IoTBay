@@ -1,7 +1,7 @@
 <%-- 
     Document   : registerSelect
     Created on : 5 May 2022, 2:12:18 pm
-    Author     : rauna
+    Author     : raunak K
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -17,7 +17,7 @@
     </header>
     <body class="noNavBody">
         <h1>Staff or Customer?</h1>
-        
+
         <div class="container">
             <a class="mainbtn" href="register.jsp" >Customer</a> 
             <a class="mainbtn" href="registerStaff.jsp" >Staff</a>

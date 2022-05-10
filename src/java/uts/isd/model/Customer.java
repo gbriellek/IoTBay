@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package uts.isd.model;
 
 import java.io.Serializable;
@@ -89,7 +85,5 @@ public class Customer implements Serializable {
     public String toString() {
         return "customerID: " + customerID + ", emailAddress: " + emailAddress + ", firstName: "+ firstName + ", lastName: " + lastName + ", phoneNumber: " + phoneNumber + ", password: " + password + ", isActivated: " + isActivated;
     }
-
-    
 }
 

@@ -18,6 +18,11 @@
         <%@include file="./navbar.jsp"%>
         <h1>Payment Information History</h1>
         <%
+            String noPaymentsError = (String) request.getAttribute("noPaymentsError");
+            if (noPaymentsError != null) {
+        %>
+        <p style="color:red;"><%=noPaymentsError%></p>
+        <%} else{
             // ensures search bar retains the search criteria
             String requestPayID = (String) request.getAttribute("payID");
             String requestPayDate = (String) request.getAttribute("payDate");
@@ -99,6 +104,7 @@
             </table>
         </div>            
         <%
+            }
             }
         %>
     </body>

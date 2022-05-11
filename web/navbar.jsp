@@ -14,7 +14,6 @@
     <body>
         <%
             String userType = (String) session.getAttribute("userType");
-            System.out.println(userType);
             if (userType.equals("admin")) {
         %>
         <ul class="navbar-nav">

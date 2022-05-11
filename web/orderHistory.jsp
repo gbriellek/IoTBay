@@ -18,6 +18,11 @@
         <%@include file="./navbar.jsp"%>
         <h1>Order History</h1>
         <%
+            String noOrdersError = (String) request.getAttribute("noOrdersError");
+            if (noOrdersError != null) {
+        %>
+        <p style="color:red;"><%=noOrdersError%></p>
+        <%} else{
             // ensures search bar retains the search criteria
             String requestOrderID = (String) request.getAttribute("orderID");
             String requestOrderDate = (String) request.getAttribute("orderDate");
@@ -111,6 +116,7 @@
         </div>            
         <%
             }
+        }
         %>
     </body>
 </html>

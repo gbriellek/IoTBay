@@ -280,7 +280,18 @@ a{
     color: white;
 }
 
+#productTable {
+    width: 80%;
+}
 
+#productTable, .productTh, .productTd {
+    border: 1px solid;
+    border-collapse: collapse;
+}
 
+#descriptionText {
+    font-family:inherit;
+    font-size: inheirit;
+}
 
 

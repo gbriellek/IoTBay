@@ -27,7 +27,7 @@
         <%
         } else if (noSavedOrderError != null) {
         %>
-        <p><%=noSavedOrderError%></p>
+        <p style="color:red;"><%=noSavedOrderError%></p>
         <a href="ProductServlet">View Products</a>
         <%
         } else {
@@ -41,7 +41,7 @@
             //  get any savedOrderErrors from the request
             String savedOrderError = (String) request.getAttribute("savedOrderError");
         %>
-        <p><%=savedOrderError == null ? "" : savedOrderError%></p>
+        <p style="color:red;"><%=savedOrderError == null ? "" : savedOrderError%></p>
         <div class="order" id="savedOrder">
             <p class="orderID"><strong>Order ID:</strong> <%=savedOrder.getOrderID()%></p>
             <table class="orderTable" style="border-collapse: collapse">

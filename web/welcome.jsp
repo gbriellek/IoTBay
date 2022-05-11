@@ -13,50 +13,37 @@
         <link rel="stylesheet" href="webpage.css"> 
         <title>Welcome Page</title>
     </head>
-    <header>
-        <h1>IoTBay</h1>
-    </header>
-    <body class="noNavBody">
+    <body>
+        <%@include file="./navbar.jsp"%>
         <%
-            String userType = (String) session.getAttribute("userType");
+            String name = ""; 
             if (userType.equals("admin")) {
+                name = "Sys Admin";
+            }
+            else if (userType.equals("customer")) {
+                Customer customer = (Customer) session.getAttribute("user");
+                name = customer.getFirstName() + " " + customer.getLastName();
+            }
+            else if (userType.equals("staff")) {
+                Staff staff = (Staff) session.getAttribute("user");
+                name = staff.getFirstName() + " " + staff.getLastName();
+            }
         %>
-        <h1>Welcome back Sys Admin!</h1>
-        <div class="container">
-            <a class="mainbtn" href="AccessLogServlet">Access Logs</a>
-            <a class="mainbtn" href="ProductServlet">View Products</a>
-            <a class="mainbtn" href="LogoutServlet">Logout</a>
+        <div class="welcome">
+            <table id="welcomeTable">
+                <tr VALIGN="TOP">
+                    <td id="info" width="35%">
+                        <h1 class = "hiUser">Hi <%=name%>!</h1>
+                        <p class = "hiUser">Welcome to IoTBay.<br> <br> We bring you the best quality products and greatest variety.</p>
+                    </td>
+                    <td width="20%">
+                        
+                    </td>
+                    <td id="withImg" width="60%">
+                        <img id="iotImage" src="iot-graphic.png" alt="iot-graphic">
+                    </td>
+                </tr>
+            </table>
         </div>
-        <%
-        } else if (userType.equals("customer")) {
-            Customer customer = (Customer) session.getAttribute("user");
-            String fname = customer.getFirstName();
-            String lname = customer.getLastName();
-        %>
-        <h1>Hi <%=fname%> <%=lname%>!</h1>
-        <div class="container">
-            <a class="mainbtn" href="main.jsp">Profile</a>
-            <a class="mainbtn" href="ProductServlet">View Products</a>
-            <a class="mainbtn" href="SavedOrderServlet">Saved Order</a>
-            <a class="mainbtn" href="OrderHistoryServlet">Order History</a>
-            <a class="mainbtn" href="ShipmentDetailServlet">Shipment History</a>
-            <a class="mainbtn" href="PaymentInformationServlet">Payment History</a>
-            <a class="mainbtn" href="AccessLogServlet">Access Logs</a>
-            <a class="mainbtn" href="LogoutServlet">Logout</a>
-        </div>
-        <%
-        } else if (userType.equals("staff")) {
-            Staff staff = (Staff) session.getAttribute("user");
-            String fname = staff.getFirstName();
-            String lname = staff.getLastName();
-        %>
-        <h1>Hi <%=fname%> <%=lname%>!</h1>
-        <div class="container">
-            <a class="mainbtn" href="main.jsp">Profile</a>
-            <a class="mainbtn" href="AccessLogServlet">Access Logs</a>
-            <a class="mainbtn" href="ProductServlet">View Products</a>
-            <a class="mainbtn" href="LogoutServlet">Logout</a>
-        </div>
-        <% }%>
     </body>
 </html>

@@ -104,7 +104,7 @@
                 <th class="productTh">Stock</th>
                 <th class="productTh">Category</th>
                 <th class="productTh">Quantity</th>
-                <th class="productTh">Add to Cart</th>
+                <th class="productTh">Add to Order</th>
             </tr> 
             <%
                 for (Product product : list_products) {

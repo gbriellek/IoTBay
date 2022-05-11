@@ -58,7 +58,7 @@ public class UpdateProductServlet extends HttpServlet {
             productManager.updateProduct(convertedProductID, productName, description, convertedPrice, convertedStock, category, true);
             //getting all products from database
             ArrayList<Product> product = productManager.findAllProduct();
-            request.setAttribute("products", product);
+            session.setAttribute("products", product);
             //redirect to page
             request.getRequestDispatcher("products.jsp").include(request, response);
             return;

@@ -31,21 +31,32 @@ public class AddProductServlet extends HttpServlet {
         String category = request.getParameter("category");
 
         Validator validator = new Validator();
-        if (!validator.validateProductName(productName)) {
+        
+        if (productName.length() ==0 || !validator.validateProductName(productName)) {
             request.setAttribute("productError", "Please enter a valid product name");
-            DBProductManager productManager = (DBProductManager) session.getAttribute("productManager");
-        } else if (!validator.validateDescription(description)) {
+            //redirect to page
+            request.getRequestDispatcher("products.jsp").include(request, response);
+            return;
+        } else if (description.length() == 0 ||  !validator.validateDescription(description)) {
             request.setAttribute("productError", "Please enter a valid description");
-            DBProductManager productManager = (DBProductManager) session.getAttribute("productManager");
-        } else if (!validator.validatePrice(price)) {
+            //redirect to page
+            request.getRequestDispatcher("products.jsp").include(request, response);
+            return;
+        } else if (price.length() ==0 ||  !validator.validatePrice(price)) {
             request.setAttribute("productError", "Please enter a valid price");
-            DBProductManager productManager = (DBProductManager) session.getAttribute("productManager");
-        } else if (!validator.validateStock(stock)) {
+            //redirect to page
+            request.getRequestDispatcher("products.jsp").include(request, response);
+            return;
+        } else if (stock.length() ==0 ||  !validator.validateStock(stock)) {
             request.setAttribute("productError", "Please enter a valid stock");
-            DBProductManager productManager = (DBProductManager) session.getAttribute("productManager");
-        } else if (!validator.validateCategory(category)) {
+            //redirect to page
+            request.getRequestDispatcher("products.jsp").include(request, response);
+            return;
+        } else if (category.length() ==0 ||  !validator.validateCategory(category)) {
             request.setAttribute("productError", "Please enter a valid category");
-            DBProductManager productManager = (DBProductManager) session.getAttribute("productManager");
+            //redirect to page
+            request.getRequestDispatcher("products.jsp").include(request, response);
+            return;
         }
 
         //2- retrieve the manager instance from session      

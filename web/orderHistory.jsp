@@ -38,7 +38,7 @@
         <%
             String orderError = (String) request.getAttribute("orderError");
         %>
-        <p><%=orderError == null ? "" : orderError%></p>
+        <p style="color:red;"><%=orderError == null ? "" : orderError%></p>
         <%
             // make new lists for display
             ArrayList<Order> orders = new ArrayList<Order>();

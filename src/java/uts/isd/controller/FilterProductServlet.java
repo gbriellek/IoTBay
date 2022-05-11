@@ -49,9 +49,6 @@ public class FilterProductServlet extends HttpServlet {
             } else if (productName.length() != 0 && category.length() != 0) {
                 ArrayList<Product> filterProductNameAndCategory = productManager.findProductByNameAndCategory(productName, category);
                 request.setAttribute("filterProducts", filterProductNameAndCategory);
-            } else {
-                 ArrayList<Product> product = productManager.findAllProduct();
-                request.setAttribute("products", product);
             }
            
             // required to keep product name and category in the textfields

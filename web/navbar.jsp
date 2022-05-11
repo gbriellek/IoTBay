@@ -19,9 +19,9 @@
         %>
         <ul class="navbar-nav">
             <li class="nav-item">
-                <h3 id="name">IoTBay</h3>
+                <a id="name" href="welcome.jsp">IoTBay</a>
             </li>
-            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="AccessLogServlet">Access Logs</a>
             </li>
             <li class="nav-item">
@@ -38,7 +38,7 @@
         
         <ul class="navbar-nav">
             <li class="nav-item">
-                <h3 id="name">IoTBay</h3>
+                <a id="name" href="welcome.jsp">IoTBay</a>
             </li>
             <li class="nav-item">
                 <a  class="nav-link" href="main.jsp">Profile</a>
@@ -73,7 +73,7 @@
         
         <ul class="navbar-nav">
             <li class="nav-item">
-                <h3 id="name">IoTBay</h3>
+                <a id="name" href="welcome.jsp">IoTBay</a>
             </li>
             <li class="nav-item">
                 <a  class="nav-link" href="main.jsp">Profile</a>

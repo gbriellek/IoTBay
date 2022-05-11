@@ -31,7 +31,7 @@ input{
 }
 
 .noNavBody {
-    padding-top:125px;
+    padding-top: 125px;
 }
 
 body{
@@ -258,6 +258,7 @@ a{
 
 #name {
     display: block;
+    font-weight: bold;
     padding: 25px 7px;
     margin: 0 30px 0 20px;
     font-family: sans-serif;
@@ -278,6 +279,35 @@ a{
 
 #logout-btn {
     color: white;
+}
+
+/*Welcome page new design - Raunak*/
+.welcome {
+/*    background-color: #EDF8FF;*/
+}
+table tr td{
+   
+}
+
+#welcomeTable {
+   margin: auto;
+   margin-top: 60px; 
+   width: 90%;
+}
+
+#info {
+    margin: 0;
+    margin-bottom: 100px;
+    padding: 0;
+}
+
+.hiUser {
+    
+}
+
+img {
+    width: 700px;
+    height: 550px;
 }
 
 #productTable {

@@ -39,7 +39,7 @@
         <%
             String productError = (String) request.getAttribute("productError");
         %>
-        <p><%=productError == null ? "" : productError%></p>
+        <p style="color:blue;"><%=productError == null ? "" : productError%></p>
         <%
             ArrayList<Product> list_products = new ArrayList<Product>();
             ArrayList<Product> filterProducts = (ArrayList<Product>) request.getAttribute("filterProducts");

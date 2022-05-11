@@ -43,7 +43,7 @@ public class DeleteProductServlet extends HttpServlet {
             ArrayList<Product> product = productManager.findAllProduct();
             session.setAttribute("products", product);
             
-            request.setAttribute("productError", p.getName() + " Successfully Removed");
+            request.setAttribute("productAdd", p.getName() + " Successfully Removed");
             
             //redirect to page
             request.getRequestDispatcher("products.jsp").include(request, response);

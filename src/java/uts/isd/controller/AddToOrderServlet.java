@@ -122,7 +122,7 @@ public class AddToOrderServlet extends HttpServlet {
             }
             
             // set error to say added to order
-            request.setAttribute("productError", quantity + "x " + productName + " Added to Order");
+            request.setAttribute("productAdd", quantity + "x " + productName + " Added to Order");
             request.getRequestDispatcher("products.jsp").include(request, response);
             return;
         } catch (SQLException ex) {    

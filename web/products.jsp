@@ -38,8 +38,10 @@
         </table>
         <%
             String productError = (String) request.getAttribute("productError");
+            String productAdd = (String) request.getAttribute("productAdd");
         %>
-        <p style="color:blue;"><%=productError == null ? "" : productError%></p>
+        <p style="color:red;"><%=productError == null ? "" : productError%></p>
+        <p style="color:blue;"><%=productAdd == null ? "" : productAdd%></p>
         <%
             ArrayList<Product> list_products = new ArrayList<Product>();
             ArrayList<Product> filterProducts = (ArrayList<Product>) request.getAttribute("filterProducts");
@@ -120,7 +122,7 @@
                 <input name="productName" type="hidden" value="<%=product.getName()%>"></input>
                 <input name="productStock" type="hidden" value="<%=product.getStock()%>"></input>
                 <input name="productPrice" type="hidden" value="<%=product.getPrice()%>"></input>
-                <td class="productTd"><input name="quantity" type="text" value="<%=quantity%>" size=3></input></td>
+                <td class="productTd"><input style="width:80px" name="quantity" type="text" value="<%=quantity%>" size=3></input></td>
                     <%if (inStock) {%>
                 <td class="productTd"><input style="cursor:pointer" value="Add to Order" type="submit" ></input></td>
                     <%} else {%>

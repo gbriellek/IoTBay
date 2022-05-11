@@ -49,7 +49,7 @@ public class UpdateShipmentDetailServlet extends HttpServlet {
         }
         if (!validator.validateAddressNo(streetNo)) {
             //set the session attribute to street no error
-            request.setAttribute("savedShipmentError", "Please enter a valid house number");
+            request.setAttribute("savedShipmentError", "Please enter a valid street number");
             //Sending user back to saved order page
             request.getRequestDispatcher("savedShipment.jsp").include(request, response);
             return;

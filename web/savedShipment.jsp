@@ -37,8 +37,8 @@
             String savedShipmentError = (String) request.getAttribute("savedShipmentError");
             String updatedSavedShipment = (String) request.getAttribute("updatedSavedShipment");
         %>
-        <p><%=savedShipmentError == null ? "" : savedShipmentError%></p>
-        <p><%=updatedSavedShipment == null ? "" : updatedSavedShipment%></p>
+        <p style="color:red;"><%=savedShipmentError == null ? "" : savedShipmentError%></p>
+        <p style="color:red;"><%=updatedSavedShipment == null ? "" : updatedSavedShipment%></p>
         <form action="UpdateShipmentDetailServlet" method="POST">
             <div class="order" id="savedOrder">
                 <p class="orderID"><strong>Shipment Detail ID:</strong> <%=shipID == 0 ? "N/A" : shipID%></p>

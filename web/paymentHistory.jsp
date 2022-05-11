@@ -28,7 +28,7 @@
             <table class="searchTable"border="0px">
                 <tr>
                     <td><label for="payID">Payment ID</label></td>  
-                    <td><input class="searchField" type="text" name="paymentID" placeholder="Enter an Payment Information ID" value="<%=fieldPayID%>"></input></td>
+                    <td><input class="searchField" type="text" name="paymentID" placeholder="Enter a Payment Info ID" value="<%=fieldPayID%>"></input></td>
                     <td><label for="PaymentDate">Payment Date</label></td> 
                     <td><input class="searchField" type="text" name="paymentDate" placeholder="yyyy-mm-dd" value="<%=fieldPayDate%>"></input></td>
                     <td><input type="submit" value="Filter" class="filterButton"></td>
@@ -38,7 +38,7 @@
         <%
             String paymentError = (String) request.getAttribute("paymentError");
         %>
-        <p><%=paymentError == null ? "" : paymentError%></p>
+        <p style="color:red;"><%=paymentError == null ? "" : paymentError%></p>
         <%
             // make new lists for display
             ArrayList<PaymentInformation> paymentInfo = new ArrayList<PaymentInformation>();

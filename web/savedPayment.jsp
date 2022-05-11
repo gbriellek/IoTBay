@@ -33,8 +33,8 @@
             String savedPaymentError = (String) request.getAttribute("savedPaymentError");
             String updatedSavedPayment = (String) request.getAttribute("updatedSavedPayment");
         %>
-        <p><%=updatedSavedPayment == null ? "" : updatedSavedPayment%></p>
-        <p><%=savedPaymentError == null ? "" : savedPaymentError%></p>
+        <p style="color:red;"><%=updatedSavedPayment == null ? "" : updatedSavedPayment%></p>
+        <p style="color:red;"><%=savedPaymentError == null ? "" : savedPaymentError%></p>
         <form action="UpdateSavedPaymentServlet" method="POST">
             <div class="order" id="savedOrder">
                 <p class="orderID"><strong>Payment Information ID:</strong> <%=payID == 0 ? "N/A" : payID%></p>

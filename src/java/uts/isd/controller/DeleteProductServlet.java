@@ -50,7 +50,7 @@ public class DeleteProductServlet extends HttpServlet {
             return;
            
         } catch (SQLException ex) {    
-            Logger.getLogger(DeleteProductServlet.class.getName()).log(Level.SEVERE, null, ex);                        
+            Logger.getLogger(DeleteProductServlet.class.getName()).log(Level.SEVERE, null, ex);                                 session.setAttribute("noProductsError", "No Products Available");
             //redirect to page
             request.getRequestDispatcher("products.jsp").include(request, response);
             return;

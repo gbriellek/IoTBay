@@ -33,7 +33,7 @@
         <%
             String accessLogError = (String) request.getAttribute("accessLogError");
         %>
-        <p><%=accessLogError == null ? "" : accessLogError%></p>
+        <p style="color:red"><%=accessLogError == null ? "" : accessLogError%></p>
         <%
             ArrayList<AccessLog> accessLog = new ArrayList<AccessLog>();
             ArrayList<AccessLog> filterAccessLog = (ArrayList<AccessLog>) request.getAttribute("filterAccessLog");

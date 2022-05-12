@@ -119,7 +119,7 @@
                     <td><p style="font-weight:bold">Delivery Method</p></td>  
                     <td><p><%=s.getDeliveryMethod()%></p></td>
                 </tr>
-                <tr class="profile">
+                <tr>
                     <td><p style="font-weight:bold">Delivery Instructions</p></td>  
                     <td><p><%=s.getDeliveryInstructions()%></p></td>
                 </tr>

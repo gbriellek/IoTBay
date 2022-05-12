@@ -62,7 +62,7 @@
                     <td>         </td>
                 </tr>
                 <tr>
-                    <td colspan="2"><p><%=errorMessage%></td>
+                    <td colspan="2"><p style="color:red"><%=errorMessage%></td>
                 </tr>
                 <tr>
                     <td><a id="cancel" class="extendfield" id="cancel" href="index.jsp">Cancel</a></td>

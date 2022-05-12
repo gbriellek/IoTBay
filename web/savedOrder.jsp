@@ -23,12 +23,19 @@
             if (orderSubmitted != null) {
         %>
         <p><%=orderSubmitted%></p>
-        <a href="OrderHistoryServlet">View Order History</a>
         <%
-        } else if (noSavedOrderError != null) {
+            if (userType.equals("customer")) {
+        %>
+        <a class="orderBarButton" href="OrderHistoryServlet">View Order History</a>
+        <% }else{%>
+        <a class="orderBarButton" href="ProductServlet">View Products</a>
+        <%
+            }
+            } else if (noSavedOrderError != null) {
         %>
         <p style="color:red;"><%=noSavedOrderError%></p>
-        <a href="ProductServlet">View Products</a>
+        <br>
+        <a class="orderBarButton" href="ProductServlet">View Products</a>
         <%
         } else {
             //get the saved order from the session

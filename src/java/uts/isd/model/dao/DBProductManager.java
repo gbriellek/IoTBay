@@ -6,7 +6,7 @@ import uts.isd.model.Product;
 
 /**
  *
- * @author Gabrielle K
+ * @author Gabrielle K & Jemma S
  */
 public class DBProductManager {
     
@@ -17,10 +17,10 @@ public class DBProductManager {
     }
     
     public ArrayList<Product> findProductByName(String name) throws SQLException {       
-       //setup the select sql query string       
-       //execute this query using the statement field       
-       //add the results to a ResultSet       
-       //search the ResultSet for a user using the parameters    
+       // Setup the select sql query string       
+       // Execute this query using the statement field       
+       // Add the results to a ResultSet       
+       // Search the ResultSet for a user using the parameters      
        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblProduct WHERE lower(Product_name) LIKE ? AND Is_Active = True");
        selectStatement.setString(1, "%"+name.toLowerCase() +"%");
        ResultSet rs = selectStatement.executeQuery();
@@ -39,6 +39,7 @@ public class DBProductManager {
            productList.add(new Product(productid, productname, description, price, stock, category, is_active));
        }
        selectStatement.close();
+       // If no such product exists after the search is conducted, tell the user
        if (productList.isEmpty()){
            throw new SQLException("No such product exists."); 
        }
@@ -46,10 +47,10 @@ public class DBProductManager {
     }
     
     public ArrayList<Product> findProductByNameAndCategory(String name, String category) throws SQLException {       
-       //setup the select sql query string       
-       //execute this query using the statement field       
-       //add the results to a ResultSet       
-       //search the ResultSet for a user using the parameters    
+       // Setup the select sql query string       
+       // Execute this query using the statement field       
+       // Add the results to a ResultSet       
+       // Search the ResultSet for a user using the parameters    
        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblProduct WHERE lower(Product_name) LIKE ? AND lower(Category) LIKE ? AND Is_Active = True");
        selectStatement.setString(1, "%"+name.toLowerCase() +"%");
        selectStatement.setString(2, "%"+category.toLowerCase() +"%");
@@ -68,6 +69,7 @@ public class DBProductManager {
            productList.add(new Product(productid, productname, description, price, stock, category, is_active));
        }
        selectStatement.close();
+       // If no such product exists after the search is conducted, tell the user
        if (productList.isEmpty()){
            throw new SQLException("No such product exists."); 
        }
@@ -75,10 +77,10 @@ public class DBProductManager {
     }
     
     public ArrayList<Product> findProductByCategory(String category) throws SQLException {       
-       //setup the select sql query string       
-       //execute this query using the statement field       
-       //add the results to a ResultSet       
-       //search the ResultSet for a user using the parameters    
+       // Setup the select sql query string       
+       // Execute this query using the statement field       
+       // Add the results to a ResultSet       
+       // Search the ResultSet for a user using the parameters    
        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblProduct WHERE lower(Category) LIKE ? AND Is_Active = True");
        selectStatement.setString(1, "%"+category.toLowerCase() +"%");
        ResultSet rs = selectStatement.executeQuery();
@@ -97,6 +99,7 @@ public class DBProductManager {
            productList.add(new Product(productid, productname, description, price, stock, category, is_active));
        }
        selectStatement.close();
+       // If no such product exists after the search is conducted, tell the user
        if (productList.isEmpty()){
            throw new SQLException("No such product exists."); 
        }
@@ -104,10 +107,10 @@ public class DBProductManager {
     }
     
     public ArrayList <Product> findAllProduct() throws SQLException {       
-       //setup the select sql query string       
-       //execute this query using the statement field       
-       //add the results to a ResultSet       
-       //search the ResultSet for a user using the parameters    
+       // Setup the select sql query string       
+       // Execute this query using the statement field       
+       // Add the results to a ResultSet       
+       // Search the ResultSet for a user using the parameters     
        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblProduct WHERE Is_Active = True");
        ResultSet rs = selectStatement.executeQuery();
        
@@ -125,6 +128,7 @@ public class DBProductManager {
            productList.add(new Product(productid, productname, description, price, stock, category, is_active));
        }
        selectStatement.close();
+       // If no such product exists after the search is conducted, tell the user
        if (productList.isEmpty()){
            throw new SQLException("No such product exists."); 
        }
@@ -133,10 +137,10 @@ public class DBProductManager {
     }
     
     public int findProductID(String name) throws SQLException {       
-       //setup the select sql query string       
-       //execute this query using the statement field       
-       //add the results to a ResultSet       
-       //search the ResultSet for a user using the parameters    
+       // Setup the select sql query string       
+       // Execute this query using the statement field       
+       // Add the results to a ResultSet       
+       // Search the ResultSet for a user using the parameters      
        PreparedStatement selectStatement = conn.prepareStatement("SELECT Product_ID FROM tblProduct WHERE Product_name = ? AND Is_Active = True");
        selectStatement.setString(1, name);
        ResultSet rs = selectStatement.executeQuery();
@@ -147,14 +151,15 @@ public class DBProductManager {
            return productid;
        }
        selectStatement.close();
+       // If no such product exists after the search is conducted, tell the user
        throw new SQLException("No such product exists."); 
     }
     
     public String findProductNameByID(int productID) throws SQLException {       
-       //setup the select sql query string       
-       //execute this query using the statement field       
-       //add the results to a ResultSet       
-       //search the ResultSet for a user using the parameters    
+       // Setup the select sql query string       
+       // Execute this query using the statement field       
+       // Add the results to a ResultSet       
+       // Search the ResultSet for a user using the parameters      
        PreparedStatement selectStatement = conn.prepareStatement("SELECT Product_Name FROM tblProduct WHERE Product_ID = ?");
        selectStatement.setInt(1, productID);
        ResultSet rs = selectStatement.executeQuery();
@@ -165,14 +170,15 @@ public class DBProductManager {
            return productName;
        }
        selectStatement.close();
+       // If no such product exists after the search is conducted, tell the user
        throw new SQLException("No such product exists."); 
     }
     
     public Product findProductByID(int productID) throws SQLException {       
-       //setup the select sql query string       
-       //execute this query using the statement field       
-       //add the results to a ResultSet       
-       //search the ResultSet for a user using the parameters    
+       // Setup the select sql query string       
+       // Execute this query using the statement field       
+       // Add the results to a ResultSet       
+       // Search the ResultSet for a user using the parameters     
        PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblProduct WHERE Product_ID = ?");
        selectStatement.setInt(1, productID);
        ResultSet rs = selectStatement.executeQuery();
@@ -189,12 +195,13 @@ public class DBProductManager {
            return new Product(productid, productname, description, price, stock, category, is_active);
        }
        selectStatement.close();
+       // If no such product exists after the search is conducted, tell the user
        throw new SQLException("No such product exists."); 
     }
 
-    //Add a product-data into the database   
+    // Add a product-data into the database   
     public void addProduct(String name, String description, double price, int stock, String category, boolean is_active) throws SQLException {                    
-        //code for add-operation       
+        // Code for add-operation       
         PreparedStatement insertStatement = conn.prepareStatement("INSERT INTO tblProduct(Product_name, Description, Price, Stock, Category, Is_Active) VALUES (?,?,?,?,?,?)");
         insertStatement.setString(1, name);
         insertStatement.setString(2, description);
@@ -207,9 +214,9 @@ public class DBProductManager {
         insertStatement.close();
     }
 
-    //update a product details in the database   
+    // Update a product details in the database   
     public void updateProduct(int productID, String name, String description, double price, int stock, String category, boolean is_active) throws SQLException {       
-       //code for update-operation   
+       // Code for update-operation   
         PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblProduct SET Product_name = ?, Description = ?, Price = ?, Stock = ?, Category = ?, Is_Active = ? WHERE Product_ID = ?");
         updateStatement.setString(1, name);
         updateStatement.setString(2, description);
@@ -223,9 +230,9 @@ public class DBProductManager {
         updateStatement.close();
     }  
     
-    //only update the stock
+    // Only update the stock
     public void updateProductStock(int productID, int stock) throws SQLException {       
-       //code for update-operation   
+       // Code for update-operation   
         PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblProduct SET Stock = ? WHERE Product_ID = ?");
         updateStatement.setInt(1, stock);
         updateStatement.setInt(2, productID);
@@ -234,9 +241,9 @@ public class DBProductManager {
         updateStatement.close();
     }
 
-    //delete a product from the database   
+    // Delete a product from the database   
     public void deleteProduct(int productID) throws SQLException{       
-       //code for delete-operation   
+       // Code for delete-operation   
         PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblProduct SET Is_Active = False WHERE Product_ID = ?");
         updateStatement. setInt(1, productID);
         

@@ -21,9 +21,9 @@ public class UpdateProductServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //1- retrieve the current session
+        // 1 - Retrieve the current session
         HttpSession session = request.getSession();
-        // get request parameters
+        // 2 - Get request parameters
         String productID = request.getParameter("productID");
         String productName = request.getParameter("productName");
         String description = request.getParameter("description");
@@ -31,8 +31,10 @@ public class UpdateProductServlet extends HttpServlet {
         String stock = request.getParameter("stock");
         String category = request.getParameter("category");
 
+        // 3a - Checking if the values for the product entered to be updated are correct
         Validator validator = new Validator();
         if (!validator.validateProductName(productName)) {
+            // 3b - If the value entered isn't valid, an error message is displayed telling the user
             request.setAttribute("productError", "Please enter a valid product name");
             DBProductManager productManager = (DBProductManager) session.getAttribute("productManager");
         } else if (!validator.validateDescription(description)) {
@@ -49,23 +51,23 @@ public class UpdateProductServlet extends HttpServlet {
             DBProductManager productManager = (DBProductManager) session.getAttribute("productManager");
         }
 
-        //2- retrieve the manager instance from session      
+        // 4 - Retrieve the manager instance from session      
         DBProductManager productManager = (DBProductManager) session.getAttribute("productManager");
         try {
             double convertedPrice = Double.parseDouble(price);
             int convertedStock = Integer.parseInt(stock);
             int convertedProductID = Integer.parseInt(productID);
             productManager.updateProduct(convertedProductID, productName, description, convertedPrice, convertedStock, category, true);
-            //getting all products from database
+            // Getting all products from database
             ArrayList<Product> product = productManager.findAllProduct();
             session.setAttribute("products", product);
-            //redirect to page
+            // Redirect to page
             request.getRequestDispatcher("products.jsp").include(request, response);
             return;
         } catch (SQLException ex) {
             Logger.getLogger(UpdateProductServlet.class.getName()).log(Level.SEVERE, null, ex);
             request.setAttribute("productError", ex.getMessage());
-            //redirect to page
+            // Redirect to page
             request.getRequestDispatcher("products.jsp").include(request, response);
             return;
         }

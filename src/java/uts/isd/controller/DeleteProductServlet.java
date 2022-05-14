@@ -23,35 +23,35 @@ import uts.isd.model.dao.*;
 public class DeleteProductServlet extends HttpServlet {
     @Override   
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {               
-        //1- retrieve the current session
+        // 1 - Retrieve the current session
         HttpSession session = request.getSession();   
 
-        // get product id from request
+        // Get product id from request
         String productID = request.getParameter("productID");
         
-        //convert productid to int
+        // Convert productid to int
         int convertedProductID = Integer.parseInt(productID);
    
-        //5- retrieve the manager instance from session      
+        // 2 - Retrieve the manager instance from session      
         DBProductManager productManager = (DBProductManager) session.getAttribute("productManager");
         try {    
             Product p = productManager.findProductByID(convertedProductID);
-            // delete product from db
+            // Delete product from db
             productManager.deleteProduct(convertedProductID);
             
-            // re-get all products from the db
+            // Re-get all products from the db
             ArrayList<Product> product = productManager.findAllProduct();
             session.setAttribute("products", product);
             
             request.setAttribute("productAdd", p.getName() + " Successfully Removed");
             
-            //redirect to page
+            // Redirect to page
             request.getRequestDispatcher("products.jsp").include(request, response);
             return;
            
         } catch (SQLException ex) {    
             Logger.getLogger(DeleteProductServlet.class.getName()).log(Level.SEVERE, null, ex);                        
-            //redirect to page
+            // Redirect to page
             request.getRequestDispatcher("products.jsp").include(request, response);
             return;
         }

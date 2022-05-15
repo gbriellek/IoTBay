@@ -282,12 +282,6 @@ a{
 }
 
 /*Welcome page new design - Raunak*/
-.welcome {
-/*    background-color: #EDF8FF;*/
-}
-table tr td{
-   
-}
 
 #welcomeTable {
    margin: auto;
@@ -299,10 +293,6 @@ table tr td{
     margin: 0;
     margin-bottom: 100px;
     padding: 0;
-}
-
-.hiUser {
-    
 }
 
 img {

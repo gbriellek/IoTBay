@@ -19,7 +19,14 @@
         <%@include file="./navbar.jsp"%>
         <h1>Products</h1>
         <%
-            // Ensures search bar retains the search criteria
+            // Checking if any errors or if a product can be added
+            String noProductsError = (String) session.getAttribute("noProductsError");
+            if (noProductsError != null) {
+        %>
+        <p style="color:red;"><%=noProductsError%></p>
+        <%
+            }else{
+            // ensures search bar retains the search criteria
             String requestName = (String) request.getAttribute("requestName");
             String requestCategory = (String) request.getAttribute("requestCategory");
             String fieldName = requestName == null ? "" : requestName;
@@ -38,6 +45,7 @@
             </form>
         </table>
         <%
+            }
             // Checking if any errors or if a product can be added
             String productError = (String) request.getAttribute("productError");
             String productAdd = (String) request.getAttribute("productAdd");
@@ -47,11 +55,13 @@
         <p style="color:blue;"><%=productAdd == null ? "" : productAdd%></p>
         <%
             ArrayList<Product> list_products = new ArrayList<Product>();
-            ArrayList<Product> filterProducts = (ArrayList<Product>) request.getAttribute("filterProducts");
-            if (filterProducts != null) {
-                list_products = filterProducts;
-            } else {
-                list_products = (ArrayList<Product>) session.getAttribute("products");
+            if (noProductsError == null) {
+                ArrayList<Product> filterProducts = (ArrayList<Product>) request.getAttribute("filterProducts");
+                if (filterProducts != null) {
+                    list_products = filterProducts;
+                } else {
+                    list_products = (ArrayList<Product>) session.getAttribute("products");
+                }
             }
             // Checking whether user is an admin or staff as this will give them a different view and allow them to do more with the products
             // Namely, being able to add, update and delete products
@@ -64,7 +74,6 @@
                 <th>Price</th>
                 <th>Stock</th>
                 <th>Category</th>
-                
             </tr>
             <!--If user is an admin or staff user they are able to add a product-->
             <form action="AddProductServlet" method="POST">
@@ -78,6 +87,7 @@
                 </tr>
             </form>
             <%
+                if (noProductsError == null){
                 for (Product product : list_products) {
             %>
             <tr>
@@ -99,10 +109,15 @@
             </tr>
             <%
                 }
+                }
+}
             %>
         </table>
         <%
-        } else { // Else, if they are not an admin or staff user...
+        } else {
+        if (noProductsError == null) {
+            // Else, if they are not an admin or staff user...
+            if (userType == null || !userType.equals("admin") && !userType.equals("staff")) {
         %>
         <table id="productTable">
             <tr>
@@ -133,20 +148,20 @@
                 <input name="productStock" type="hidden" value="<%=product.getStock()%>"></input>
                 <input name="productPrice" type="hidden" value="<%=product.getPrice()%>"></input>
                 <td class="productTd"><input style="width:80px" name="quantity" type="text" value="<%=quantity%>" size=3></input></td>
-                    <%if (inStock) {%>
+                <%if (inStock) {%>
                 <td class="productTd"><input style="cursor:pointer" value="Add to Order" type="submit" ></input></td>
-                    <%} else {%>
-                <td class="productTd"<input style="cursor:pointer" value="Add to Order" type="submit" disabled></input></td>
-                    <%}%>
+                <%} else {%>
+                <td class="productTd"><input style="cursor:pointer" value="Add to Order" type="submit" disabled></input></td>
+                <%}%>
             </form>            
         </tr>
         <%
-            }
+                }
         %>
-    </table>
+        </table>
     <%
+            }
         }
-
     %>
-</body>
+    </body>
 </html>

@@ -66,7 +66,8 @@ public class FilterAccessLogServlet extends HttpServlet {
             return;
         } catch (SQLException ex) { 
             Logger.getLogger(FilterAccessLogServlet.class.getName()).log(Level.SEVERE, null, ex);
-            //Sending user back to register page
+            request.setAttribute("accessLogError", "No access logs found for the specified date");
+            //Sending user back to access logs page
             request.getRequestDispatcher("accessLogs.jsp").include(request, response);
             return;
         }

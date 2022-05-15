@@ -54,7 +54,7 @@ public class ShipmentDetailServlet extends HttpServlet {
             return;
         } catch (SQLException ex) {           
             Logger.getLogger(ShipmentDetailServlet.class.getName()).log(Level.SEVERE, null, ex);       
-            request.setAttribute("shipmentDetailError", ex.getMessage());
+            request.setAttribute("noShipmentsError", "You Have No Past Shipments");
             // redirect customer to shipment history page
             request.getRequestDispatcher("shipmentHistory.jsp").include(request, response);
             return;

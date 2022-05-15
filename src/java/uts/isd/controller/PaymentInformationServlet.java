@@ -50,7 +50,7 @@ public class PaymentInformationServlet extends HttpServlet {
             return;
         } catch (SQLException ex) {           
             Logger.getLogger(PaymentInformationServlet.class.getName()).log(Level.SEVERE, null, ex);       
-            request.setAttribute("paymentError", ex.getMessage());
+            request.setAttribute("noPaymentsError", "You Have No Past Payment Information");
             // redirect customer to payment history page
             request.getRequestDispatcher("paymentHistory.jsp").include(request, response);
             return;

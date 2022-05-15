@@ -36,19 +36,29 @@ public class UpdateProductServlet extends HttpServlet {
         if (!validator.validateProductName(productName)) {
             // 3b - If the value entered isn't valid, an error message is displayed telling the user
             request.setAttribute("productError", "Please enter a valid product name");
-            DBProductManager productManager = (DBProductManager) session.getAttribute("productManager");
+            //redirect to page
+            request.getRequestDispatcher("products.jsp").include(request, response);
+            return;
         } else if (!validator.validateDescription(description)) {
             request.setAttribute("productError", "Please enter a valid description");
-            DBProductManager productManager = (DBProductManager) session.getAttribute("productManager");
+            //redirect to page
+            request.getRequestDispatcher("products.jsp").include(request, response);
+            return;
         } else if (!validator.validatePrice(price)) {
             request.setAttribute("productError", "Please enter a valid price");
-            DBProductManager productManager = (DBProductManager) session.getAttribute("productManager");
+            //redirect to page
+            request.getRequestDispatcher("products.jsp").include(request, response);
+            return;
         } else if (!validator.validateStock(stock)) {
             request.setAttribute("productError", "Please enter a valid stock");
-            DBProductManager productManager = (DBProductManager) session.getAttribute("productManager");
+            //redirect to page
+            request.getRequestDispatcher("products.jsp").include(request, response);
+            return;
         } else if (!validator.validateCategory(category)) {
             request.setAttribute("productError", "Please enter a valid category");
-            DBProductManager productManager = (DBProductManager) session.getAttribute("productManager");
+            //redirect to page
+            request.getRequestDispatcher("products.jsp").include(request, response);
+            return;
         }
 
         // 4 - Retrieve the manager instance from session      

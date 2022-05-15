@@ -52,12 +52,12 @@
                     <td>         </td>
                 </tr>
                 <tr>
-                    <td><a id="cancel" class="extendfield" href="savedOrder.jsp">Cancel</a></td>
-                    <td><input style="cursor:pointer" class="extendfield" id = "submit" type="submit" value="<%=submitText%>"></td>
+                    <td colspan="2"><p style="color:red"><%=errorMessage%></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><p><%=errorMessage%></td>
-                </tr>
+                    <td><a id="cancel" class="extendfield" href="savedOrder.jsp">Cancel</a></td>
+                    <td><input style="cursor:pointer" class="extendfield" id = "submit" type="submit" value="<%=submitText%>"></td>
+                </tr>                
             </table>
         </form>
     </body>

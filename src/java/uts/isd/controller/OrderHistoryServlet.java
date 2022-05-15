@@ -59,7 +59,7 @@ public class OrderHistoryServlet extends HttpServlet {
             return;
         } catch (SQLException ex) {           
             Logger.getLogger(OrderHistoryServlet.class.getName()).log(Level.SEVERE, null, ex);       
-            request.setAttribute("orderError", ex.getMessage());
+            request.setAttribute("noOrdersError", "You Have No Past Orders");
             // redirect customer to order history page
             request.getRequestDispatcher("orderHistory.jsp").include(request, response);
             return;

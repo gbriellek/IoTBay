@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class Validator implements Serializable{ 
  
-   private String emailPattern = "([a-zA-Z0-9]+)(([._-])([a-zA-Z0-9]+))*(@)([a-z]+)(.)([a-z]{3})((([.])[a-z]{0,2})*)"; 
+   private String emailPattern = "([a-zA-Z0-9]+)(([._-])([a-zA-Z0-9]+))*(@)([a-z0-9]+)(.)([a-z]{3})((([.])[a-z]{0,2})*)"; 
    private String staffEmailPattern = "([a-zA-Z0-9]+)(([._-])([a-zA-Z0-9]+))*(@)(iotbay)(.)([a-z]{3})((([.])[a-z]{0,2})*)";
    private String namePattern = "([A-Za-z]+)"; 
    private String passwordPattern = "[a-zA-Z0-9.@&%$#!*]{4,}";
@@ -22,8 +22,8 @@ public class Validator implements Serializable{
    private String datePattern = "^([0-9]{4}-[0-9]{2}-[0-9]{2})$";
 
    private String productNamePattern = "([A-Za-z0-9\\- ]+)";
-   private String descriptionPattern = "([A-Za-z0-9\\- .:,]+)";
-   private String pricePattern = "([0-9]+.[0-9]+)";
+   private String descriptionPattern = "([A-Za-z0-9\\- .:,()@&%$#!*\"'?<>^%]+)";
+   private String pricePattern = "^([0-9]+(\\.[0-9]{1,2})?)$";
    private String stockPattern = "([0-9]+)";
    private String categoryPattern = "([A-Za-z/\\ ]+)"; 
    
@@ -37,7 +37,7 @@ public class Validator implements Serializable{
    private String statePattern = "^(ACT|NSW|NT|QLD|SA|TAS|VIC|WA)$";
    private String postCodePattern = "([0-9]+)";
    private String deliveryMethodPattern = "^(express|standard)$";
-   private String deliveryInstructionsPattern = "[a-zA-Z0-9.@&%$#!* ]+";
+   private String deliveryInstructionsPattern = "[a-zA-Z0-9.@&%$#!* \"'?<>;:^()-+=_]+";
               
    public Validator(){    }       
 

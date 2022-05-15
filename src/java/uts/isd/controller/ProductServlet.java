@@ -30,12 +30,14 @@ public class ProductServlet extends HttpServlet {
             //getting all products from database
             ArrayList<Product> product = productManager.findAllProduct();
             session.setAttribute("products", product);
+            
+            session.removeAttribute("noProductsError");
             //redirect to page
             request.getRequestDispatcher("products.jsp").include(request, response);
             return;
-        } catch (SQLException ex) {    
+        } catch (SQLException ex) {
             Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE, null, ex);
-            request.setAttribute("productError", ex.getMessage());
+            session.setAttribute("noProductsError", "No Products Available");
             //redirect to page
             request.getRequestDispatcher("products.jsp").include(request, response);
             return;

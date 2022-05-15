@@ -67,8 +67,10 @@ public class AddProductServlet extends HttpServlet {
             productManager.addProduct(productName, description, convertedPrice, convertedStock, category, true);
             // Getting all products from database
             ArrayList<Product> product = productManager.findAllProduct();
-            request.setAttribute("products", product);
-            // Redirect to page
+            session.setAttribute("products", product);
+            // set no product error to say no products available
+            session.removeAttribute("noProductsError");
+            //redirect to page
             request.getRequestDispatcher("products.jsp").include(request, response);
             return;
         } catch (SQLException ex) {

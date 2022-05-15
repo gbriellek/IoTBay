@@ -97,7 +97,7 @@ public class AddToOrderServlet extends HttpServlet {
             if (existingOrderLine != null) {
                 // update existing ol
                 int updatedQuantity = existingOrderLine.getQuantity() + convertedQuantity;
-                double updatedCost = existingOrderLine.getPrice() + convertedPrice;
+                double updatedCost = existingOrderLine.getPrice() + olCost;
                 orderLineManager.updateOrderLine(orderID, convertedProductID, updatedQuantity, updatedCost);
             }
             //if not make a new orderline
@@ -135,7 +135,7 @@ public class AddToOrderServlet extends HttpServlet {
                 orderLineManager.addOrderLine(orderID, convertedProductID, convertedQuantity, olCost);
                 
                 // set error to say added to order
-                request.setAttribute("productError", quantity + "x " + productName + " Added to Order");
+                request.setAttribute("productAdd", quantity + "x " + productName + " Added to Order");
                 
                 //decrease stock in db
                 int updatedStock = convertedStock-convertedQuantity;

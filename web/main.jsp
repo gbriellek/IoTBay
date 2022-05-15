@@ -76,7 +76,7 @@
                 <td><input class="extendfield" type="password" placeholder="Enter a new password" name="password"></input></td>
             </tr>
             <tr>
-                <td colspan="2"><input style="cursor:pointer" class="extendfield" id = "submit" type="submit" value="Update Details"></td>
+                <td colspan="2"><input style="margin-left:5px" style="cursor:pointer" class="extendfield" id = "submit" type="submit" value="Update Details"></td>
             </tr>
             </form>
             <tr>

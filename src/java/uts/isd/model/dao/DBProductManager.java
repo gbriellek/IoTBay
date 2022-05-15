@@ -16,6 +16,7 @@ public class DBProductManager {
         this.conn = conn;
     }
     
+    // find products by name
     public ArrayList<Product> findProductByName(String name) throws SQLException {       
        // Setup the select sql query string       
        // Execute this query using the statement field       
@@ -46,6 +47,7 @@ public class DBProductManager {
        return productList;
     }
     
+    // find products by name and category
     public ArrayList<Product> findProductByNameAndCategory(String name, String category) throws SQLException {       
        // Setup the select sql query string       
        // Execute this query using the statement field       
@@ -76,6 +78,7 @@ public class DBProductManager {
        return productList; 
     }
     
+    // find products by category
     public ArrayList<Product> findProductByCategory(String category) throws SQLException {       
        // Setup the select sql query string       
        // Execute this query using the statement field       
@@ -106,6 +109,7 @@ public class DBProductManager {
        return productList;
     }
     
+    // find all products in the database
     public ArrayList <Product> findAllProduct() throws SQLException {       
        // Setup the select sql query string       
        // Execute this query using the statement field       
@@ -136,6 +140,7 @@ public class DBProductManager {
        
     }
     
+    // find product id by product name
     public int findProductID(String name) throws SQLException {       
        // Setup the select sql query string       
        // Execute this query using the statement field       
@@ -155,6 +160,7 @@ public class DBProductManager {
        throw new SQLException("No such product exists."); 
     }
     
+    // find product name by id
     public String findProductNameByID(int productID) throws SQLException {       
        // Setup the select sql query string       
        // Execute this query using the statement field       
@@ -174,6 +180,7 @@ public class DBProductManager {
        throw new SQLException("No such product exists."); 
     }
     
+    // find product by id
     public Product findProductByID(int productID) throws SQLException {       
        // Setup the select sql query string       
        // Execute this query using the statement field       
@@ -214,7 +221,7 @@ public class DBProductManager {
         insertStatement.close();
     }
 
-    // Update a product details in the database   
+    // Update a product details in the database by product id
     public void updateProduct(int productID, String name, String description, double price, int stock, String category, boolean is_active) throws SQLException {       
        // Code for update-operation   
         PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblProduct SET Product_name = ?, Description = ?, Price = ?, Stock = ?, Category = ?, Is_Active = ? WHERE Product_ID = ?");

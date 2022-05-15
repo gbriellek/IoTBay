@@ -3,14 +3,31 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/web/main.jsp</file>
-            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/src/java/uts/isd/controller/PaymentInformationServlet.java</file>
+            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/src/java/uts/isd/controller/DeleteProductServlet.java</file>
+            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/src/java/uts/isd/controller/AddProductServlet.java</file>
+            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/src/java/uts/isd/controller/UpdateProductServlet.java</file>
+            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/web/db/TESTING_testData.sql</file>
+            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/src/java/uts/isd/controller/AddToOrderServlet.java</file>
+            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/web/registerStaff.jsp</file>
             <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/web/webpage.css</file>
-            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/src/java/uts/isd/controller/OrderHistoryServlet.java</file>
-            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/src/java/uts/isd/controller/ShipmentDetailServlet.java</file>
-            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/web/orderHistory.jsp</file>
-            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/web/paymentHistory.jsp</file>
+            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/web/savedShipment.jsp</file>
             <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/web/shipmentHistory.jsp</file>
+            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/web/register.jsp</file>
+            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/src/java/uts/isd/controller/ProductServlet.java</file>
+            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/web/db/TESTING_insertTables.sql</file>
+            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/web/savedPayment.jsp</file>
+            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/src/java/uts/isd/controller/AccessLogServlet.java</file>
+            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/src/java/uts/isd/controller/SavedOrderServlet.java</file>
+            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/web/products.jsp</file>
+            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/web/savedOrder.jsp</file>
+            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/web/navbar.jsp</file>
+            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/web/accessLogs.jsp</file>
+            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/web/orderHistory.jsp</file>
+            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/web/db/tblProduct.sql</file>
+            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/web/addUserDetails.jsp</file>
+            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/src/java/uts/isd/controller/Validator.java</file>
+            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/web/db/tblOrder.sql</file>
+            <file>file:/C:/Users/Sarah/workspace/src/github/IoTBay/src/java/uts/isd/controller/FilterAccessLogServlet.java</file>
         </group>
     </open-files>
 </project-private>

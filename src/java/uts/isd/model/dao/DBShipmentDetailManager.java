@@ -21,6 +21,7 @@ public class DBShipmentDetailManager {
         this.conn = conn;
     }
     
+    // find shipment details by shipment detail id
     public ShipmentDetail findShipmentDetail(int shipmentID) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblShipment_Detail WHERE Shipment_Detail_ID = ?");
         selectStatement.setInt(1, shipmentID);
@@ -41,7 +42,7 @@ public class DBShipmentDetailManager {
     }
     
     
-    
+    // find saved order shipment details by user id
     public ShipmentDetail findShipmentDetailByUserIDNotSubmitted(int userID) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblShipment_Detail INNER JOIN tblOrder ON tblShipment_Detail.Shipment_Detail_ID = tblOrder.Shipment_Detail_ID WHERE tblOrder.User_ID = ? AND tblOrder.Order_Status = 'Not Submitted'");
         selectStatement.setInt(1, userID);
@@ -61,6 +62,7 @@ public class DBShipmentDetailManager {
        throw new SQLException("No such shipment detail exists."); 
     }
     
+    // find submitted shipment details by user id
     public ArrayList findShipmentDetailByUserIDSubmitted(int userID) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblShipment_Detail INNER JOIN tblOrder ON tblShipment_Detail.Shipment_Detail_ID = tblOrder.Shipment_Detail_ID WHERE tblOrder.User_ID = ? AND tblOrder.Order_Status NOT IN ('Not Submitted','Cancelled')");
         selectStatement.setInt(1, userID);
@@ -87,6 +89,7 @@ public class DBShipmentDetailManager {
        
     }
     
+    // find submitted shipment details by user id and date
     public ArrayList findPastShipmentDetailByUserIDDate(int userID, Date date) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblShipment_Detail INNER JOIN tblOrder ON tblShipment_Detail.Shipment_Detail_ID = tblOrder.Shipment_Detail_ID WHERE tblOrder.User_ID = ? AND tblShipment_Detail.Delivery_Date = ? AND tblOrder.Order_Status NOT IN ('Not Submitted','Cancelled')");
         selectStatement.setInt(1, userID);
@@ -114,6 +117,7 @@ public class DBShipmentDetailManager {
        
     }
     
+    // find submitted shipment details by user id and shipment id
     public ArrayList findPastShipmentDetailByUserIDShipmentID(int userID, int shipmentID) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblShipment_Detail INNER JOIN tblOrder ON tblShipment_Detail.Shipment_Detail_ID = tblOrder.Shipment_Detail_ID WHERE tblOrder.User_ID = ? AND tblShipment_Detail.Shipment_Detail_ID = ? AND tblOrder.Order_Status NOT IN ('Not Submitted','Cancelled')");
         selectStatement.setInt(1, userID);
@@ -141,6 +145,7 @@ public class DBShipmentDetailManager {
        
     }
     
+    // find submitted shipment details by user id and date and shipment id
      public ArrayList findPastShipmentDetailByUserIDDateOrderID(int userID, Date date, int shipmentID) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblShipment_Detail INNER JOIN tblOrder ON tblShipment_Detail.Shipment_Detail_ID = tblOrder.Shipment_Detail_ID WHERE tblOrder.User_ID = ? AND tblShipment_Detail.Shipment_Detail_ID = ? AND tblShipment_Detail.Delivery_Date = ? AND tblOrder.Order_Status NOT IN ('Not Submitted','Cancelled')");
         selectStatement.setInt(1, userID);
@@ -169,6 +174,7 @@ public class DBShipmentDetailManager {
        
     }
     
+    // add shipment details
     public int addShipmentDetail (int addressID, double fee, String instructions, Date date, String method) throws SQLException {
         PreparedStatement insertStatement = conn.prepareStatement("INSERT INTO tblShipment_Detail (Address_ID, Delivery_Fee, Delivery_Instructions, Delivery_Date, Delivery_Method) VALUES (?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
         insertStatement.setInt(1, addressID);
@@ -195,6 +201,7 @@ public class DBShipmentDetailManager {
         return id;
     }
     
+    // update shipment details by shipment id 
     public void updateShipmentDetail (int shipmentID, int addressID, double fee, String instructions, Date date, String method) throws SQLException {
         PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblShipment_Detail SET Address_ID = ?, Delivery_Fee = ?, Delivery_Instructions = ?, Delivery_Date = ?, Delivery_Method = ? WHERE Shipment_Detail_ID = ?");
         updateStatement.setInt(1, addressID);
@@ -208,6 +215,7 @@ public class DBShipmentDetailManager {
         updateStatement.close();
     }
     
+    // update shipment date by shipment id
     public void updateShipmentDate (int shipmentID, Date date) throws SQLException {
         PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblShipment_Detail SET Delivery_Date = ? WHERE Shipment_Detail_ID = ?");
         updateStatement.setDate(1, date);
@@ -217,6 +225,7 @@ public class DBShipmentDetailManager {
         updateStatement.close();
     }
     
+    // delete shipment detail by shipment id
     public void deleteShipmentDetail(int shipmentID) throws SQLException {
         PreparedStatement updateStatement = conn.prepareStatement("DELETE FROM tblShipment_Detail WHERE Shipment_Detail_ID = ?");
         updateStatement.setInt(1, shipmentID);

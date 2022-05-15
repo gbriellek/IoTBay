@@ -20,7 +20,7 @@ public class DBOrderLineManager {
     }
     
     
-    
+    //Find order line by order ID
     public ArrayList<OrderLine> findOrderLineByOrderID (int orderID) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT Product_ID, Quantity, Price FROM tblOrder_Line WHERE Order_ID = ?");
         selectStatement.setInt(1, orderID);
@@ -44,6 +44,7 @@ public class DBOrderLineManager {
         
     }
     
+    //Find order line by order ID and product ID
     public OrderLine findOrderLineByOrderIDAndProductID (int orderID, int productID) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT Product_ID, Quantity, Price FROM tblOrder_Line WHERE Order_ID = ? AND Product_ID = ?");
         selectStatement.setInt(1, orderID);
@@ -60,6 +61,7 @@ public class DBOrderLineManager {
         return null;
     }
     
+    //Add order line details
     public void addOrderLine(int OrderID, int ProductID, int quantity, double price) throws SQLException {
         PreparedStatement insertStatement = conn.prepareStatement("INSERT INTO tblOrder_Line (Order_ID, Product_ID, Quantity, Price) VALUES (?,?,?,?)");
         insertStatement.setInt(1, OrderID);
@@ -71,6 +73,7 @@ public class DBOrderLineManager {
         insertStatement.close();
     }
     
+    //Delete order line details
     public void deleteOrderLine(int orderID, int productID) throws SQLException {
         PreparedStatement deleteStatement = conn.prepareStatement("DELETE FROM tblOrder_Line WHERE Order_ID = ? AND Product_ID = ?");
         deleteStatement.setInt(1, orderID);
@@ -80,6 +83,7 @@ public class DBOrderLineManager {
         deleteStatement.close();
     }
     
+    //Update order line details
     public void updateOrderLine(int OrderID, int ProductID, int quantity, double price) throws SQLException {
         PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblOrder_Line SET Quantity = ?, Price = ? WHERE Order_ID = ? AND Product_ID = ?");
         updateStatement.setInt(1, quantity);

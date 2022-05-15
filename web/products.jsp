@@ -19,6 +19,7 @@
         <%@include file="./navbar.jsp"%>
         <h1>Products</h1>
         <%
+            // Checking if any errors or if a product can be added
             String noProductsError = (String) session.getAttribute("noProductsError");
             if (noProductsError != null) {
         %>
@@ -31,6 +32,7 @@
             String fieldName = requestName == null ? "" : requestName;
             String fieldCategory = requestCategory == null ? "" : requestCategory;
         %>
+        <!--Table to alow users to search using product name or a category or both-->
         <table class="searchTable">
             <form action="FilterProductServlet" method="POST">
                 <tr>
@@ -44,9 +46,11 @@
         </table>
         <%
             }
+            // Checking if any errors or if a product can be added
             String productError = (String) request.getAttribute("productError");
             String productAdd = (String) request.getAttribute("productAdd");
         %>
+        <!--Styling for the display message to the user-->
         <p style="color:red;"><%=productError == null ? "" : productError%></p>
         <p style="color:blue;"><%=productAdd == null ? "" : productAdd%></p>
         <%
@@ -59,6 +63,8 @@
                     list_products = (ArrayList<Product>) session.getAttribute("products");
                 }
             }
+            // Checking whether user is an admin or staff as this will give them a different view and allow them to do more with the products
+            // Namely, being able to add, update and delete products
             if (userType != null && userType.equals("admin") || userType != null && userType.equals("staff")) {
         %>
         <table style="width:80%">
@@ -69,6 +75,7 @@
                 <th>Stock</th>
                 <th>Category</th>
             </tr>
+            <!--If user is an admin or staff user they are able to add a product-->
             <form action="AddProductServlet" method="POST">
                 <tr>
                     <td><input name="productName" type="text" placeholder="Enter product name"></input></td>
@@ -84,6 +91,7 @@
                 for (Product product : list_products) {
             %>
             <tr>
+                <!--If user is an admin or staff user they are able to update a product-->
                 <form action="UpdateProductServlet" method="POST">
                     <input name="productID" type="hidden" value="<%=product.getProductID()%>"></input>
                     <td><input name="productName" type="text" value="<%=product.getName()%>"></input></td>
@@ -93,6 +101,7 @@
                     <td><input style="width:98%" name="category" type="text" value="<%=product.getCategory()%>"></input></td>
                     <td><input style="width:98%" value="Update Product" type="submit"></input></td>
                 </form>
+                <!--If user is an admin or staff user they are able to delete a product-->
                 <form action="DeleteProductServlet" method="POST">
                     <input name="productID" type="hidden" value="<%=product.getProductID()%>"></input>
                     <td><input value="Delete Product" type="submit"></input></td>
@@ -105,7 +114,9 @@
             %>
         </table>
         <%
+        } else {
         if (noProductsError == null) {
+            // Else, if they are not an admin or staff user...
             if (userType == null || !userType.equals("admin") && !userType.equals("staff")) {
         %>
         <table id="productTable">
@@ -121,6 +132,7 @@
             <%
                 for (Product product : list_products) {
                     boolean inStock = product.getStock() > 0;
+                    // Checking that only products that are NOT out of stock are displayed to customers
                     String quantity = inStock ? "1" : "Out of Stock";
             %>
             <tr>
@@ -129,6 +141,7 @@
                 <td class="productTd">$<%=product.getPrice()%>0</td>
                 <td class="productTd"><%=product.getStock()%></td>
                 <td class="productTd"><%=product.getCategory()%></td>
+            <!--If user is not an admin or staff user they are able to add a product to their cart -->
             <form action="AddToOrderServlet" method="POST">
                 <input name="productID" type="hidden" value="<%=product.getProductID()%>"></input>
                 <input name="productName" type="hidden" value="<%=product.getName()%>"></input>

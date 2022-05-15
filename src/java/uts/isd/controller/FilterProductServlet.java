@@ -21,23 +21,23 @@ public class FilterProductServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //1- retrieve the current session
+        // 1 - Retrieve the current session
         HttpSession session = request.getSession();
-        // get request parameters
+        // Get request parameters
         String productName = request.getParameter("productName").trim();
         String category = request.getParameter("category").trim();
         Validator validator = new Validator();
         if (productName.length() > 0 && !validator.validateProductName(productName)) {
             request.setAttribute("productError", "Please enter a valid product name");
-            //redirect to page
+            // Redirect to page
             DBProductManager productManager = (DBProductManager) session.getAttribute("productManager");
         } else if (category.length() > 0 && !validator.validateCategory(category)) {
             request.setAttribute("productError", "Please enter a valid category");
-            //redirect to page
+            // Redirect to page
             DBProductManager productManager = (DBProductManager) session.getAttribute("productManager");
         }
 
-        //2- retrieve the manager instance from session      
+        // 2 - Retrieve the manager instance from session      
         DBProductManager productManager = (DBProductManager) session.getAttribute("productManager");
         try {
             if (productName.length() == 0 && category.length() != 0) {
@@ -51,18 +51,18 @@ public class FilterProductServlet extends HttpServlet {
                 request.setAttribute("filterProducts", filterProductNameAndCategory);
             }
            
-            // required to keep product name and category in the textfields
+            // Required to keep product name and category in the textfields
             request.setAttribute("requestName", productName);
             request.setAttribute("requestCategory", category);
 
             
-            //redirect to page
+            // Redirect to page
             request.getRequestDispatcher("products.jsp").include(request, response);
             return;
         } catch (SQLException ex) {
             Logger.getLogger(FilterProductServlet.class.getName()).log(Level.SEVERE, null, ex);
             request.setAttribute("productError", ex.getMessage());
-            //redirect to page
+            // Redirect to page
             request.getRequestDispatcher("products.jsp").include(request, response);
             return;
         }

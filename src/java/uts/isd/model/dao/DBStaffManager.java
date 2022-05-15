@@ -19,6 +19,7 @@ public class DBStaffManager {
         this.conn = conn;
     }
     
+    // find staff by email
     public Staff findStaff(String email) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblUser INNER JOIN tblStaff ON tblUser.User_ID = tblStaff.Staff_ID WHERE Email_Address = ?");
         selectStatement.setString(1, email);
@@ -41,7 +42,9 @@ public class DBStaffManager {
        throw new SQLException("No such staff exists.");
     }
     
+    // add staff details to database
     public void addStaff (String email, String fname, String lname, String phoneno, String password, String staff_number, boolean is_Activated) throws SQLException {
+        // insert into user table
         PreparedStatement insertStatement = conn.prepareStatement("INSERT INTO tblUser(Email_Address, First_Name, Last_Name, Phone_Number) VALUES (?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
         insertStatement.setString(1, email);
         insertStatement.setString(2, fname);
@@ -63,7 +66,7 @@ public class DBStaffManager {
         }
         
         insertStatement.close();
-        
+        // based on id from user table, insert the remaining info into staff table
         PreparedStatement insertStatement1 = conn.prepareStatement("INSERT INTO tblStaff(Staff_ID, Password, staff_number, Is_Activated) VALUES (?,?,?,?)");
         insertStatement1.setInt(1,id);
         insertStatement1.setString(2, password);
@@ -74,6 +77,7 @@ public class DBStaffManager {
         insertStatement1.close();
     }
     
+    // update staff by user id
     public void updateStaff(int id, String fname, String lname, String phoneno, String password, String staff_number) throws SQLException {
         PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblUser SET First_Name = ?, Last_Name = ?, Phone_Number = ? WHERE User_ID = ?");
         updateStatement.setString(1, fname);
@@ -93,6 +97,7 @@ public class DBStaffManager {
         updateStatement1.close();
     }
     
+    // delete the staff from database
     public void deleteStaff(int id) throws SQLException {
         PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblStaff SET Is_Activated = False WHERE Staff_ID = ?");
         updateStatement.setInt(1, id);

@@ -18,13 +18,15 @@ public class DBUserManager {
        this.conn = conn;
     }
 
-    //Find user by email and password in the database   
-    public User findUser(String email) throws SQLException {              
+    //Find user by email in the database   
+    public User findUser(String email) throws SQLException {       
+        //set up and execute insert statement
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblUser WHERE Email_Address = ?");
         selectStatement.setString(1, email);
         ResultSet rs = selectStatement.executeQuery();
        
         while (rs.next()){
+            // read in returned row from database and return user object
             int userid = rs.getInt(1);
             String user_email = rs.getString(2);
             String fname = rs.getString(3);
@@ -39,7 +41,7 @@ public class DBUserManager {
 
     //Add a user-data into the database   
     public void addUser(String email, String fname, String lname, String phoneno) throws SQLException {                    
-        //code for add-operation       
+        //set up and execute sql insert statement
         PreparedStatement insertStatement = conn.prepareStatement("INSERT INTO tblUser(Email_Address, First_Name, Last_Name, Phone_Number) VALUES (?,?,?,?)");
         insertStatement.setString(1, email);
         insertStatement.setString(2, fname);
@@ -50,31 +52,17 @@ public class DBUserManager {
         insertStatement.close();
     }
 
-    //update a user details in the database   
+    //update a user details in the database based on email  
     public void updateUser(String email, String fname, String lname, String phoneno) throws SQLException {       
-       //code for update-operation   
+       // set up and execute sql update statement
         PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblUser SET First_Name = ?, Last_Name = ?, Phone_Number = ? WHERE Email_Address = ?");
         updateStatement.setString(1, fname);
         updateStatement.setString(2, lname);
         updateStatement.setString(3, phoneno);
         updateStatement.setString(4, email);
-         
+        
         updateStatement.executeUpdate();
         updateStatement.close();
-    }       
-
-    //delete a user from the database   
-//    public void deleteUser(String email) throws SQLException{       //is active is false
-//       //code for delete-operation   
-//       PreparedStatement deleteStatement = conn.prepareStatement("DELETE FROM tblUser WHERE Email_Address = ?");
-//        deleteStatement.setString(1, email);
-//         
-//        deleteStatement.executeUpdate();
-//        deleteStatement.close();
-//    }
-
-
- 
-
+    }    
 }
 

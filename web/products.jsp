@@ -114,7 +114,6 @@
             %>
         </table>
         <%
-        } else {
         if (noProductsError == null) {
             // Else, if they are not an admin or staff user...
             if (userType == null || !userType.equals("admin") && !userType.equals("staff")) {

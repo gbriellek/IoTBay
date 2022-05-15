@@ -113,7 +113,7 @@
                 </tr>
                 <tr class="profile">
                     <td><p style="font-weight:bold">Delivery Fee</p></td>  
-                    <td><p><%=s.getDeliveryFee()%></p></td>
+                    <td><p>$<%=s.getDeliveryFee()%>0</p></td>
                 </tr>
                 <tr class="profile">
                     <td><p style="font-weight:bold">Delivery Method</p></td>  

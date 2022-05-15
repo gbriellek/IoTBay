@@ -21,6 +21,7 @@ public class DBPaymentInformationManager {
         this.conn = conn;
     }
     
+    //Find payment information detail by payment information ID
     public PaymentInformation findPaymentInformationByID (int paymentInfoID) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblPayment_Information WHERE Payment_Info_ID = ?");
         selectStatement.setInt(1,paymentInfoID);
@@ -38,6 +39,7 @@ public class DBPaymentInformationManager {
         throw new SQLException("No such payment information exists.");
     }
     
+    //Find past payment information details by user ID
     public ArrayList<PaymentInformation> findPastPaymentInformationByUserID (int userID) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblPayment_Information INNER JOIN tblOrder ON tblPayment_Information.Payment_Info_ID = tblOrder.Payment_Info_ID WHERE user_id = ? AND Order_Status != 'Not Submitted'");
         selectStatement.setInt(1,userID);
@@ -61,6 +63,7 @@ public class DBPaymentInformationManager {
         return paymentInfo;
     }
     
+    //Find saved payment information details by user ID
     public PaymentInformation findSavedPaymentInformationByUserID (int userID) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblPayment_Information INNER JOIN tblOrder WHERE user_id = ? AND Order_Status = 'Not Submitted'");
         selectStatement.setInt(1,userID);
@@ -78,6 +81,7 @@ public class DBPaymentInformationManager {
         throw new SQLException("No such payment information exists.");
     }    
     
+    //Find payment information by card number
     public PaymentInformation findPaymentInformationByCardNumber (String card_number) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblPayment_Information WHERE Card_Number = ?");
         selectStatement.setString(1,card_number);
@@ -95,6 +99,7 @@ public class DBPaymentInformationManager {
         throw new SQLException("No such payment information exists.");
     }
     
+    //Find payment information by order date and payment information ID
     public ArrayList <PaymentInformation> findPaymentInformationByIDDate(int paymentInfoID, Date date) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblPayment_Information INNER JOIN tblOrder ON tblPayment_Information.Payment_Info_ID = tblOrder.Payment_Info_ID WHERE Order_Date = ? AND tblOrder.Payment_Info_ID = ?");
         selectStatement.setDate(1, (java.sql.Date) date);
@@ -118,6 +123,7 @@ public class DBPaymentInformationManager {
         return PaymentInfoList;
     }
     
+    //Add payment information details
     public int addPaymentInformation (String card_number, String card_type, String expiry_date) throws SQLException {
         PreparedStatement insertStatement = conn.prepareStatement("INSERT INTO tblPayment_Information (Card_Number, Card_Type, Expiry_Date) VALUES (?,?,?)", Statement.RETURN_GENERATED_KEYS);
         insertStatement.setString(1, card_number);
@@ -141,6 +147,7 @@ public class DBPaymentInformationManager {
         return id;
     }
     
+    //Update payment information details
     public void updatePaymentInformation (int paymentInfoID, String card_type, String expiry_date) throws SQLException {
         PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblPayment_Information SET Card_Type = ?, Expiry_Date = ? WHERE Payment_Info_ID = ?");
         updateStatement.setString(1, card_type);
@@ -151,6 +158,7 @@ public class DBPaymentInformationManager {
         updateStatement.close();
     }
     
+    //Delete payment information details
     public void deletePaymentInformation (int orderID) throws SQLException {
         PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblOrder SET Payment_Info_ID = null WHERE Order_ID = ?");
         updateStatement.setInt(1, orderID);

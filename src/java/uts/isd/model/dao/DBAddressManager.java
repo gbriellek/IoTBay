@@ -19,11 +19,8 @@ public class DBAddressManager {
         this.conn = conn;
     }
 
-    public int findAddressID(String unit_number, String street_number, String street, String city, int postcode, String state) throws SQLException {
-        //setup the select sql query string       
-        //execute this query using the statement field       
-        //add the results to a ResultSet       
-        //search the ResultSet for a user using the parameters    
+    //Find address ID based on address details
+    public int findAddressID(String unit_number, String street_number, String street, String city, int postcode, String state) throws SQLException {   
         PreparedStatement selectStatement;
         if (unit_number == null) {
             selectStatement = conn.prepareStatement("SELECT Address_ID FROM tblAddress WHERE Unit_Number IS NULL AND Street_Number = ? AND Street = ? AND City = ? AND Postcode = ? AND Address_State = ?");
@@ -54,6 +51,7 @@ public class DBAddressManager {
 
     }
 
+    //Find address by the address ID
     public Address findAddressByID(int addressID) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT Address_ID, Unit_Number, Street_Number, Street, City, Postcode, Address_State FROM tblAddress WHERE Address_ID = ?");
         selectStatement.setInt(1, addressID);
@@ -75,9 +73,8 @@ public class DBAddressManager {
         throw new SQLException("No such address exists.");
     }
 
-    //Add a user-data into the database   
-    public int addAddress(String unit_number, String street_number, String street, String city, int postcode, String state) throws SQLException {
-        //code for add-operation       
+    //Add an address into the database   
+    public int addAddress(String unit_number, String street_number, String street, String city, int postcode, String state) throws SQLException { 
         PreparedStatement insertStatement = conn.prepareStatement("INSERT INTO tblAddress(Unit_Number, Street_Number, Street, City, Postcode, Address_State) VALUES (?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
         insertStatement.setString(1, unit_number);
         insertStatement.setString(2, street_number);
@@ -104,12 +101,10 @@ public class DBAddressManager {
         return id;
     }
 
-    //update a user details in the database   
+    //Update an address in the database   
     public void updateAddress(int shipmentDetailID, String unit_number, String street_number, String street, String city, int postcode, String state) throws SQLException {
-        //code for update-operation   
         try {
             int id = findAddressID(unit_number, street_number, street, city, postcode, state);
-            //UPDATE FK IN SHIPMENT DETAILS
             PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblShipment_Detail SET address_ID = ? WHERE Shipment_Detail_ID = ?");
             updateStatement.setInt(1, id);
             updateStatement.setInt(2, shipmentDetailID);
@@ -126,14 +121,4 @@ public class DBAddressManager {
             updateStatement.close();
         }
     }
-
-    //delete a user from the database   
-//    public void deleteAddress(String name) throws SQLException{       
-//       //code for delete-operation   
-//       PreparedStatement deleteStatement = conn.prepareStatement("DELETE FROM tblAddress WHERE Product_Name = ?");
-//        deleteStatement.setString(1, name);
-//         
-//        deleteStatement.executeUpdate();
-//        deleteStatement.close();
-//    }
 }

@@ -19,6 +19,7 @@ public class DBCustomerManager {
         this.conn = conn;
     }
     
+    //Find customer by email
     public Customer findCustomerByEmail(String email) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblUser INNER JOIN tblCustomer ON tblUser.User_ID = tblCustomer.Customer_ID WHERE Email_Address = ?");
         selectStatement.setString(1, email);
@@ -40,6 +41,7 @@ public class DBCustomerManager {
         
     }
     
+    //Add customer details
     public void addCustomer (String email, String fname, String lname, String phoneno, String password, boolean Is_Activated) throws SQLException {
         PreparedStatement insertStatement = conn.prepareStatement("INSERT INTO tblUser(Email_Address, First_Name, Last_Name, Phone_Number) VALUES (?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
         insertStatement.setString(1, email);
@@ -73,6 +75,7 @@ public class DBCustomerManager {
         insertStatement1.close();
     }
     
+    //Update customer by ID
     public void updateCustomerByID(int id, String fname, String lname, String phoneno, String password) throws SQLException {
         PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblUser SET First_Name = ?, Last_Name = ?, Phone_Number = ? WHERE User_ID = ?");
         updateStatement.setString(1, fname);
@@ -92,6 +95,7 @@ public class DBCustomerManager {
         
     }
     
+    //Delete customer by customer ID
     public void deleteCustomerByID(int id) throws SQLException {
         PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblCustomer SET Is_Activated = False WHERE Customer_ID = ?");
         updateStatement.setInt(1, id);

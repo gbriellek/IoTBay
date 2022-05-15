@@ -22,6 +22,7 @@ public class DBOrderManager {
         this.conn = conn;
     }
     
+    //Find order by user ID
     public Order findOrderByUserID (int userID) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE User_ID = ? AND Order_Status = 'Not Submitted'");
         selectStatement.setInt(1, userID);
@@ -43,6 +44,7 @@ public class DBOrderManager {
         throw new SQLException("Order does not exist.");
     }
     
+    //Find past order by shipment ID
     public Order findPastOrderByShipmentID (int shipmentID) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE Shipment_Detail_ID = ? AND Order_Status NOT IN ('Not Submitted','Cancelled')");
         selectStatement.setInt(1, shipmentID);
@@ -64,6 +66,7 @@ public class DBOrderManager {
         throw new SQLException("Order does not exist.");
     }
     
+    //Find past orders by user ID
     public ArrayList<Order> findPastOrdersByUserID (int userID) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE User_ID = ? AND Order_Status NOT IN ('Not Submitted','Cancelled')");
         selectStatement.setInt(1, userID);
@@ -92,6 +95,7 @@ public class DBOrderManager {
         return OrderList;
     }
     
+    //Find past orders by user ID and date
     public ArrayList<Order> findPastOrdersByUserIDDate (int userID, Date date) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE User_ID = ? AND Order_Status NOT IN ('Not Submitted','Cancelled') AND Order_Date = ?");
         selectStatement.setInt(1, userID);
@@ -121,6 +125,7 @@ public class DBOrderManager {
         return OrderList;
     }
     
+    //Find past orders by user ID and order ID
     public ArrayList<Order> findPastOrdersByUserIDAndOrderID (int userID, int orderID) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE User_ID = ? AND Order_Status NOT IN ('Not Submitted','Cancelled') AND Order_ID = ?");
         selectStatement.setInt(1, userID);
@@ -150,6 +155,7 @@ public class DBOrderManager {
         return OrderList;
     }
     
+    //Find past orders by user ID and date and order ID
     public ArrayList<Order> findPastOrdersByUserIDAndDateAndOrderID (int userID, Date date, int orderID) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE User_ID = ? AND Order_Status NOT IN ('Not Submitted','Cancelled') AND Order_Date = ? AND Order_ID = ?");
         selectStatement.setInt(1, userID);
@@ -180,6 +186,7 @@ public class DBOrderManager {
         return OrderList;
     }
 
+    //Find past order payments by user ID and date
     public ArrayList<Order> findPastOrderPaymentsByUserIDDate (int userID, Date date) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE User_ID = ? AND Order_Status NOT IN ('Not Submitted','Cancelled') AND Order_Date = ?");
         selectStatement.setInt(1, userID);
@@ -209,6 +216,7 @@ public class DBOrderManager {
         return OrderList;
     }
     
+    //Find past order payments by user ID and payment information ID
     public ArrayList<Order> findPastOrderPaymentsByUserIDAndPaymentID (int userID, int payID) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE User_ID = ? AND Order_Status NOT IN ('Not Submitted','Cancelled') AND Payment_Info_ID = ?");
         selectStatement.setInt(1, userID);
@@ -238,6 +246,7 @@ public class DBOrderManager {
         return OrderList;
     }
     
+    //Find past order payments by user ID and date and payment information ID
     public ArrayList<Order> findPastOrderPaymentsByUserIDAndDateAndPaymentID (int userID, Date date, int payID) throws SQLException {
         PreparedStatement selectStatement = conn.prepareStatement("SELECT * FROM tblOrder WHERE User_ID = ? AND Order_Status NOT IN ('Not Submitted','Cancelled') AND Order_Date = ? AND Payment_Info_ID = ?");
         selectStatement.setInt(1, userID);
@@ -267,6 +276,8 @@ public class DBOrderManager {
         }
         return OrderList;
     }
+    
+    //Add order details
     public int addOrder (int userID, Date date, double cost) throws SQLException {
         PreparedStatement insertStatement = conn.prepareStatement("INSERT INTO tblOrder(User_ID, Order_Date, Total_Cost, Order_Status) VALUES (?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
         insertStatement.setInt(1, userID);
@@ -292,6 +303,7 @@ public class DBOrderManager {
         return id;
     }
     
+    //Update order details
     public void updateOrder (int orderID, int userID, int paymentinfoID, int shipmentID, Date date, double cost, String status) throws SQLException {
         PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblOrder SET User_ID = ?, Payment_Info_ID = ?, Shipment_Detail_ID = ?, Order_Date = ?, Total_Cost = ?, Order_Status = ? WHERE Order_ID = ?");
         updateStatement.setInt(1, userID);
@@ -306,6 +318,7 @@ public class DBOrderManager {
         updateStatement.close();
     }
 
+    //Update payment information ID based on order ID
     public void updateOrderPaymentID (int orderID, int paymentInfoID) throws SQLException {
         PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblOrder SET Payment_Info_ID = ? WHERE Order_ID = ?");
         if (paymentInfoID == 0) {
@@ -320,6 +333,7 @@ public class DBOrderManager {
         updateStatement.close();
     }
     
+    //Update shipment detail ID based on order ID
     public void updateOrderShipmentDetailID (int orderID, int shipmentID) throws SQLException {
         PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblOrder SET Shipment_Detail_ID = ? WHERE Order_ID = ?");
         if (shipmentID == 0) {
@@ -334,6 +348,7 @@ public class DBOrderManager {
         updateStatement.close();
     }
     
+    //Update order status based on order ID
      public void updateOrderStatus (int orderID) throws SQLException {
         PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblOrder SET Order_Status = ? WHERE Order_ID = ?");
         updateStatement.setString(1, "Dispatched");
@@ -343,6 +358,7 @@ public class DBOrderManager {
         updateStatement.close();
     }
     
+     //Update order date and total cost based on order ID
     public void updateOrderDateAndCost (int orderID, Date date, double cost) throws SQLException {
         PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblOrder SET Order_Date = ?, Total_Cost = ? WHERE Order_ID = ?");
         updateStatement.setDate(1, date);
@@ -353,6 +369,7 @@ public class DBOrderManager {
         updateStatement.close();
     }
     
+    //Updates cost of order based on order ID
     public void addToOrder (int orderID, double cost) throws SQLException {
         PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblOrder SET Total_Cost = ? WHERE Order_ID = ?");
         updateStatement.setDouble(1, cost);
@@ -362,6 +379,7 @@ public class DBOrderManager {
         updateStatement.close();
     }
     
+    //Delete order
     public void deleteOrder (int orderID) throws SQLException {
         PreparedStatement updateStatement = conn.prepareStatement("UPDATE tblOrder SET Order_Status = 'Cancelled' WHERE Order_ID = ?");
         updateStatement.setInt(1, orderID);
